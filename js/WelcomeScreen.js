@@ -15,6 +15,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 
+
 import {
   ViroVRSceneNavigator,
 } from 'react-viro';
@@ -31,6 +32,7 @@ var sharedProps = {
 // var InitialVRScene = require('./js/HomeScreen');
 var InitialVRScene = require('./HelloWorldScene');
 var GameOverScreen = require('./GameOverScreen')
+var FooterScreen = require('./FooterScreen')
 
 var VR_NAVIGATOR_TYPE = "VR";
 var UNSET = "UNSET";
@@ -81,9 +83,13 @@ export default class WelcomeScreen extends Component {
   // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator() {
     return (
+
+      <View>
       <ViroVRSceneNavigator {...this.state.sharedProps}
         initialScene={{scene: InitialVRScene}} onExitViro={this._exitViro}
         vrModeEnabled={false}/>
+        <FooterScreen/>
+      </View>
     );
   }
 
@@ -126,7 +132,7 @@ var localStyles = StyleSheet.create({
   titleText: {
     paddingTop: 30,
     paddingBottom: 20,
-    color:'#fff',
+    color:'white',
     textAlign:'center',
     fontSize : 25
   },
@@ -158,6 +164,10 @@ var localStyles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#fff',
+  },
+  bottomView: {
+    backgroundColor: 'black',
+    borderTopColor: 'black'
   }
 });
 
