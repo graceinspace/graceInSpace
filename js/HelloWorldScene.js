@@ -15,31 +15,29 @@ import allObjects from "./objects";
 export default class HelloWorldScene extends Component {
   constructor() {
     super();
-    // Set initial state here
+
     this.state = {
       arr: allObjects,
       counter: 0
     };
-    // bind 'this' to functions
-    this._incrementCounter = this._incrementCounter.bind(this);
-    this._decrementCounter = this._decrementCounter.bind(this);
-    this._resetCounter = this._resetCounter.bind(this);
   }
-  _incrementCounter() {
+  _incrementCounter = () => {
     this.setState({
       counter: this.state.counter + 1
     });
   }
-  _decrementCounter() {
+  _decrementCounter = () => {
     this.setState({
       counter: this.state.counter - 1
     });
   }
-  _resetCounter() {
+  _resetCounter = () => {
     this.setState({
       counter: 0
     });
   }
+
+
   render() {
     console.log("THIS IS THE OBJECT", allObjects);
     return (
@@ -69,37 +67,11 @@ export default class HelloWorldScene extends Component {
             position={[2.3, -0.6, -1]}
             onClick={this._incrementCounter}
           />
-
+          {/* mapping through all our objects!!! */}
           {this.state.arr.map((obj, i) => {
             return <SingleObj key={i} obj={obj} />;
           })}
 
-          {/* <Viro3DObject
-            source={require("./res/dog2.obj")}
-            position={[15, 5.6, -15]}
-            scale={[0.03, 0.03, 0.03]}
-            resources={[require("./res/dog2.mtl")]}
-            type="OBJ"
-            onClick={this._incrementCounter}
-          /> */}
-
-          {/* <Viro3DObject
-            source={require("./res/duckie.obj")}
-            position={[-1, -15.6, -15]}
-            scale={[0.01, 0.01, 0.01]}
-            resources={[require("./res/duckie.mtl")]}
-            type="OBJ"
-            onClick={this._incrementCounter}
-          /> */}
-          {/* 
-          <Viro3DObject
-            source={require("./res/sax.obj")}
-            position={[1, 4.6, -7]}
-            scale={[0.01, 0.01, 0.01]}
-            resources={[require("./res/sax.mtl")]}
-            type="OBJ"
-            onClick={this._incrementCounter}
-          /> */}
           <ViroAmbientLight color="#FFFFFF" />
           <ViroText
             text="RESET"
