@@ -13,8 +13,8 @@ import SingleObj from "./SingleObj";
 import allObjects from "./objects";
 
 export default class HelloWorldScene extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       arr: allObjects,
