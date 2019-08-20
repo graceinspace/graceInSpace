@@ -72,7 +72,7 @@ export default class HelloWorldScene extends Component {
               <SingleObj
                 key={i}
                 obj={obj}
-                updateScore={this.props.updateScore}
+                updateScore={this.props.sceneNavigator.viroAppProps.updateScore}
               />
             );
           })}
