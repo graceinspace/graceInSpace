@@ -1,29 +1,14 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
 import CountDown from "react-native-countdown-component";
-// import { connect } from "react-redux";
 import { Footer, FooterTab } from "native-base";
-// import { gameOverAction } from '../store'
-
-// let timeLeft = 5;
 
 export default class FooterScreen extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {};
   }
-  // timer() {
-  //   if (timeLeft == 0) {
-  //     clearInterval();
-  //     // this.props.gameOver()
-  //   } else {
-  //     timeLeft--;
-  //     return timeLeft;
-  //   }
 
   render() {
-    // let currentTime = setInterval(this.timer, 1000);
     return (
       <View>
         <Footer style={localStyles.bottomView}>
@@ -33,11 +18,16 @@ export default class FooterScreen extends Component {
           <FooterTab style={localStyles.bottomView}>
             <Text style={localStyles.titleText}>Time:</Text>
             <CountDown
-              until={30}
-              onFinish={alert("Game Over!")}
+              until={10}
+              onFinish={() => this.props.gameOverState()}
               size={15}
+              digitStyle={{
+                backgroundColor: "black",
+                borderWidth: 2,
+                borderColor: "#1CC625"
+              }}
+              digitTxtStyle={{ color: "white" }}
               timeToShow={["S"]}
-              timeLabels={{ s: "Seconds" }}
             />
           </FooterTab>
         </Footer>
@@ -45,12 +35,6 @@ export default class FooterScreen extends Component {
     );
   }
 }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     gameOver: () => dispatch(gameOverAction())
-//   }
-// }
 
 var localStyles = StyleSheet.create({
   viroContainer: {
@@ -112,9 +96,5 @@ var localStyles = StyleSheet.create({
     alignItems: "flex-end"
   }
 });
-
-// const Connected = connect(
-//   null, mapDispatchToProps)(FooterScreen);
-//   export default Connected;
 
 module.exports = FooterScreen;
