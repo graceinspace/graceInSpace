@@ -21,12 +21,11 @@ export default class SingleObj extends Component {
     console.log("this is our PROPS");
     let source = this.props.obj.source;
     let resources = this.props.obj.resources;
-
     return (
       // <TouchableOpacity
       //   disabled={contains}
-      //   onPress={()=> {this.state.objectArray.push(this.props.obj)}}
-      // >
+      //   onP
+
       <Viro3DObject
         visible={this.state.contains}
         source={this.props.obj.source} //obj.source
@@ -35,7 +34,8 @@ export default class SingleObj extends Component {
         resources={this.props.obj.resources} //obj.resource
         type="OBJ"
         onClick={() => {
-          this.setState({ contains: false }), this.props.updateScore();
+          this.setState({ contains: false });
+          this.props.updateScore();
         }}
       />
       //  </TouchableOpacity>
@@ -52,4 +52,3 @@ var styles = StyleSheet.create({
   }
 });
 module.exports = SingleObj;
-

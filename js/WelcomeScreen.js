@@ -111,14 +111,15 @@ export default class WelcomeScreen extends Component {
           initialScene={{ scene: InitialVRScene }}
           onExitViro={this._exitViro}
           vrModeEnabled={false}
-          updateScore={this.updateScore.bind(this)}
+          viroAppProps={{ updateScore: this.updateScore.bind(this) }}
         />
         <FooterScreen />
       </View>
     );
   }
   updateScore() {
-    this.setState({ score: score++ });
+    // eslint-disable-next-line react/no-unused-state
+    this.setState(previous => ({ score: previous.score++ }));
   }
 
   // This function returns an anonymous/lambda function to be used
