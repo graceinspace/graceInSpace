@@ -11,8 +11,10 @@ import {
 } from "react-viro";
 import SingleObj from "./SingleObj";
 import allObjects from "./objects";
+import { connect } from 'react-redux'
+import { upCount} from './store'
 
-export default class HelloWorldScene extends Component {
+class SpaceScene extends Component {
   constructor() {
     super();
 
@@ -21,25 +23,24 @@ export default class HelloWorldScene extends Component {
       counter: 0
     };
   }
-  _incrementCounter = () => {
-    this.setState({
-      counter: this.state.counter + 1
-    });
-  }
-  _decrementCounter = () => {
-    this.setState({
-      counter: this.state.counter - 1
-    });
-  }
-  _resetCounter = () => {
-    this.setState({
-      counter: 0
-    });
-  }
+  // _incrementCounter = () => {
+  //   this.setState({
+  //     counter: this.state.counter + 1
+  //   });
+  // }
+  // _decrementCounter = () => {
+  //   this.setState({
+  //     counter: this.state.counter - 1
+  //   });
+  // }
+  // _resetCounter = () => {
+  //   this.setState({
+  //     counter: 0
+  //   });
 
 
   render() {
-    console.log("THIS IS THE OBJECT", allObjects);
+
     return (
       <ViroScene>
         <React.Fragment>
@@ -57,7 +58,7 @@ export default class HelloWorldScene extends Component {
             height={2}
             width={4}
             position={[1.9, -0.6, -1]}
-            onClick={this._decrementCounter}
+            // onClick={this._decrementCounter}
           />
           <ViroText
             text="+"
@@ -65,7 +66,7 @@ export default class HelloWorldScene extends Component {
             height={2}
             width={4}
             position={[2.3, -0.6, -1]}
-            onClick={this._incrementCounter}
+            // onClick={this._incrementCounter}
           />
           {/* mapping through all our objects!!! */}
           {this.state.arr.map((obj, i) => {
@@ -80,7 +81,7 @@ export default class HelloWorldScene extends Component {
             width={4}
             position={[1, -0.3, -1]}
             style={styles.counterTextStyle}
-            onClick={this._resetCounter}
+            // onClick={this._resetCounter}
           />
         </React.Fragment>
         <Viro360Image source={require("./res/360_space.jpg")} />
@@ -97,4 +98,20 @@ var styles = StyleSheet.create({
     textAlign: "center"
   }
 });
-module.exports = HelloWorldScene;
+
+
+// const mapStateToProps = () => {
+//   return {
+//     score: state.score
+//   }
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     upCount: (num)=> dispatch(upCount(num))
+//   }
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(SpaceScene)
+
+module.exports = SpaceScene

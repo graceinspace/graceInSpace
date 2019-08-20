@@ -30,7 +30,7 @@ var sharedProps = {
 
 // Sets the default scene you want for AR and VR
 // var InitialVRScene = require('./js/HomeScreen');
-var InitialVRScene = require('./HelloWorldScene');
+var InitialVRScene = require('./SpaceScene');
 var GameOverScreen = require('./GameOverScreen')
 var FooterScreen = require('./FooterScreen')
 
@@ -161,7 +161,6 @@ var localStyles = StyleSheet.create({
     fontSize : 25
   },
   buttonText: {
-    // marginTop: 5,
     color:'white',
     textAlign:'center',
     fontSize : 20
@@ -175,8 +174,6 @@ var localStyles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor:'#4AC7CB',
     borderRadius: 10,
-    // borderWidth: 1,
-    // borderColor: '#fff',
   },
   exitButton : {
     height: 50,
