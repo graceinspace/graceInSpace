@@ -9,7 +9,7 @@ const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: tru
 const store = createStore(reducer, middleware)
 
 
-// export default store
-module.export = {
-  store
-}
+export default store
+// module.export = {
+//   store
+// }
