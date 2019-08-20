@@ -21,7 +21,7 @@ var sharedProps = {
 
 // Sets the default scene you want for AR and VR
 // var InitialVRScene = require('./js/HomeScreen');
-var InitialVRScene = require("./SpaceScene");
+var InitialVRScene = require("./HelloWorldScene");
 var GameOverScreen = require("./GameOverScreen");
 var FooterScreen = require("./FooterScreen");
 
@@ -39,7 +39,8 @@ export default class WelcomeScreen extends Component {
     this.state = {
       navigatorType: defaultNavigatorType,
       sharedProps: sharedProps,
-      gameOver: false
+      gameOver: false,
+      score: 0
     };
     // this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
@@ -47,16 +48,12 @@ export default class WelcomeScreen extends Component {
       this
     );
     this._exitViro = this._exitViro.bind(this);
-    // this.gameOverState = this.gameOverState.bind(this);
   }
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.
   render() {
-    if (
-      this.state.navigatorType == VR_NAVIGATOR_TYPE &&
-      this.state.gameOver === false
-    ) {
+    if (this.state.navigatorType == VR_NAVIGATOR_TYPE) {
       return this._getVRNavigator();
     }
     if (this.state.gameOver == true) {
@@ -104,11 +101,6 @@ export default class WelcomeScreen extends Component {
       </View>
     );
   }
-  gameOverState() {
-    this.setState({
-      gameOver: true
-    });
-  }
 
   // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator() {
@@ -119,10 +111,14 @@ export default class WelcomeScreen extends Component {
           initialScene={{ scene: InitialVRScene }}
           onExitViro={this._exitViro}
           vrModeEnabled={false}
+          updateScore={this.updateScore.bind(this)}
         />
-        <FooterScreen gameOverState={this.gameOverState.bind(this)} />
+        <FooterScreen />
       </View>
     );
+  }
+  updateScore() {
+    this.setState({ score: score++ });
   }
 
   // This function returns an anonymous/lambda function to be used
@@ -183,6 +179,7 @@ var localStyles = StyleSheet.create({
     fontSize: 25
   },
   buttonText: {
+    // marginTop: 5,
     color: "white",
     textAlign: "center",
     fontSize: 20
@@ -196,6 +193,8 @@ var localStyles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: "#4AC7CB",
     borderRadius: 10
+    // borderWidth: 1,
+    // borderColor: '#fff',
   },
   exitButton: {
     height: 50,
