@@ -13,12 +13,12 @@ export default class FooterScreen extends Component {
       <View>
         <Footer style={localStyles.bottomView}>
           <FooterTab style={localStyles.bottomView}>
-            <Text style={localStyles.titleText}>Score: 1</Text>
+            <Text style={localStyles.titleText}>Score: {this.props.score}</Text>
           </FooterTab>
           <FooterTab style={localStyles.bottomView}>
             <Text style={localStyles.titleText}>Time:</Text>
             <CountDown
-              until={10}
+              until={30}
               onFinish={() => this.props.gameOverState()}
               size={15}
               digitStyle={{

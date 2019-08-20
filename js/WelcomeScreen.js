@@ -53,7 +53,10 @@ export default class WelcomeScreen extends Component {
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.
   render() {
-    if (this.state.navigatorType == VR_NAVIGATOR_TYPE) {
+    if (
+      this.state.navigatorType == VR_NAVIGATOR_TYPE &&
+      this.state.gameOver == false
+    ) {
       return this._getVRNavigator();
     }
     if (this.state.gameOver == true) {
@@ -113,13 +116,22 @@ export default class WelcomeScreen extends Component {
           vrModeEnabled={false}
           viroAppProps={{ updateScore: this.updateScore.bind(this) }}
         />
-        <FooterScreen />
+        <FooterScreen
+          gameOverState={this.gameOverState.bind(this)}
+          score={this.state.score}
+        />
       </View>
     );
   }
   updateScore() {
     // eslint-disable-next-line react/no-unused-state
-    this.setState(previous => ({ score: previous.score++ }));
+    this.setState(previous => ({
+      score: previous.score + 1
+    }));
+  }
+
+  gameOverState() {
+    this.setState({ gameOver: true });
   }
 
   // This function returns an anonymous/lambda function to be used
