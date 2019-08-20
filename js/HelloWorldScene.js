@@ -25,18 +25,17 @@ export default class HelloWorldScene extends Component {
     this.setState({
       counter: this.state.counter + 1
     });
-  }
+  };
   _decrementCounter = () => {
     this.setState({
       counter: this.state.counter - 1
     });
-  }
+  };
   _resetCounter = () => {
     this.setState({
       counter: 0
     });
-  }
-
+  };
 
   render() {
     console.log("THIS IS THE OBJECT", allObjects);
@@ -69,7 +68,13 @@ export default class HelloWorldScene extends Component {
           />
           {/* mapping through all our objects!!! */}
           {this.state.arr.map((obj, i) => {
-            return <SingleObj key={i} obj={obj} />;
+            return (
+              <SingleObj
+                key={i}
+                obj={obj}
+                updateScore={this.props.updateScore}
+              />
+            );
           })}
 
           <ViroAmbientLight color="#FFFFFF" />
