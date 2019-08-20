@@ -15,6 +15,7 @@ import {
   StyleSheet,
   PixelRatio,
   TouchableHighlight,
+  Image
 } from 'react-native';
 
 import {
@@ -22,6 +23,7 @@ import {
 
 } from 'react-viro';
 import WelcomeScreen from './js/WelcomeScreen';
+
 
 
 
@@ -51,14 +53,22 @@ export default class GraceInSpace extends Component {
 
     this.state = {
       navigatorType : defaultNavigatorType,
-      sharedProps : sharedProps
+      sharedProps : sharedProps,
+      loaded: false,
     }
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
     this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(this);
     this._exitViro = this._exitViro.bind(this);
+    this.imageLoaded = this.imageLoaded.bind(this)
   }
+
+  imageLoaded = () => {
+    this.setState({ loaded: true})
+  }
+
+
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.
@@ -75,21 +85,33 @@ export default class GraceInSpace extends Component {
   // Presents the user with a choice of an AR or VR experience
   _getExperienceSelector() {
     return (
+
       <View style={localStyles.outer} >
-        <View style={localStyles.inner} >
-
-          <Text style={localStyles.titleText}>
-            Choose your desired experience:
+        <View style={localStyles.inner}>
+         {this.state.loaded? (<View><Text style={{ fontFamily: 'Futura-CondensedExtraBold', color: 'white', textAlign: 'center', fontSize: 50 }}>
+            Grace In Space
           </Text>
+          <View style={{width: 300}}><Text style={localStyles.titleText}>
+          Grace the Alien was traveling through space for her annual beach week with the girls when she dropped her bag! Can you help her collect all her items before they float away?
+          </Text></View>
+          <View style={{
+            alignItems:'center',}}>
+            <TouchableHighlight style={localStyles.buttons}
+              onPress={this._getExperienceButtonOnPress(VR_NAVIGATOR_TYPE)}
+              underlayColor={'#68a0ff'} >
+
+              <Text style={localStyles.buttonText}>NEXT</Text>
+            </TouchableHighlight>
+          </View>
+          </View>) :
+          (<View><Text style={localStyles.loadingText}>Loading...</Text></View>)}
 
 
-          <TouchableHighlight style={localStyles.buttons}
-            onPress={this._getExperienceButtonOnPress(VR_NAVIGATOR_TYPE)}
-            underlayColor={'#68a0ff'} >
+          <Image style={{width: 300, height: 333}} source={require('./js/res/grace2.gif')} onLoadEnd={this.imageLoaded}
+           />
 
-            <Text style={localStyles.buttonText}>VR</Text>
-          </TouchableHighlight>
         </View>
+
       </View>
     );
   }
@@ -140,36 +162,51 @@ var localStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems:'center',
     backgroundColor: "black",
+    textAlign: 'center'
   },
   inner: {
     flex : 1,
     flexDirection: 'column',
     alignItems:'center',
     backgroundColor: "black",
+    textAlign: 'center'
+  },
+  image: {
+    marginTop: 50,
   },
   titleText: {
-    paddingTop: 30,
+    paddingTop: 20,
+    paddingBottom: 20,
+    color:'#fff',
+    fontSize : 15,
+    paddingLeft: 10,
+    paddingRight: 10,
+    textAlign: 'justify'
+  },
+  loadingText: {
+    paddingTop: 20,
     paddingBottom: 20,
     color:'#fff',
     textAlign:'center',
     fontSize : 25
   },
   buttonText: {
-    color:'#fff',
+    // marginTop: 5,
+    color:'white',
     textAlign:'center',
     fontSize : 20
   },
   buttons : {
-    height: 80,
-    width: 150,
-    paddingTop:20,
-    paddingBottom:20,
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor:'#68a0cf',
+    height: 40,
+    width: 90,
+    paddingTop:10,
+    paddingBottom:10,
+    marginTop: 5,
+    marginBottom: 15,
+    backgroundColor:'#4AC7CB',
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
+    // borderWidth: 1,
+    // borderColor: '#fff',
   },
   exitButton : {
     height: 50,
