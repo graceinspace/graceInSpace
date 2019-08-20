@@ -80,7 +80,6 @@ export default class WelcomeScreen extends Component {
             </Text>
             <Text
               style={{
-                color: "#fff",
                 fontSize: 15,
                 color: "orange",
                 paddingLeft: 10,
@@ -119,7 +118,7 @@ export default class WelcomeScreen extends Component {
     );
   }
   updateScore() {
-    this.setState({ score: this.state.score++ });
+    this.setState({ score: score++ });
   }
 
   // This function returns an anonymous/lambda function to be used
