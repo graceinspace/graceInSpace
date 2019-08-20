@@ -68,14 +68,24 @@ export default class WelcomeScreen extends Component {
       return (<GameOverScreen />)
     }
     return (
-      <View>
-        <Text>This is the welcome screen! Hi!</Text>
+      <View style={localStyles.outer}>
+        <View style={localStyles.inner}>
+          <Text style={{ fontFamily: 'Futura-CondensedExtraBold', color: 'white', textAlign: 'center', fontSize: 50 }}>
+              Instructions:
+            </Text>
+            <View style={{width: 300}}>
+              <Text style={localStyles.titleText}>Look around in space for Grace's items. When you see one, click on it to return it to her bag. Try to collect all ten before time runs out!</Text>
+              <Text style={{color:'#fff',
+              fontSize : 15, color: 'orange', paddingLeft: 10,
+              paddingRight: 10, paddingBottom: 20}}>Don't forget to look up, down, left, right, and behind you!</Text>
+            </View>
           <TouchableHighlight style={localStyles.buttons}
             onPress={this._getExperienceButtonOnPress(VR_NAVIGATOR_TYPE)}
             underlayColor={'#68a0ff'} >
 
-            <Text style={localStyles.buttonText}>Start</Text>
+            <Text style={localStyles.buttonText}>START</Text>
           </TouchableHighlight>
+          </View>
       </View>
     )
   }
@@ -122,36 +132,51 @@ var localStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems:'center',
     backgroundColor: "black",
+    textAlign: 'center'
   },
   inner: {
     flex : 1,
     flexDirection: 'column',
     alignItems:'center',
     backgroundColor: "black",
+    textAlign: 'center'
+  },
+  image: {
+    marginTop: 50,
   },
   titleText: {
-    paddingTop: 30,
+    paddingTop: 20,
     paddingBottom: 20,
-    color:'white',
+    color:'#fff',
+    fontSize : 15,
+    paddingLeft: 10,
+    paddingRight: 10,
+    textAlign: 'justify'
+  },
+  loadingText: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    color:'#fff',
     textAlign:'center',
     fontSize : 25
   },
   buttonText: {
-    color:'#fff',
+    // marginTop: 5,
+    color:'white',
     textAlign:'center',
     fontSize : 20
   },
   buttons : {
-    height: 80,
-    width: 150,
-    paddingTop:20,
-    paddingBottom:20,
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor:'#68a0cf',
+    height: 40,
+    width: 90,
+    paddingTop:10,
+    paddingBottom:10,
+    marginTop: 5,
+    marginBottom: 15,
+    backgroundColor:'#4AC7CB',
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
+    // borderWidth: 1,
+    // borderColor: '#fff',
   },
   exitButton : {
     height: 50,
@@ -164,10 +189,6 @@ var localStyles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#fff',
-  },
-  bottomView: {
-    backgroundColor: 'black',
-    borderTopColor: 'black'
   }
 });
 
