@@ -17,14 +17,14 @@ import {
   TouchableHighlight,
   Image
 } from 'react-native';
+// import store from './js/store'
+// import {Provider} from 'react-redux'
 
 import {
   ViroVRSceneNavigator,
-
 } from 'react-viro';
+
 import WelcomeScreen from './js/WelcomeScreen';
-
-
 
 
 /*
@@ -36,7 +36,6 @@ var sharedProps = {
 
 // Sets the default scene you want for AR and VR
 
-// var InitialVRScene = require('./js/HomeScreen');
 var InitialVRScene = require('./js/WelcomeScreen');
 
 var UNSET = "UNSET";
@@ -67,7 +66,6 @@ export default class GraceInSpace extends Component {
   imageLoaded = () => {
     this.setState({ loaded: true})
   }
-
 
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
@@ -120,7 +118,9 @@ export default class GraceInSpace extends Component {
   _getARNavigator() {
     return (
       <ViroARSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: InitialARScene}} />
+        initialScene={{scene: InitialARScene}}
+
+        />
     );
   }
 
@@ -130,7 +130,10 @@ export default class GraceInSpace extends Component {
       // <ViroVRSceneNavigator {...this.state.sharedProps}
       //   initialScene={{scene: InitialVRScene}} onExitViro={this._exitViro}
       //   vrModeEnabled={false}/>
-      <WelcomeScreen/>
+      // <Provider store={store}>
+      <WelcomeScreen  />
+      // </Provider>
+
     );
   }
 
