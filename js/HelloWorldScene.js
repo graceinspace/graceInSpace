@@ -7,7 +7,8 @@ import {
   ViroScene,
   Viro3DObject,
   Viro360Image,
-  ViroAmbientLight
+  ViroAmbientLight,
+  ViroSpotLight
 } from "react-viro";
 import SingleObj from "./SingleObj";
 import allObjects from "./objects";
@@ -76,7 +77,9 @@ export default class HelloWorldScene extends Component {
               />
             );
           })}
-
+           {/* <ViroAmbientLight color={"#aaaaaa"} />
+          <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0,-1,-.2]}
+            position={[0, 3, 1]} color="#ffffff" castsShadow={true} /> */}
           <ViroAmbientLight color="#FFFFFF" />
           <ViroText
             text="RESET"

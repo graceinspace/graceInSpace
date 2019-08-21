@@ -37,7 +37,6 @@ newmtl Fencing_Mesh_Blue
 Ka 0.000000 0.000000 0.000000
 Kd 0.000000 0.000000 0.000000
 Ks 0.330000 0.330000 0.330000
-map_Kd boombox/Fencing_Mesh_Blue.png
 
 newmtl Metal_Corrogated_Shiny
 Ka 0.000000 0.000000 0.000000
@@ -53,5 +52,5 @@ newmtl _Fencing_Mesh_Blue_1
 Ka 0.000000 0.000000 0.000000
 Kd 0.000000 0.000000 0.000000
 Ks 0.330000 0.330000 0.330000
-map_Kd boombox/_Fencing_Mesh_Blue_1.png
+
 
