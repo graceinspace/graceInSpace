@@ -39,8 +39,8 @@ export default class WelcomeScreen extends Component {
     this.state = {
       navigatorType: defaultNavigatorType,
       sharedProps: sharedProps,
-      gameLost: false,
-      score: 0
+      gameLost: false
+      // score: 0
     };
     // this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
@@ -116,21 +116,21 @@ export default class WelcomeScreen extends Component {
           initialScene={{ scene: InitialVRScene }}
           onExitViro={this._exitViro}
           vrModeEnabled={false}
-          viroAppProps={{ updateScore: this.updateScore.bind(this) }}
+          //viroAppProps={{ updateScore: this.updateScore.bind(this) }}
         />
         <FooterScreen
           gameLostState={this.gameLostState.bind(this)}
-          score={this.state.score}
+          // score={this.state.score}
         />
       </View>
     );
   }
-  updateScore() {
-    // eslint-disable-next-line react/no-unused-state
-    this.setState(previous => ({
-      score: previous.score + 1
-    }));
-  }
+  // updateScore() {
+  //   // eslint-disable-next-line react/no-unused-state
+  //   this.setState(previous => ({
+  //     score: previous.score + 1
+  //   }));
+  // }
 
   gameLostState() {
     this.setState({ gameLost: true });

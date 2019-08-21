@@ -41,7 +41,7 @@ class SingleObj extends Component {
           onClick={() => {
             this.setState({ contains: false });
             // this.props.updateScore();
-            scoreUp();
+            this.props.scoreUp();
           }}
         />
       </Provider>
