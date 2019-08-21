@@ -6,7 +6,7 @@ import {
   TouchableHighlight,
   Button
 } from "react-native";
-import WelcomeScreen from "./WelcomeScreen";
+var WelcomeScreen = require("./WelcomeScreen");
 
 class GameWonScreen extends Component {
   constructor() {

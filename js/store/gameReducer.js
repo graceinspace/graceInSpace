@@ -9,11 +9,11 @@ let initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case GAME_LOST:
-      return { ...state, gameLost: true };
+      return { ...state, gameLost: true, score: 0 };
     case SCORE:
       return { ...state, score: state.score + 1 };
     case GAME_WON:
-      return { ...state, gameWon: true };
+      return { ...state, gameWon: true, score: 0 };
     default:
       return state;
   }

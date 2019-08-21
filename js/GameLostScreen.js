@@ -6,7 +6,9 @@ import {
   TouchableHighlight,
   Button
 } from "react-native";
-var WelcomeScreen = require("./WelcomeScreen");
+import WelcomeScreen from "./WelcomeScreen";
+import { Provider } from "react-redux";
+import store from "./store/index";
 
 class GameLostScreen extends Component {
   constructor() {
@@ -38,7 +40,11 @@ class GameLostScreen extends Component {
         </View>
       );
     } else if (this.state.startAgain === true) {
-      return <WelcomeScreen />;
+      return (
+        <Provider store={store}>
+          <WelcomeScreen />
+        </Provider>
+      );
     }
   }
 }
