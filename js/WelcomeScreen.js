@@ -33,7 +33,7 @@ var UNSET = "UNSET";
 // be presented with a choice of AR or VR. By default, we offer the user a choice.
 var defaultNavigatorType = UNSET;
 
-class WelcomeScreen extends Component {
+export default class WelcomeScreen extends Component {
   constructor() {
     super();
 
