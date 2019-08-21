@@ -5,25 +5,28 @@ import { Footer, FooterTab } from "native-base";
 import { connect } from "react-redux";
 import store from "./store/index";
 import { Provider } from "react-redux";
+import { loseGame } from "./store/gameActions";
+
 class FooterScreen extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    let { score } = this.props;
     return (
       <Provider store={store}>
         <View>
           <Footer style={localStyles.bottomView}>
             <FooterTab style={localStyles.bottomView}>
-              <Text style={localStyles.titleText}>Score: {score}</Text>
+              <Text style={localStyles.titleText}>
+                Score: {this.props.score}
+              </Text>
             </FooterTab>
             <FooterTab style={localStyles.bottomView}>
               <Text style={localStyles.titleText}>Time:</Text>
               <CountDown
-                until={10}
-                onFinish={() => this.props.gameLostState()}
+                until={30}
+                onFinish={() => this.props.loseGame()}
                 size={15}
                 digitStyle={{
                   backgroundColor: "black",
@@ -105,9 +108,13 @@ const mapStateToProps = state => ({
   score: state.score
 });
 
+const mapDispatchToProps = dispatch => ({
+  loseGame: () => dispatch(loseGame())
+});
+
 module.exports = connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(FooterScreen);
 
 // module.exports = FooterScreen;
