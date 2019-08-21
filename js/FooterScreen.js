@@ -2,36 +2,41 @@ import React, { Component } from "react";
 import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
 import CountDown from "react-native-countdown-component";
 import { Footer, FooterTab } from "native-base";
-
-export default class FooterScreen extends Component {
+import { connect } from "react-redux";
+import store from "./store/index";
+import { Provider } from "react-redux";
+class FooterScreen extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    let { score } = this.props;
     return (
-      <View>
-        <Footer style={localStyles.bottomView}>
-          <FooterTab style={localStyles.bottomView}>
-            <Text style={localStyles.titleText}>Score: {this.props.score}</Text>
-          </FooterTab>
-          <FooterTab style={localStyles.bottomView}>
-            <Text style={localStyles.titleText}>Time:</Text>
-            <CountDown
-              until={10}
-              onFinish={() => this.props.gameLostState()}
-              size={15}
-              digitStyle={{
-                backgroundColor: "black",
-                borderWidth: 2,
-                borderColor: "#1CC625"
-              }}
-              digitTxtStyle={{ color: "white" }}
-              timeToShow={["S"]}
-            />
-          </FooterTab>
-        </Footer>
-      </View>
+      <Provider store={store}>
+        <View>
+          <Footer style={localStyles.bottomView}>
+            <FooterTab style={localStyles.bottomView}>
+              <Text style={localStyles.titleText}>Score: {score}</Text>
+            </FooterTab>
+            <FooterTab style={localStyles.bottomView}>
+              <Text style={localStyles.titleText}>Time:</Text>
+              <CountDown
+                until={10}
+                onFinish={() => this.props.gameLostState()}
+                size={15}
+                digitStyle={{
+                  backgroundColor: "black",
+                  borderWidth: 2,
+                  borderColor: "#1CC625"
+                }}
+                digitTxtStyle={{ color: "white" }}
+                timeToShow={["S"]}
+              />
+            </FooterTab>
+          </Footer>
+        </View>
+      </Provider>
     );
   }
 }
@@ -96,5 +101,13 @@ var localStyles = StyleSheet.create({
     alignItems: "flex-end"
   }
 });
+const mapStateToProps = state => ({
+  score: state.score
+});
 
-module.exports = FooterScreen;
+module.exports = connect(
+  mapStateToProps,
+  null
+)(FooterScreen);
+
+// module.exports = FooterScreen;

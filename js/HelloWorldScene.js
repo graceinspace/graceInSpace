@@ -18,8 +18,8 @@ export default class HelloWorldScene extends Component {
     super(props);
 
     this.state = {
-      arr: allObjects,
-      counter: 0
+      arr: allObjects
+      // counter: 0
     };
   }
 
@@ -28,13 +28,12 @@ export default class HelloWorldScene extends Component {
     return (
       <ViroScene>
         <React.Fragment>
-
           {this.state.arr.map((obj, i) => {
             return (
               <SingleObj
                 key={i}
                 obj={obj}
-                updateScore={this.props.sceneNavigator.viroAppProps.updateScore}
+                // updateScore={this.props.sceneNavigator.viroAppProps.updateScore}
               />
             );
           })}
