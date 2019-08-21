@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { upCount } from "./store/gameActions";
 import store from "./store/index";
 import { Provider } from "react-redux";
+
 class SingleObj extends Component {
   constructor(props) {
     super(props);
@@ -17,22 +18,17 @@ class SingleObj extends Component {
   rando = () => {
     return Math.floor(Math.random() * (10 - -10) + -10);
   };
+  a = this.rando();
+  b = this.rando();
+  c = this.rando();
 
   render() {
-    // let contains = this.state.objectArray.some(obj => JSON.stringify(obj) === JSON.stringify(this.props.obj))
-
-    console.log("this is our PROPS");
-    let source = this.props.obj.source;
-    let resources = this.props.obj.resources;
     return (
-      // <TouchableOpacity
-      //   disabled={contains}
-      //   onP
       <Provider store={store}>
         <Viro3DObject
           visible={this.state.contains}
           source={this.props.obj.source} //obj.source
-          position={[this.rando(), this.rando(), this.rando()]} //random function
+          position={[this.a, this.b, this.c]} //random function
           scale={[0.02, 0.02, 0.02]}
           resources={this.props.obj.resources} //obj.resource
           type="OBJ"
@@ -40,7 +36,6 @@ class SingleObj extends Component {
           shadowCastingBitMask={2}
           onClick={() => {
             this.setState({ contains: false });
-            // this.props.updateScore();
             this.props.scoreUp();
           }}
         />
@@ -72,4 +67,3 @@ export default connect(
   mapStateToProps,
   mapDispatch
 )(SingleObj);
-//module.exports = SingleObj;
