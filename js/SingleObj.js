@@ -30,9 +30,11 @@ export default class SingleObj extends Component {
         visible={this.state.contains}
         source={this.props.obj.source} //obj.source
         position={[this.rando(), this.rando(), this.rando()]} //random function
-        scale={[0.01, 0.01, 0.01]}
+        scale={[0.02, 0.02, 0.02]}
         resources={this.props.obj.resources} //obj.resource
         type="OBJ"
+        lightReceivingBitMask={3}
+        shadowCastingBitMask={2}
         onClick={() => {
           this.setState({ contains: false });
           this.props.updateScore();

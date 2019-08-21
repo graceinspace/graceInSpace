@@ -1,7 +1,7 @@
 const allObjects = [
   {
-    source: require("./res/beachball.obj"),
-    resources: [require("./res/beachball.mtl")],
+    source: require("./res/beachballNew.obj"),
+    resources: [require("./res/beachballNew.mtl")],
     type: "OBJ"
   },
   {
@@ -15,13 +15,38 @@ const allObjects = [
     type: "OBJ"
   },
   {
-    source: require("./res/bitcoin.obj"),
-    resources: [require("./res/bitcoin.mtl")],
+    source: require("./res/poolFloat.obj"),
+    resources: [require("./res/poolFloat.mtl")],
     type: "OBJ"
   },
   {
-    source: require("./res/duckie.obj"),
-    resources: [require("./res/duckie.mtl")],
+    source: require("./res/duckie2.obj"),
+    resources: [require("./res/duckie2.mtl")],
+    type: "OBJ"
+  },
+  {
+    source: require("./res/plant.obj"),
+    resources: [require("./res/plant.mtl")],
+    type: "OBJ"
+  },
+  {
+    source: require("./res/newDog.obj"),
+    resources: [require("./res/newDog.mtl")],
+    type: "OBJ"
+  },
+  {
+    source: require("./res/newSax.obj"),
+    resources: [require("./res/newSax.mtl")],
+    type: "OBJ"
+  },
+  {
+    source: require("./res/newBoombox.obj"),
+    resources: [require("./res/newBoombox.mtl")],
+    type: "OBJ"
+  },
+  {
+    source: require("./res/toothbrush.obj"),
+    resources: [require("./res/toothbrush.mtl")],
     type: "OBJ"
   }
 ];
