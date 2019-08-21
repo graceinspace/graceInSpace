@@ -1,29 +1,27 @@
-
-export const SCORE = "SCORE"
-export const GAME_OVER = "GAME_OVER"
+export const SCORE = "SCORE";
+export const GAME_OVER = "GAME_OVER";
 
 //action creator
 
-export const updateScore = (num) => {
+export const updateScore = () => {
   return {
-    type: SCORE,
-    num
-  }
-}
+    type: SCORE
+  };
+};
 
 export const gameRunning = () => {
   return {
     type: GAME_OVER
-  }
-}
+  };
+};
 
 //thunk
-export function upCount(num) {
-  return async(dispatch) => {
+export function upCount() {
+  return async dispatch => {
     try {
-      dispatch(updateScore(num))
+      dispatch(updateScore());
     } catch (error) {
-      next('error in upCount thunk >>',error)
+      next("error in upCount thunk >>", error);
     }
-  }
+  };
 }
