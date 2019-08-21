@@ -22,7 +22,7 @@ var sharedProps = {
 // Sets the default scene you want for AR and VR
 // var InitialVRScene = require('./js/HomeScreen');
 var InitialVRScene = require("./HelloWorldScene");
-var GameOverScreen = require("./GameOverScreen");
+var GameLostScreen = require("./GameLostScreen");
 var FooterScreen = require("./FooterScreen");
 
 var VR_NAVIGATOR_TYPE = "VR";
@@ -39,7 +39,7 @@ export default class WelcomeScreen extends Component {
     this.state = {
       navigatorType: defaultNavigatorType,
       sharedProps: sharedProps,
-      gameOver: false,
+      gameLost: false,
       score: 0
     };
     // this._getExperienceSelector = this._getExperienceSelector.bind(this);
@@ -55,12 +55,12 @@ export default class WelcomeScreen extends Component {
   render() {
     if (
       this.state.navigatorType == VR_NAVIGATOR_TYPE &&
-      this.state.gameOver == false
+      this.state.gameLost == false
     ) {
       return this._getVRNavigator();
     }
-    if (this.state.gameOver == true) {
-      return <GameOverScreen />;
+    if (this.state.gameLost == true) {
+      return <GameLostScreen />;
     }
     return (
       <View style={localStyles.outer}>
@@ -117,7 +117,7 @@ export default class WelcomeScreen extends Component {
           viroAppProps={{ updateScore: this.updateScore.bind(this) }}
         />
         <FooterScreen
-          gameOverState={this.gameOverState.bind(this)}
+          gameLostState={this.gameLostState.bind(this)}
           score={this.state.score}
         />
       </View>
@@ -130,8 +130,8 @@ export default class WelcomeScreen extends Component {
     }));
   }
 
-  gameOverState() {
-    this.setState({ gameOver: true });
+  gameLostState() {
+    this.setState({ gameLost: true });
   }
 
   // This function returns an anonymous/lambda function to be used
@@ -192,7 +192,6 @@ var localStyles = StyleSheet.create({
     fontSize: 25
   },
   buttonText: {
-    // marginTop: 5,
     color: "white",
     textAlign: "center",
     fontSize: 20
@@ -206,8 +205,6 @@ var localStyles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: "#4AC7CB",
     borderRadius: 10
-    // borderWidth: 1,
-    // borderColor: '#fff',
   },
   exitButton: {
     height: 50,

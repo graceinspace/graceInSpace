@@ -5,30 +5,7 @@ export default class HomeScreen extends Component {
   constructor() {
   super();
   }
-  // // Set initial state here
-  // this.state = {
-  //   counter: 0,
-  // };
-  // // bind 'this' to functions
-  // this._incrementCounter = this._incrementCounter.bind(this);
-  // this._decrementCounter = this._decrementCounter.bind(this);
-  // this._resetCounter = this._resetCounter.bind(this);
-  // }
-  // _incrementCounter() {
-  //   this.setState({
-  //   counter: this.state.counter + 1,
-  // });
-  // }
-  // _decrementCounter() {
-  //   this.setState({
-  //   counter: this.state.counter - 1,
-  // });
-  // }
-  // _resetCounter() {
-  //   this.setState({
-  //   counter: 0,
-  // });
-  // }
+
   render() {
 
     return (
