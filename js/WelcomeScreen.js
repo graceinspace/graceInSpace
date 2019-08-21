@@ -11,7 +11,7 @@ import React, { Component } from "react";
 import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
 import { ViroVRSceneNavigator } from "react-viro";
 import store from "./store/index";
-import { Provider } from "react-redux";
+import { Provider, connect } from "react-redux";
 /*
  TODO: Insert your API key below
  */
@@ -22,8 +22,9 @@ var sharedProps = {
 // Sets the default scene you want for AR and VR
 // var InitialVRScene = require('./js/HomeScreen');
 var InitialVRScene = require("./HelloWorldScene");
-var GameLostScreen = require("./GameLostScreen");
 var FooterScreen = require("./FooterScreen");
+var GameLostScreen = require("./GameLostScreen");
+var GameWonScreen = require("./GameWonScreen");
 
 var VR_NAVIGATOR_TYPE = "VR";
 var UNSET = "UNSET";
@@ -32,14 +33,14 @@ var UNSET = "UNSET";
 // be presented with a choice of AR or VR. By default, we offer the user a choice.
 var defaultNavigatorType = UNSET;
 
-export default class WelcomeScreen extends Component {
+class WelcomeScreen extends Component {
   constructor() {
     super();
 
     this.state = {
       navigatorType: defaultNavigatorType,
-      sharedProps: sharedProps,
-      gameLost: false
+      sharedProps: sharedProps
+      // gameLost: false
       // score: 0
     };
     // this._getExperienceSelector = this._getExperienceSelector.bind(this);
@@ -55,11 +56,14 @@ export default class WelcomeScreen extends Component {
   render() {
     if (
       this.state.navigatorType == VR_NAVIGATOR_TYPE &&
-      this.state.gameLost == false
+      this.props.gameLost == false
     ) {
       return this._getVRNavigator();
     }
-    if (this.state.gameLost == true) {
+    if (this.props.score == 10) {
+      return <GameWonScreen />;
+    }
+    if (this.props.gameLost == true) {
       return <GameLostScreen />;
     }
     return (
@@ -118,10 +122,7 @@ export default class WelcomeScreen extends Component {
           vrModeEnabled={false}
           //viroAppProps={{ updateScore: this.updateScore.bind(this) }}
         />
-        <FooterScreen
-          gameLostState={this.gameLostState.bind(this)}
-          // score={this.state.score}
-        />
+        <FooterScreen />
       </View>
     );
   }
@@ -222,4 +223,14 @@ var localStyles = StyleSheet.create({
   }
 });
 
-module.exports = WelcomeScreen;
+const mapStateToProps = state => {
+  return {
+    score: state.score,
+    gameLost: state.gameLost
+  };
+};
+
+module.exports = connect(
+  mapStateToProps,
+  null
+)(WelcomeScreen);

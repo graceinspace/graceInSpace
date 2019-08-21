@@ -1,5 +1,6 @@
 export const SCORE = "SCORE";
-export const GAME_OVER = "GAME_OVER";
+export const GAME_LOST = "GAME_LOST";
+export const GAME_WON = "GAME_WON";
 
 //action creator
 
@@ -9,9 +10,15 @@ export const updateScore = () => {
   };
 };
 
-export const gameRunning = () => {
+export const gameLost = () => {
   return {
-    type: GAME_OVER
+    type: GAME_LOST
+  };
+};
+
+export const gameWon = () => {
+  return {
+    type: GAME_WON
   };
 };
 
@@ -22,6 +29,26 @@ export function upCount() {
       dispatch(updateScore());
     } catch (error) {
       next("error in upCount thunk >>", error);
+    }
+  };
+}
+
+export function winGame() {
+  return async dispatch => {
+    try {
+      dispatch(gameWon());
+    } catch (error) {
+      next("error in winGame thunk >>", error);
+    }
+  };
+}
+
+export function loseGame() {
+  return async dispatch => {
+    try {
+      dispatch(gameLost());
+    } catch (error) {
+      next("error in loseGame thunk >>", error);
     }
   };
 }

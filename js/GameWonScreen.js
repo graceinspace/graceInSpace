@@ -6,9 +6,9 @@ import {
   TouchableHighlight,
   Button
 } from "react-native";
-var WelcomeScreen = require("./WelcomeScreen");
+import WelcomeScreen from "./WelcomeScreen";
 
-class GameLostScreen extends Component {
+class GameWonScreen extends Component {
   constructor() {
     super();
     this.state = {
@@ -26,7 +26,8 @@ class GameLostScreen extends Component {
       return (
         <View style={localStyles.container}>
           <Text style={{ color: "white", textAlign: "center", fontSize: 20 }}>
-            Ouch! You ran out of time!
+            Congratulations! You helped Grace collect all of her items before
+            time ran out! Now she can go on vacation!
           </Text>
           <Button
             style={localStyles.button}
@@ -62,4 +63,4 @@ var localStyles = StyleSheet.create({
   }
 });
 
-module.exports = GameLostScreen;
+module.exports = GameWonScreen;
