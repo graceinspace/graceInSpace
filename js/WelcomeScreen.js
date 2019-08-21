@@ -9,9 +9,9 @@
 
 import React, { Component } from "react";
 import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
-
 import { ViroVRSceneNavigator } from "react-viro";
-
+import store from "./store/index";
+import { Provider } from "react-redux";
 /*
  TODO: Insert your API key below
  */
@@ -63,45 +63,47 @@ export default class WelcomeScreen extends Component {
       return <GameOverScreen />;
     }
     return (
-      <View style={localStyles.outer}>
-        <View style={localStyles.inner}>
-          <Text
-            style={{
-              fontFamily: "Futura-CondensedExtraBold",
-              color: "white",
-              textAlign: "center",
-              fontSize: 50
-            }}
-          >
-            Instructions:
-          </Text>
-          <View style={{ width: 300 }}>
-            <Text style={localStyles.titleText}>
-              Look around in space for Grace's items. When you see one, click on
-              it to return it to her bag. Try to collect all ten before time
-              runs out!
-            </Text>
+      <Provider store={store}>
+        <View style={localStyles.outer}>
+          <View style={localStyles.inner}>
             <Text
               style={{
-                fontSize: 15,
-                color: "orange",
-                paddingLeft: 10,
-                paddingRight: 10,
-                paddingBottom: 20
+                fontFamily: "Futura-CondensedExtraBold",
+                color: "white",
+                textAlign: "center",
+                fontSize: 50
               }}
             >
-              Don't forget to look up, down, left, right, and behind you!
+              Instructions:
             </Text>
+            <View style={{ width: 300 }}>
+              <Text style={localStyles.titleText}>
+                Look around in space for Grace's items. When you see one, click
+                on it to return it to her bag. Try to collect all ten before
+                time runs out!
+              </Text>
+              <Text
+                style={{
+                  fontSize: 15,
+                  color: "orange",
+                  paddingLeft: 10,
+                  paddingRight: 10,
+                  paddingBottom: 20
+                }}
+              >
+                Don't forget to look up, down, left, right, and behind you!
+              </Text>
+            </View>
+            <TouchableHighlight
+              style={localStyles.buttons}
+              onPress={this._getExperienceButtonOnPress(VR_NAVIGATOR_TYPE)}
+              underlayColor={"#68a0ff"}
+            >
+              <Text style={localStyles.buttonText}>START</Text>
+            </TouchableHighlight>
           </View>
-          <TouchableHighlight
-            style={localStyles.buttons}
-            onPress={this._getExperienceButtonOnPress(VR_NAVIGATOR_TYPE)}
-            underlayColor={"#68a0ff"}
-          >
-            <Text style={localStyles.buttonText}>START</Text>
-          </TouchableHighlight>
         </View>
-      </View>
+      </Provider>
     );
   }
 

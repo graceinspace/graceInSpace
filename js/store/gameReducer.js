@@ -1,21 +1,17 @@
-import { GAME_OVER , SCORE } from './gameActions'
+import { GAME_OVER, SCORE } from "./gameActions";
 
-
-
-const initialState = {
+let initialState = {
   score: 0,
   gameStatus: false
-}
+};
 
-
-
-export default reducer = (state = initialState, action) => {
-  switch(action.type) {
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
     case GAME_OVER:
-      return {...state, gameStatus: true}
+      return { ...state, gameStatus: true };
     case SCORE:
-      return {...state, score: state.score + 1}
+      return { ...state, score: state.score + 1 };
     default:
-      return state
+      return state;
   }
 }

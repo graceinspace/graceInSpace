@@ -1,15 +1,13 @@
-import { createStore, applyMiddleware } from 'redux'
-import { createLogger } from 'redux-logger'
-import thunkMiddleware from 'redux-thunk'
-import reducer from './gameReducer'
+import { createStore, applyMiddleware } from "redux";
+import { createLogger } from "redux-logger";
+import thunkMiddleware from "redux-thunk";
+import reducer from "./gameReducer";
 
+const middleware = applyMiddleware(
+  thunkMiddleware,
+  createLogger({ collapsed: true })
+);
 
-const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
+const store = createStore(reducer, middleware);
 
-const store = createStore(reducer, middleware)
-
-
-export default store
-// module.export = {
-//   store
-// }
+export default store;
