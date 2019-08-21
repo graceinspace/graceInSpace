@@ -18,8 +18,8 @@ export default class FooterScreen extends Component {
           <FooterTab style={localStyles.bottomView}>
             <Text style={localStyles.titleText}>Time:</Text>
             <CountDown
-              until={30}
-              onFinish={() => this.props.gameOverState()}
+              until={10}
+              onFinish={() => this.props.gameLostState()}
               size={15}
               digitStyle={{
                 backgroundColor: "black",
