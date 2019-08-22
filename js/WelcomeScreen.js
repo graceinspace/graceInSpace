@@ -40,8 +40,7 @@ export default class WelcomeScreen extends Component {
     this.state = {
       navigatorType: defaultNavigatorType,
       sharedProps: sharedProps
-      // gameLost: false
-      // score: 0
+
     };
     // this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
@@ -55,15 +54,12 @@ export default class WelcomeScreen extends Component {
   // if you are building a specific type of experience.
   render() {
     if (
-      this.state.navigatorType == VR_NAVIGATOR_TYPE &&
-      this.props.gameLost == false
+      this.state.navigatorType == VR_NAVIGATOR_TYPE && this.props.gameLost === false && this.props.gameWon === false
     ) {
       return this._getVRNavigator();
-    }
-    if (this.props.score == 10) {
+    } if (this.props.gameWon === true) {
       return <GameWonScreen />;
-    }
-    if (this.props.gameLost == true) {
+    } if (this.props.gameLost === true) {
       return <GameLostScreen />;
     }
     return (
@@ -226,7 +222,8 @@ var localStyles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     score: state.score,
-    gameLost: state.gameLost
+    gameLost: state.gameLost,
+    gameWon: state.gameWon
   };
 };
 

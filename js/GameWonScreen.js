@@ -8,7 +8,7 @@ import {
 } from "react-native";
 var WelcomeScreen = require("./WelcomeScreen");
 
-class GameWonScreen extends Component {
+export default class GameWonScreen extends Component {
   constructor() {
     super();
     this.state = {
@@ -64,3 +64,4 @@ var localStyles = StyleSheet.create({
 });
 
 module.exports = GameWonScreen;
+
