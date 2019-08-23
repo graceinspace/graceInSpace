@@ -4,7 +4,8 @@ import {
   View,
   StyleSheet,
   TouchableHighlight,
-  Button
+  Button,
+  Image
 } from "react-native";
 import WelcomeScreen from "./WelcomeScreen";
 import { Provider } from "react-redux";
@@ -27,16 +28,37 @@ class GameLostScreen extends Component {
     if (this.state.startAgain === false) {
       return (
         <View style={localStyles.container}>
+        <Text
+                  style={{
+                    fontFamily: "Futura-CondensedExtraBold",
+                    color: "white",
+                    textAlign: "center",
+                    fontSize: 50
+                  }}
+                >
+                  Game over
+                </Text>
+                <Image style={{ width: 300, height: 240 }}
+              source={{uri: 'https://i.imgur.com/piIoTYo.png'}}/>
           <Text style={{ color: "white", textAlign: "center", fontSize: 20 }}>
             Ouch! You ran out of time!
           </Text>
-          <Button
+          {/* <Button
             style={localStyles.button}
             title="Try again!"
             onPress={() => {
               this.changeState();
             }}
-          />
+          /> */}
+          <TouchableHighlight
+                    style={localStyles.buttons}
+                    onPress={() => {
+                      this.changeState();
+                    }}
+                    underlayColor={"#68a0ff"}
+                  >
+                    <Text style={localStyles.buttonText}>Try Again!</Text>
+          </TouchableHighlight>
         </View>
       );
     } else if (this.state.startAgain === true) {
@@ -56,7 +78,13 @@ var localStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  button: {
+  buttonText: {
+    // marginTop: 5,
+    color: "white",
+    textAlign: "center",
+    fontSize: 20
+  },
+  buttons: {
     height: 40,
     width: 90,
     paddingTop: 10,
