@@ -40,8 +40,7 @@ export default class WelcomeScreen extends Component {
     this.state = {
       navigatorType: defaultNavigatorType,
       sharedProps: sharedProps,
-      showSceneItems:false
-
+      showSceneItems: false
     };
     // this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
@@ -55,12 +54,16 @@ export default class WelcomeScreen extends Component {
   // if you are building a specific type of experience.
   render() {
     if (
-      this.state.navigatorType == VR_NAVIGATOR_TYPE && this.props.gameLost === false && this.props.gameWon === false
+      this.state.navigatorType == VR_NAVIGATOR_TYPE &&
+      this.props.gameLost === false &&
+      this.props.gameWon === false
     ) {
       return this._getVRNavigator();
-    } if (this.props.gameWon === true) {
+    }
+    if (this.props.gameWon === true) {
       return <GameWonScreen />;
-    } if (this.props.gameLost === true) {
+    }
+    if (this.props.gameLost === true) {
       return <GameLostScreen />;
     }
     return (
@@ -117,25 +120,21 @@ export default class WelcomeScreen extends Component {
           initialScene={{ scene: InitialVRScene }}
           onExitViro={this._exitViro}
           vrModeEnabled={false}
-          viroAppProps={{ loadEnd: this._onBackgroundPhotoLoadEnd.bind(this), showSceneItems: this.state.showSceneItems }}
+          viroAppProps={{
+            loadEnd: this._onBackgroundPhotoLoadEnd.bind(this),
+            showSceneItems: this.state.showSceneItems
+          }}
         />
-        {this.state.showSceneItems? ( <FooterScreen />) : (null)}
-
+        {this.state.showSceneItems ? <FooterScreen /> : null}
       </View>
     );
   }
 
-  _onBackgroundPhotoLoadEnd(){
+  _onBackgroundPhotoLoadEnd() {
     this.setState({
-        showSceneItems:true
+      showSceneItems: true
     });
-}
-  // updateScore() {
-  //   // eslint-disable-next-line react/no-unused-state
-  //   this.setState(previous => ({
-  //     score: previous.score + 1
-  //   }));
-  // }
+  }
 
   gameLostState() {
     this.setState({ gameLost: true });
@@ -144,7 +143,6 @@ export default class WelcomeScreen extends Component {
   // This function returns an anonymous/lambda function to be used
   // by the experience selector buttons
   _getExperienceButtonOnPress(navigatorType) {
-    // console.log('made it here')
     return () => {
       this.setState({
         navigatorType: navigatorType

@@ -4,7 +4,6 @@ import {
   View,
   StyleSheet,
   TouchableHighlight,
-  Button,
   Image
 } from "react-native";
 import WelcomeScreen from "./WelcomeScreen";
@@ -25,49 +24,43 @@ class GameLostScreen extends Component {
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.
   render() {
-    if (this.state.startAgain === false) {
-      return (
-        <View style={localStyles.container}>
+    return (
+      <View style={localStyles.container}>
         <Text
-                  style={{
-                    fontFamily: "Futura-CondensedExtraBold",
-                    color: "white",
-                    textAlign: "center",
-                    fontSize: 50
-                  }}
-                >
-                  Game over
-                </Text>
-                <Image style={{ width: 300, height: 240 }}
-              source={{uri: 'https://i.imgur.com/piIoTYo.png'}}/>
-          <Text style={{ color: "white", textAlign: "center", paddingBottom: 20, fontSize: 20 }}>
-            Ouch! You ran out of time!
-          </Text>
-          {/* <Button
-            style={localStyles.button}
-            title="Try again!"
-            onPress={() => {
-              this.changeState();
-            }}
-          /> */}
-          <TouchableHighlight
-                    style={localStyles.buttons}
-                    onPress={() => {
-                      this.changeState();
-                    }}
-                    underlayColor={"#68a0ff"}
-                  >
-                    <Text style={localStyles.buttonText}>Try Again!</Text>
-          </TouchableHighlight>
-        </View>
-      );
-    } else if (this.state.startAgain === true) {
-      return (
-        <Provider store={store}>
-          <WelcomeScreen />
-        </Provider>
-      );
-    }
+          style={{
+            fontFamily: "Futura-CondensedExtraBold",
+            color: "white",
+            textAlign: "center",
+            fontSize: 50
+          }}
+        >
+          Game over
+        </Text>
+        <Image
+          style={{ width: 300, height: 240 }}
+          source={{ uri: "https://i.imgur.com/piIoTYo.png" }}
+        />
+        <Text
+          style={{
+            color: "white",
+            textAlign: "center",
+            paddingBottom: 20,
+            fontSize: 20
+          }}
+        >
+          Ouch! You ran out of time!
+        </Text>
+        <TouchableHighlight
+          style={localStyles.buttons}
+          onPress={() => {
+            this.changeState();
+          }}
+          underlayColor={"#68a0ff"}
+        >
+          <Text style={localStyles.buttonText}>Try Again!</Text>
+        </TouchableHighlight>
+      </View>
+    );
   }
 }
 

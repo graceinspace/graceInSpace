@@ -9,11 +9,9 @@
 
 import React, { Component } from "react";
 import {
-  AppRegistry,
   Text,
   View,
   StyleSheet,
-  PixelRatio,
   TouchableHighlight,
   Image
 } from "react-native";
@@ -146,12 +144,8 @@ export default class GraceInSpace extends Component {
     );
   }
 
-  // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator() {
     return (
-      // <ViroVRSceneNavigator {...this.state.sharedProps}
-      //   initialScene={{scene: InitialVRScene}} onExitViro={this._exitViro}
-      //   vrModeEnabled={false}/>
       <Provider store={store}>
         <WelcomeScreen />
       </Provider>

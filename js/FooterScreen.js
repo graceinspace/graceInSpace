@@ -6,26 +6,16 @@ import { connect } from "react-redux";
 import store from "./store/index";
 import { Provider } from "react-redux";
 import { loseGame, winGame, gameWon } from "./store/gameActions";
-import GameWonScreen from './GameWonScreen'
-import WelcomeScreen from "./WelcomeScreen";
-
 
 class FooterScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       win: false
-    }
-  }
-
-  check = () => {
-    if (this.props.score === 10) {
-      this.props.winGame()
-    }
+    };
   }
 
   render() {
-
     return (
       <Provider store={store}>
         <View>
@@ -37,32 +27,33 @@ class FooterScreen extends Component {
             </FooterTab>
             <FooterTab style={localStyles.bottomView}>
               <Text style={localStyles.titleText}>Time:</Text>
-              {this.props.score === 10 ?  <CountDown
-                until={0}
-                onFinish={() => this.props.winGame()}
-                size={15}
-                digitStyle={{
-                  backgroundColor: "black",
-                  borderWidth: 2,
-                  borderColor: "#1CC625"
-                }}
-                digitTxtStyle={{ color: "white" }}
-                timeToShow={["S"]}
-              /> :
-
-              <CountDown
-                until={30}
-                onFinish={() => this.props.loseGame()}
-                size={15}
-                digitStyle={{
-                  backgroundColor: "black",
-                  borderWidth: 2,
-                  borderColor: "#1CC625"
-                }}
-                digitTxtStyle={{ color: "white" }}
-                timeToShow={["S"]}
+              {this.props.score === 10 ? (
+                <CountDown
+                  until={0}
+                  onFinish={() => this.props.winGame()}
+                  size={15}
+                  digitStyle={{
+                    backgroundColor: "black",
+                    borderWidth: 2,
+                    borderColor: "#1CC625"
+                  }}
+                  digitTxtStyle={{ color: "white" }}
+                  timeToShow={["S"]}
                 />
-                }
+              ) : (
+                <CountDown
+                  until={30}
+                  onFinish={() => this.props.loseGame()}
+                  size={15}
+                  digitStyle={{
+                    backgroundColor: "black",
+                    borderWidth: 2,
+                    borderColor: "#1CC625"
+                  }}
+                  digitTxtStyle={{ color: "white" }}
+                  timeToShow={["S"]}
+                />
+              )}
             </FooterTab>
           </Footer>
         </View>
@@ -70,7 +61,6 @@ class FooterScreen extends Component {
     );
   }
 }
-
 
 var localStyles = StyleSheet.create({
   viroContainer: {
@@ -138,12 +128,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loseGame: () => dispatch(loseGame()),
-  winGame: ()=> dispatch(winGame())
+  winGame: () => dispatch(winGame())
 });
 
 module.exports = connect(
   mapStateToProps,
   mapDispatchToProps
 )(FooterScreen);
-
-// module.exports = FooterScreen;

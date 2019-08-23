@@ -4,7 +4,6 @@ import {
   View,
   StyleSheet,
   TouchableHighlight,
-  Button,
   Image
 } from "react-native";
 var WelcomeScreen = require("./WelcomeScreen");
@@ -27,38 +26,41 @@ export default class GameWonScreen extends Component {
       return (
         <View style={localStyles.container}>
           <Text
-                  style={{
-                    fontFamily: "Futura-CondensedExtraBold",
-                    color: "white",
-                    textAlign: "center",
-                    fontSize: 50
-                  }}
-                >
-                  Congratulations!
-                </Text>
-                <Image style={{ width: 300, height: 240 }}
-              source={{uri: 'https://i.imgur.com/DGj1yGn.png'}}/>
+            style={{
+              fontFamily: "Futura-CondensedExtraBold",
+              color: "white",
+              textAlign: "center",
+              fontSize: 50
+            }}
+          >
+            Congratulations!
+          </Text>
+          <Image
+            style={{ width: 300, height: 240 }}
+            source={{ uri: "https://i.imgur.com/DGj1yGn.png" }}
+          />
           <View style={{ width: 300 }}>
-            <Text style={{ color: "white", textAlign: "justify", paddingBottom: 20, fontSize: 20 }}>
-              You helped Grace collect all of her items before
-              time ran out! Now she can go on vacation!
+            <Text
+              style={{
+                color: "white",
+                textAlign: "justify",
+                paddingBottom: 20,
+                fontSize: 20
+              }}
+            >
+              You helped Grace collect all of her items before time ran out! Now
+              she can go on vacation!
             </Text>
           </View>
-          {/* <Button
-            style={localStyles.button}
-            title="Try again!"
+
+          <TouchableHighlight
+            style={localStyles.buttons}
             onPress={() => {
               this.changeState();
             }}
-          /> */}
-            <TouchableHighlight
-                    style={localStyles.buttons}
-                    onPress={() => {
-                      this.changeState();
-                    }}
-                    underlayColor={"#68a0ff"}
-                  >
-                    <Text style={localStyles.buttonText}>Try Again!</Text>
+            underlayColor={"#68a0ff"}
+          >
+            <Text style={localStyles.buttonText}>Try Again!</Text>
           </TouchableHighlight>
         </View>
       );
@@ -90,9 +92,7 @@ var localStyles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: "#4AC7CB",
     borderRadius: 10
-  },
-
+  }
 });
 
 module.exports = GameWonScreen;
-
