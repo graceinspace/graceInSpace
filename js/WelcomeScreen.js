@@ -12,12 +12,13 @@ import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
 import { ViroVRSceneNavigator } from "react-viro";
 import store from "./store/index";
 import { Provider, connect } from "react-redux";
-import { changeToSpace, changeToUnset } from './store/gameActions'
+import { changeToSpace, changeToUnset } from "./store/gameActions";
+import { secretKey } from "../secrets";
 /*
  TODO: Insert your API key below
  */
 var sharedProps = {
-  apiKey: "123EDACD-93B1-4066-87C2-3EF7662576A2"
+  apiKey: secretKey
 };
 
 // Sets the default scene you want for AR and VR
@@ -40,19 +41,22 @@ export default class WelcomeScreen extends Component {
 
     this.state = {
       sharedProps: sharedProps,
-      showSceneItems:false
+      showSceneItems: false
     };
-    this._getVRNavigator = this._getVRNavigator.bind(this)
+    this._getVRNavigator = this._getVRNavigator.bind(this);
     this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(
       this
     );
-    this._exitViro = this._exitViro.bind(this);
   }
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.
   render() {
-    if (this.props.navigation == "space" && this.props.gameWon === false && this.props.gameLost === false) {
+    if (
+      this.props.navigation == "space" &&
+      this.props.gameWon === false &&
+      this.props.gameLost === false
+    ) {
       return this._getVRNavigator();
     }
     if (this.props.gameWon === true) {
@@ -61,50 +65,56 @@ export default class WelcomeScreen extends Component {
     if (this.props.gameLost === true) {
       return <GameLostScreen />;
     }
-    if (this.props.navigation == "unset"  && this.props.gameWon === false && this.props.gameLost === false && this.props){
-    return (
-      <Provider store={store}>
-        <View style={localStyles.outer}>
-          <View style={localStyles.inner}>
-            <Text
-              style={{
-                fontFamily: "Futura-CondensedExtraBold",
-                color: "white",
-                textAlign: "center",
-                fontSize: 50
-              }}
-            >
-              Instructions:
-            </Text>
-            <View style={{ width: 300 }}>
-              <Text style={localStyles.titleText}>
-                Look around in space for Grace's items. When you see one, click
-                on it to return it to her bag. Try to collect all ten before
-                time runs out!
-              </Text>
+    if (
+      this.props.navigation == "unset" &&
+      this.props.gameWon === false &&
+      this.props.gameLost === false &&
+      this.props
+    ) {
+      return (
+        <Provider store={store}>
+          <View style={localStyles.outer}>
+            <View style={localStyles.inner}>
               <Text
                 style={{
-                  fontSize: 15,
-                  color: "orange",
-                  paddingLeft: 10,
-                  paddingRight: 10,
-                  paddingBottom: 20
+                  fontFamily: "Futura-CondensedExtraBold",
+                  color: "white",
+                  textAlign: "center",
+                  fontSize: 50
                 }}
               >
-                Don't forget to look up, down, left, right, and behind you!
+                Instructions:
               </Text>
+              <View style={{ width: 300 }}>
+                <Text style={localStyles.titleText}>
+                  Look around in space for Grace's items. When you see one,
+                  click on it to return it to her bag. Try to collect all ten
+                  before time runs out!
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    color: "orange",
+                    paddingLeft: 10,
+                    paddingRight: 10,
+                    paddingBottom: 20
+                  }}
+                >
+                  Don't forget to look up, down, left, right, and behind you!
+                </Text>
+              </View>
+              <TouchableHighlight
+                style={localStyles.buttons}
+                onPress={() => this.props.changeToSpace()}
+                underlayColor={"#68a0ff"}
+              >
+                <Text style={localStyles.buttonText}>START</Text>
+              </TouchableHighlight>
             </View>
-            <TouchableHighlight
-              style={localStyles.buttons}
-              onPress={() => this.props.changeToSpace()}
-              underlayColor={"#68a0ff"}
-            >
-              <Text style={localStyles.buttonText}>START</Text>
-            </TouchableHighlight>
           </View>
-        </View>
-      </Provider>
-    )}
+        </Provider>
+      );
+    }
   }
 
   // Returns the ViroSceneNavigator which will start the VR experience
@@ -114,40 +124,31 @@ export default class WelcomeScreen extends Component {
         <ViroVRSceneNavigator
           {...this.state.sharedProps}
           initialScene={{ scene: InitialVRScene }}
-          onExitViro={this._exitViro}
           vrModeEnabled={false}
         />
-        {this.props.showItems ? ( <FooterScreen />) : (null)}
+        {this.props.showItems ? <FooterScreen /> : null}
       </View>
     );
-  }
+  };
 
-//   _onBackgroundPhotoLoadEnd= ()=>{
-//     this.setState({
-//         showSceneItems:true
-//     });
-// }
+  //   _onBackgroundPhotoLoadEnd= ()=>{
+  //     this.setState({
+  //         showSceneItems:true
+  //     });
+  // }
 
   //  gameLostState() {
   //    this.setState({ gameLost: true });
   //  }
 
-
-   _getExperienceButtonOnPress(navigatorType) {
-     // console.log('made it here')
-     return () => {
-       this.setState({
-         navigatorType: navigatorType
-       });
-     };
-   }
-
-
-   _exitViro() {
-     this.setState({
-       navigatorType: UNSET
-     });
-   }
+  _getExperienceButtonOnPress(navigatorType) {
+    // console.log('made it here')
+    return () => {
+      this.setState({
+        navigatorType: navigatorType
+      });
+    };
+  }
 }
 
 var localStyles = StyleSheet.create({
@@ -230,10 +231,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   changeToSpace: () => dispatch(changeToSpace()),
   changeToUnset: () => dispatch(changeToUnset())
- })
+});
 
- module.exports = connect(
- mapStateToProps,
- mapDispatchToProps
- )(WelcomeScreen);
-
+module.exports = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WelcomeScreen);
