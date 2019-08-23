@@ -13,7 +13,8 @@ import {
 } from "react-viro";
 import SingleObj from "./SingleObj";
 import allObjects from "./objects";
-
+import {connect} from "react-redux"
+import { displayAll } from "./store/gameActions"
 export default class HelloWorldScene extends Component {
   constructor(props) {
     super(props);
@@ -34,23 +35,24 @@ export default class HelloWorldScene extends Component {
 
   render() {
     console.log("THIS IS THE OBJECT", allObjects);
+
     return (
       <ViroScene>
-          <ViroSpinner visible={!this.props.sceneNavigator.viroAppProps.showSceneItems} position={[0, 0, -5]}/>
-          {this.state.arr.map((obj, i) => {
+          {/* <ViroSpinner visible={!this.props.sceneNavigator.viroAppProps.showSceneItems} position={[0, 0, -5]}/>
+           */}
+           <ViroSpinner visible={!this.props.showItems} position={[0, 0, -5]}/>
+          {this.props.objects.map((obj, i) => {
             return (
               <SingleObj
                 key={i}
                 obj={obj}
-                showSceneItems={this.props.sceneNavigator.viroAppProps.showSceneItems}
+                // showSceneItems={this.props.showItems}
                 // updateScore={this.props.sceneNavigator.viroAppProps.updateScore}
               />
             );
           })}
-
           <ViroAmbientLight color="#FFFFFF" />
-
-        <Viro360Image source={require("./res/360_space.jpg")}  onLoadEnd={this.props.sceneNavigator.viroAppProps.loadEnd} />
+        <Viro360Image source={require("./res/360_space.jpg")}  onLoadEnd={()=> this.props.displayAll()} />
       </ViroScene>
     );
   }
@@ -64,4 +66,19 @@ var styles = StyleSheet.create({
     textAlign: "center"
   }
 });
-module.exports = HelloWorldScene;
+const mapStateToProps = state => ({
+  objects: state.objects,//ADD THIS TO PROPS
+  showItems: state.showItems
+});
+
+const mapDispatchToProps = dispatch => ({
+  displayAll: ()=> dispatch(displayAll())
+})
+
+module.exports = connect(
+mapStateToProps,
+mapDispatchToProps
+)(HelloWorldScene);
+
+
+

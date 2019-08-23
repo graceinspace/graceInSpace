@@ -7,25 +7,27 @@ import {
   Button,
   Image
 } from "react-native";
-import WelcomeScreen from "./WelcomeScreen";
-import { Provider } from "react-redux";
-import store from "./store/index";
+// import WelcomeScreen from "./WelcomeScreen";
+// import { Provider } from "react-redux";
+// import store from "./store/index";
+import { changeToUnset, changeToSpace } from "./store/gameActions";
+import {connect} from "react-redux"
 
 class GameLostScreen extends Component {
   constructor() {
     super();
-    this.state = {
-      startAgain: false
-    };
+    // this.state = {
+    //   startAgain: false
+    // };
   }
 
-  changeState = () => {
-    this.setState({ startAgain: true });
-  };
+  // changeState = () => {
+  //   this.setState({ startAgain: true });
+  // };
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.
   render() {
-    if (this.state.startAgain === false) {
+    // if (this.state.startAgain === false) {
       return (
         <View style={localStyles.container}>
         <Text
@@ -43,32 +45,31 @@ class GameLostScreen extends Component {
           <Text style={{ color: "white", textAlign: "center", paddingBottom: 20, fontSize: 20 }}>
             Ouch! You ran out of time!
           </Text>
-          {/* <Button
-            style={localStyles.button}
-            title="Try again!"
-            onPress={() => {
-              this.changeState();
-            }}
-          /> */}
           <TouchableHighlight
                     style={localStyles.buttons}
                     onPress={() => {
-                      this.changeState();
-                    }}
-                    underlayColor={"#68a0ff"}
-                  >
-                    <Text style={localStyles.buttonText}>Try Again!</Text>
+                     this.props.changeToSpace();
+                     }}
+                    underlayColor={"#68a0ff"}>
+           <Text style={localStyles.buttonText}>Try Again!</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+                    style={localStyles.buttons}
+                    onPress={() => {
+                     this.props.changeToUnset();
+                     }}
+                    underlayColor={"#68a0ff"}>
+           <Text style={localStyles.buttonText}>Back to Home!</Text>
           </TouchableHighlight>
         </View>
       );
-    } else if (this.state.startAgain === true) {
-      return (
-        <Provider store={store}>
-          <WelcomeScreen />
-        </Provider>
-      );
-    }
-  }
+     }
+    // } else if (this.state.startAgain === true) {
+    //   return (
+    //     <Provider store={store}>
+    //       <WelcomeScreen />
+    //     </Provider>
+    //   );
 }
 
 var localStyles = StyleSheet.create({
@@ -96,4 +97,16 @@ var localStyles = StyleSheet.create({
   }
 });
 
-module.exports = GameLostScreen;
+const mapStateToProps = state => ({
+  score: state.score
+});
+
+const mapDispatchToProps = dispatch => ({
+  changeToUnset: () => dispatch(changeToUnset()),
+  changeToSpace: () => dispatch(changeToSpace())
+});
+
+module.exports = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GameLostScreen);
