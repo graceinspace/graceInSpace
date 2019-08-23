@@ -37,7 +37,7 @@ export default class GameWonScreen extends Component {
                   Congratulations!
                 </Text>
                 <Image style={{ width: 300, height: 240 }}
-              source={{uri: 'https://i.imgur.com/szaYdZ4.png'}}/>
+              source={{uri: 'https://i.imgur.com/DGj1yGn.png'}}/>
           <View style={{ width: 300 }}>
             <Text style={{ color: "white", textAlign: "justify", paddingBottom: 20, fontSize: 20 }}>
               You helped Grace collect all of her items before
