@@ -1,0 +1,123 @@
+import allObjects from "../objects" //arr of objects
+export const SCORE = "SCORE";
+export const GAME_LOST = "GAME_LOST";
+export const GAME_WON = "GAME_WON";
+export const UNSET = "UNSET"
+export const SPACE = "SPACE"
+export const GET_OBJECTS = "GET_OBJECTS"
+export const SHOW_ITEMS = "SHOW_ITEMS"
+//action creator
+
+export const updateScore = () => {
+  return {
+    type: SCORE
+  };
+};
+
+export const gameLost = () => {
+  return {
+    type: GAME_LOST
+  };
+};
+
+export const gameWon = () => {
+  return {
+    type: GAME_WON
+  };
+};
+
+export const setToUnset = () => {
+  return {
+    type: UNSET
+  }
+}
+
+export const setToSpace = () => {
+  return {
+    type: SPACE
+  }
+}
+
+export const getObjects = (obj) => {
+  return {
+    type: GET_OBJECTS,
+    obj: allObjects
+  }
+}
+
+export const showItems = () => {
+  return {
+    type: SHOW_ITEMS
+  }
+}
+
+export function upCount() {
+  return async dispatch => {
+    try {
+      dispatch(updateScore());
+    } catch (error) {
+      next("error in upCount thunk >>", error);
+    }
+  };
+}
+
+export function winGame() {
+  return async dispatch => {
+    try {
+      dispatch(gameWon());
+    } catch (error) {
+      next("error in winGame thunk >>", error);
+    }
+  };
+}
+
+export function loseGame() {
+  return async dispatch => {
+    try {
+      dispatch(gameLost());
+    } catch (error) {
+      next("error in loseGame thunk >>", error);
+    }
+  };
+}
+
+export function changeToUnset() {
+  return async dispatch => {
+    try {
+      dispatch(setToUnset())
+    } catch (error) {
+      next(error)
+    }
+  }
+}
+
+export function changeToSpace() {
+  return async dispatch => {
+    try {
+      dispatch(setToSpace())
+    } catch (error) {
+      next(error)
+    }
+  }
+}
+
+export function getAllObjects() {
+  return async dispatch => {
+    try {
+      dispatch(getObjects(allObjects))
+    } catch (error) {
+      next(error)
+    }
+  }
+}
+
+
+export function displayAll() {
+  return async dispatch => {
+    try {
+      dispatch(showItems())
+    } catch (error) {
+      next(error)
+    }
+  }
+}

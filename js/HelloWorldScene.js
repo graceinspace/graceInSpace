@@ -7,88 +7,52 @@ import {
   ViroScene,
   Viro3DObject,
   Viro360Image,
-  ViroAmbientLight
+  ViroAmbientLight,
+  ViroSpotLight,
+  ViroSpinner
 } from "react-viro";
 import SingleObj from "./SingleObj";
 import allObjects from "./objects";
-
+import {connect} from "react-redux"
+import { displayAll } from "./store/gameActions"
 export default class HelloWorldScene extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       arr: allObjects,
-      counter: 0
+      // showSceneItems:false
+      // counter: 0
     };
+    // this._onBackgroundPhotoLoadEnd = this._onBackgroundPhotoLoadEnd.bind(this)
   }
-  _incrementCounter = () => {
-    this.setState({
-      counter: this.state.counter + 1
-    });
-  };
-  _decrementCounter = () => {
-    this.setState({
-      counter: this.state.counter - 1
-    });
-  };
-  _resetCounter = () => {
-    this.setState({
-      counter: 0
-    });
-  };
+
+//   _onBackgroundPhotoLoadEnd(){
+//     this.setState({
+//         showSceneItems:true
+//     });
+// }
 
   render() {
     console.log("THIS IS THE OBJECT", allObjects);
+
     return (
       <ViroScene>
-        <React.Fragment>
-          <ViroText
-            text={"Counter:" + this.state.counter.toString()}
-            scale={[0.5, 0.5, 0.5]}
-            height={1}
-            width={4}
-            position={[1, 0.3, -1]}
-            style={styles.counterTextStyle}
-          />
-          <ViroText
-            text="-"
-            fontSize={20}
-            height={2}
-            width={4}
-            position={[1.9, -0.6, -1]}
-            onClick={this._decrementCounter}
-          />
-          <ViroText
-            text="+"
-            fontSize={20}
-            height={2}
-            width={4}
-            position={[2.3, -0.6, -1]}
-            onClick={this._incrementCounter}
-          />
-          {/* mapping through all our objects!!! */}
-          {this.state.arr.map((obj, i) => {
+          {/* <ViroSpinner visible={!this.props.sceneNavigator.viroAppProps.showSceneItems} position={[0, 0, -5]}/>
+           */}
+           <ViroSpinner visible={!this.props.showItems} position={[0, 0, -5]}/>
+          {this.props.objects.map((obj, i) => {
             return (
               <SingleObj
                 key={i}
                 obj={obj}
-                updateScore={this.props.updateScore}
+                // showSceneItems={this.props.showItems}
+                // updateScore={this.props.sceneNavigator.viroAppProps.updateScore}
               />
             );
           })}
-
           <ViroAmbientLight color="#FFFFFF" />
-          <ViroText
-            text="RESET"
-            scale={[0.5, 0.5, 0.5]}
-            height={1}
-            width={4}
-            position={[1, -0.3, -1]}
-            style={styles.counterTextStyle}
-            onClick={this._resetCounter}
-          />
-        </React.Fragment>
-        <Viro360Image source={require("./res/360_space.jpg")} />
+        <Viro360Image source={require("./res/360_space.jpg")}  onLoadEnd={()=> this.props.displayAll()} />
       </ViroScene>
     );
   }
@@ -102,4 +66,19 @@ var styles = StyleSheet.create({
     textAlign: "center"
   }
 });
-module.exports = HelloWorldScene;
+const mapStateToProps = state => ({
+  objects: state.objects,//ADD THIS TO PROPS
+  showItems: state.showItems
+});
+
+const mapDispatchToProps = dispatch => ({
+  displayAll: ()=> dispatch(displayAll())
+})
+
+module.exports = connect(
+mapStateToProps,
+mapDispatchToProps
+)(HelloWorldScene);
+
+
+

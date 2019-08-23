@@ -1,7 +1,8 @@
-import { AppRegistry } from 'react-native';
-import App from './App.js';
+import { AppRegistry } from "react-native";
+import GraceInSpace from "./App.js";
 
-AppRegistry.registerComponent('GraceInSpace', () => App);
+
+AppRegistry.registerComponent("GraceInSpace", () => GraceInSpace);
 
 // The below line is necessary for use with the TestBed App
-AppRegistry.registerComponent('GraceInSpace', () => App);
+AppRegistry.registerComponent("GraceInSpace", () => GraceInSpace);
