@@ -12,6 +12,7 @@ import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
 import { ViroVRSceneNavigator } from "react-viro";
 import store from "./store/index";
 import { Provider, connect } from "react-redux";
+import { changeToSpace, changeToUnset } from './store/gameActions'
 /*
  TODO: Insert your API key below
  */
@@ -38,13 +39,10 @@ export default class WelcomeScreen extends Component {
     super();
 
     this.state = {
-      navigatorType: defaultNavigatorType,
       sharedProps: sharedProps,
       showSceneItems:false
-
     };
-    // this._getExperienceSelector = this._getExperienceSelector.bind(this);
-    this._getVRNavigator = this._getVRNavigator.bind(this);
+    this._getVRNavigator = this._getVRNavigator.bind(this)
     this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(
       this
     );
@@ -54,15 +52,16 @@ export default class WelcomeScreen extends Component {
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.
   render() {
-    if (
-      this.state.navigatorType == VR_NAVIGATOR_TYPE && this.props.gameLost === false && this.props.gameWon === false
-    ) {
+    if (this.props.navigation == "space" && this.props.gameWon === false && this.props.gameLost === false) {
       return this._getVRNavigator();
-    } if (this.props.gameWon === true) {
+    }
+    if (this.props.gameWon === true) {
       return <GameWonScreen />;
-    } if (this.props.gameLost === true) {
+    }
+    if (this.props.gameLost === true) {
       return <GameLostScreen />;
     }
+    if (this.props.navigation == "unset"  && this.props.gameWon === false && this.props.gameLost === false && this.props){
     return (
       <Provider store={store}>
         <View style={localStyles.outer}>
@@ -97,7 +96,7 @@ export default class WelcomeScreen extends Component {
             </View>
             <TouchableHighlight
               style={localStyles.buttons}
-              onPress={this._getExperienceButtonOnPress(VR_NAVIGATOR_TYPE)}
+              onPress={() => this.props.changeToSpace()}
               underlayColor={"#68a0ff"}
             >
               <Text style={localStyles.buttonText}>START</Text>
@@ -105,11 +104,11 @@ export default class WelcomeScreen extends Component {
           </View>
         </View>
       </Provider>
-    );
+    )}
   }
 
   // Returns the ViroSceneNavigator which will start the VR experience
-  _getVRNavigator() {
+  _getVRNavigator = () => {
     return (
       <View>
         <ViroVRSceneNavigator
@@ -117,47 +116,38 @@ export default class WelcomeScreen extends Component {
           initialScene={{ scene: InitialVRScene }}
           onExitViro={this._exitViro}
           vrModeEnabled={false}
-          viroAppProps={{ loadEnd: this._onBackgroundPhotoLoadEnd.bind(this), showSceneItems: this.state.showSceneItems }}
         />
-        {this.state.showSceneItems? ( <FooterScreen />) : (null)}
-
+        {this.props.showItems ? ( <FooterScreen />) : (null)}
       </View>
     );
   }
 
-  _onBackgroundPhotoLoadEnd(){
-    this.setState({
-        showSceneItems:true
-    });
-}
-  // updateScore() {
-  //   // eslint-disable-next-line react/no-unused-state
-  //   this.setState(previous => ({
-  //     score: previous.score + 1
-  //   }));
-  // }
+//   _onBackgroundPhotoLoadEnd= ()=>{
+//     this.setState({
+//         showSceneItems:true
+//     });
+// }
 
-  gameLostState() {
-    this.setState({ gameLost: true });
-  }
+  //  gameLostState() {
+  //    this.setState({ gameLost: true });
+  //  }
 
-  // This function returns an anonymous/lambda function to be used
-  // by the experience selector buttons
-  _getExperienceButtonOnPress(navigatorType) {
-    // console.log('made it here')
-    return () => {
-      this.setState({
-        navigatorType: navigatorType
-      });
-    };
-  }
 
-  // This function "exits" Viro by setting the navigatorType to UNSET.
-  _exitViro() {
-    this.setState({
-      navigatorType: UNSET
-    });
-  }
+   _getExperienceButtonOnPress(navigatorType) {
+     // console.log('made it here')
+     return () => {
+       this.setState({
+         navigatorType: navigatorType
+       });
+     };
+   }
+
+
+   _exitViro() {
+     this.setState({
+       navigatorType: UNSET
+     });
+   }
 }
 
 var localStyles = StyleSheet.create({
@@ -231,11 +221,19 @@ const mapStateToProps = state => {
   return {
     score: state.score,
     gameLost: state.gameLost,
-    gameWon: state.gameWon
+    gameWon: state.gameWon,
+    navigation: state.navigation,
+    showItems: state.showItems
   };
 };
 
-module.exports = connect(
-  mapStateToProps,
-  null
-)(WelcomeScreen);
+const mapDispatchToProps = dispatch => ({
+  changeToSpace: () => dispatch(changeToSpace()),
+  changeToUnset: () => dispatch(changeToUnset())
+ })
+
+ module.exports = connect(
+ mapStateToProps,
+ mapDispatchToProps
+ )(WelcomeScreen);
+

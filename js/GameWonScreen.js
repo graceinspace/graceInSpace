@@ -7,33 +7,35 @@ import {
   Button,
   Image
 } from "react-native";
-var WelcomeScreen = require("./WelcomeScreen");
+// var WelcomeScreen = require("./WelcomeScreen");
+import { changeToUnset, changeToSpace } from "./store/gameActions";
+import {connect} from "react-redux"
+
 
 export default class GameWonScreen extends Component {
   constructor() {
     super();
-    this.state = {
-      startAgain: false
-    };
+  //   this.state = {
+  //     startAgain: false
+  //   };
   }
 
-  changeState = () => {
-    this.setState({ startAgain: true });
-  };
+  // changeState = () => {
+  //   this.setState({ startAgain: true });
+  // };
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.
   render() {
-    if (this.state.startAgain === false) {
+    // if (this.state.startAgain === false) {
       return (
         <View style={localStyles.container}>
           <Text
-                  style={{
-                    fontFamily: "Futura-CondensedExtraBold",
-                    color: "white",
-                    textAlign: "center",
-                    fontSize: 50
-                  }}
-                >
+              style={{
+              fontFamily: "Futura-CondensedExtraBold",
+              color: "white",
+              textAlign: "center",
+              fontSize: 50
+              }}>
                   Congratulations!
                 </Text>
                 <Image style={{ width: 300, height: 240 }}
@@ -44,27 +46,28 @@ export default class GameWonScreen extends Component {
               time ran out! Now she can go on vacation!
             </Text>
           </View>
-          {/* <Button
-            style={localStyles.button}
-            title="Try again!"
-            onPress={() => {
-              this.changeState();
-            }}
-          /> */}
-            <TouchableHighlight
+
+          <TouchableHighlight
                     style={localStyles.buttons}
                     onPress={() => {
-                      this.changeState();
-                    }}
-                    underlayColor={"#68a0ff"}
-                  >
-                    <Text style={localStyles.buttonText}>Try Again!</Text>
+                     this.props.changeToSpace();
+                     }}
+                    underlayColor={"#68a0ff"}>
+           <Text style={localStyles.buttonText}>Try Again!</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+                    style={localStyles.buttons}
+                    onPress={() => {
+                     this.props.changeToUnset();
+                     }}
+                    underlayColor={"#68a0ff"}>
+           <Text style={localStyles.buttonText}>Back to Home!</Text>
           </TouchableHighlight>
         </View>
       );
-    } else if (this.state.startAgain === true) {
-      return <WelcomeScreen />;
-    }
+    // } else if (this.state.startAgain === true) {
+    //   return <WelcomeScreen />;
+    // }
   }
 }
 
@@ -90,9 +93,16 @@ var localStyles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: "#4AC7CB",
     borderRadius: 10
-  },
+  }})
 
-});
 
-module.exports = GameWonScreen;
 
+  const mapDispatchToProps = dispatch => ({
+    changeToUnset: () => dispatch(changeToUnset()),
+    changeToSpace: () => dispatch(changeToSpace())
+  })
+
+  module.exports = connect(
+    null,
+    mapDispatchToProps
+  )(GameWonScreen)
