@@ -8,7 +8,8 @@ import {
   Viro3DObject,
   Viro360Image,
   ViroAmbientLight,
-  ViroSpotLight
+  ViroSpotLight,
+  ViroSpinner
 } from "react-viro";
 import SingleObj from "./SingleObj";
 import allObjects from "./objects";
@@ -18,29 +19,38 @@ export default class HelloWorldScene extends Component {
     super(props);
 
     this.state = {
-      arr: allObjects
+      arr: allObjects,
+      // showSceneItems:false
       // counter: 0
     };
+    // this._onBackgroundPhotoLoadEnd = this._onBackgroundPhotoLoadEnd.bind(this)
   }
+
+//   _onBackgroundPhotoLoadEnd(){
+//     this.setState({
+//         showSceneItems:true
+//     });
+// }
 
   render() {
     console.log("THIS IS THE OBJECT", allObjects);
     return (
       <ViroScene>
-        <React.Fragment>
+          <ViroSpinner visible={!this.props.sceneNavigator.viroAppProps.showSceneItems} position={[0, 0, -5]}/>
           {this.state.arr.map((obj, i) => {
             return (
               <SingleObj
                 key={i}
                 obj={obj}
+                showSceneItems={this.props.sceneNavigator.viroAppProps.showSceneItems}
                 // updateScore={this.props.sceneNavigator.viroAppProps.updateScore}
               />
             );
           })}
 
           <ViroAmbientLight color="#FFFFFF" />
-        </React.Fragment>
-        <Viro360Image source={require("./res/360_space.jpg")} />
+
+        <Viro360Image source={require("./res/360_space.jpg")}  onLoadEnd={this.props.sceneNavigator.viroAppProps.loadEnd} />
       </ViroScene>
     );
   }
