@@ -82,7 +82,7 @@ var localStyles = StyleSheet.create({
     fontSize: 20
   },
   buttons: {
-    height: 60,
+    height: 50,
     width: 120,
     paddingTop: 10,
     paddingBottom: 10,

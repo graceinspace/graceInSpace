@@ -40,7 +40,7 @@ class GameLostScreen extends Component {
                 </Text>
                 <Image style={{ width: 300, height: 240 }}
               source={{uri: 'https://i.imgur.com/piIoTYo.png'}}/>
-          <Text style={{ color: "white", textAlign: "center", fontSize: 20 }}>
+          <Text style={{ color: "white", textAlign: "center", paddingBottom: 20, fontSize: 20 }}>
             Ouch! You ran out of time!
           </Text>
           {/* <Button
@@ -85,8 +85,8 @@ var localStyles = StyleSheet.create({
     fontSize: 20
   },
   buttons: {
-    height: 40,
-    width: 90,
+    height: 50,
+    width: 120,
     paddingTop: 10,
     paddingBottom: 10,
     marginTop: 5,
