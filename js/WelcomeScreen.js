@@ -39,7 +39,8 @@ export default class WelcomeScreen extends Component {
 
     this.state = {
       navigatorType: defaultNavigatorType,
-      sharedProps: sharedProps
+      sharedProps: sharedProps,
+      showSceneItems:false
 
     };
     // this._getExperienceSelector = this._getExperienceSelector.bind(this);
@@ -116,12 +117,19 @@ export default class WelcomeScreen extends Component {
           initialScene={{ scene: InitialVRScene }}
           onExitViro={this._exitViro}
           vrModeEnabled={false}
-          //viroAppProps={{ updateScore: this.updateScore.bind(this) }}
+          viroAppProps={{ loadEnd: this._onBackgroundPhotoLoadEnd.bind(this), showSceneItems: this.state.showSceneItems }}
         />
-        <FooterScreen />
+        {this.state.showSceneItems? ( <FooterScreen />) : (null)}
+
       </View>
     );
   }
+
+  _onBackgroundPhotoLoadEnd(){
+    this.setState({
+        showSceneItems:true
+    });
+}
   // updateScore() {
   //   // eslint-disable-next-line react/no-unused-state
   //   this.setState(previous => ({

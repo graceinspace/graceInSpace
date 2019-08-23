@@ -26,7 +26,8 @@ class SingleObj extends Component {
     return (
       <Provider store={store}>
         <Viro3DObject
-          visible={this.state.contains}
+          hidden = {!this.props.showSceneItems}
+          visible={this.state.contains && this.props.showSceneItems}
           source={this.props.obj.source} //obj.source
           position={[this.a, this.b, this.c]} //random function
           scale={[0.02, 0.02, 0.02]}
