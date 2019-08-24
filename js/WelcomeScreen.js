@@ -13,11 +13,12 @@ import { ViroVRSceneNavigator } from "react-viro";
 import store from "./store/index";
 import { Provider, connect } from "react-redux";
 import { changeToSpace, changeToUnset } from "./store/gameActions";
+import { secretKey } from "../secrets";
 /*
  TODO: Insert your API key below
  */
 var sharedProps = {
-  apiKey: "123EDACD-93B1-4066-87C2-3EF7662576A2"
+  apiKey: secretKey
 };
 
 // Sets the default scene you want for AR and VR
@@ -46,8 +47,6 @@ export default class WelcomeScreen extends Component {
     this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(
       this
     );
-    this._exitViro = this._exitViro.bind(this);
-    // this.gameOverState = this.gameOverState.bind(this);
   }
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
@@ -117,11 +116,6 @@ export default class WelcomeScreen extends Component {
       );
     }
   }
-  gameOverState() {
-    this.setState({
-      gameOver: true
-    });
-  }
 
   // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator = () => {
@@ -130,7 +124,6 @@ export default class WelcomeScreen extends Component {
         <ViroVRSceneNavigator
           {...this.state.sharedProps}
           initialScene={{ scene: InitialVRScene }}
-          onExitViro={this._exitViro}
           vrModeEnabled={false}
         />
         {this.props.showItems ? <FooterScreen /> : null}
@@ -155,12 +148,6 @@ export default class WelcomeScreen extends Component {
         navigatorType: navigatorType
       });
     };
-  }
-
-  _exitViro() {
-    this.setState({
-      navigatorType: UNSET
-    });
   }
 }
 
