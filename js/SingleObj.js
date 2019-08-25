@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
 import { Viro3DObject } from "react-viro";
 import { connect } from "react-redux";
 import { upCount } from "./store/gameActions";
@@ -25,7 +24,6 @@ class SingleObj extends Component {
     return (
       <Provider store={store}>
         <Viro3DObject
-          // hidden = {!this.props.showSceneItems}
           visible={this.state.contains && this.props.showItems}
           source={this.props.obj.source} //obj.source
           position={[this.a, this.b, this.c]} //random function
