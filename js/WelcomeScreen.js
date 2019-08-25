@@ -14,6 +14,8 @@ const InitialVRScene = require("./HelloWorldScene");
 const FooterScreen = require("./FooterScreen");
 const GameLostScreen = require("./GameLostScreen");
 const GameWonScreen = require("./GameWonScreen");
+const FooterLoading = require("./FooterLoading")
+
 
 export default class WelcomeScreen extends Component {
   constructor() {
@@ -100,7 +102,7 @@ export default class WelcomeScreen extends Component {
           initialScene={{ scene: InitialVRScene }}
           vrModeEnabled={false}
         />
-        {this.props.showItems ? <FooterScreen /> : null}
+        {this.props.showItems ? <FooterScreen /> : <FooterLoading />}
       </View>
     );
   };
