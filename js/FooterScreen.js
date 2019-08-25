@@ -1,23 +1,16 @@
-import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import CountDown from 'react-native-countdown-component';
-import { Footer, FooterTab } from 'native-base';
-import { connect } from 'react-redux';
-import store from './store/index';
-import { Provider } from 'react-redux';
-import { loseGame, winGame } from './store/gameActions';
+import React, { Component } from "react";
+import { Text, View, StyleSheet } from "react-native";
+import CountDown from "react-native-countdown-component";
+import { Footer, FooterTab } from "native-base";
+import { connect } from "react-redux";
+import store from "./store/index";
+import { Provider } from "react-redux";
+import { loseGame, winGame } from "./store/gameActions";
 
 class FooterScreen extends Component {
   constructor(props) {
     super(props);
-
   }
-
-  check = () => {
-    if (this.props.score === 10) {
-      this.props.winGame();
-    }
-  };
 
   render() {
     return (
@@ -37,12 +30,12 @@ class FooterScreen extends Component {
                   onFinish={() => this.props.winGame()}
                   size={15}
                   digitStyle={{
-                    backgroundColor: 'black',
+                    backgroundColor: "black",
                     borderWidth: 2,
-                    borderColor: '#1CC625',
+                    borderColor: "#1CC625"
                   }}
-                  digitTxtStyle={{ color: 'white' }}
-                  timeToShow={['S']}
+                  digitTxtStyle={{ color: "white" }}
+                  timeToShow={["S"]}
                 />
               ) : (
                 <CountDown
@@ -50,12 +43,12 @@ class FooterScreen extends Component {
                   onFinish={() => this.props.loseGame()}
                   size={15}
                   digitStyle={{
-                    backgroundColor: 'black',
+                    backgroundColor: "black",
                     borderWidth: 2,
-                    borderColor: '#1CC625',
+                    borderColor: "#1CC625"
                   }}
-                  digitTxtStyle={{ color: 'white' }}
-                  timeToShow={['S']}
+                  digitTxtStyle={{ color: "white" }}
+                  timeToShow={["S"]}
                 />
               )}
             </FooterTab>
@@ -69,31 +62,31 @@ class FooterScreen extends Component {
 var localStyles = StyleSheet.create({
   viroContainer: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: "black"
   },
   outer: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'black',
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "black"
   },
   inner: {
     flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: 'black',
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "black"
   },
   titleText: {
     paddingTop: 30,
     paddingBottom: 20,
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 25,
+    color: "white",
+    textAlign: "center",
+    fontSize: 25
   },
   buttonText: {
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: 20,
+    color: "#fff",
+    textAlign: "center",
+    fontSize: 20
   },
   buttons: {
     height: 80,
@@ -102,37 +95,25 @@ var localStyles = StyleSheet.create({
     paddingBottom: 20,
     marginTop: 10,
     marginBottom: 10,
-    backgroundColor: '#68a0cf',
+    backgroundColor: "#68a0cf",
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#fff',
-  },
-  exitButton: {
-    height: 50,
-    width: 100,
-    paddingTop: 10,
-    paddingBottom: 10,
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor: '#68a0cf',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
+    borderColor: "#fff"
   },
   bottomView: {
-    backgroundColor: 'black',
-    borderTopColor: 'black',
-    display: 'flex',
-    alignItems: 'flex-end',
-  },
+    backgroundColor: "black",
+    borderTopColor: "black",
+    display: "flex",
+    alignItems: "flex-end"
+  }
 });
 const mapStateToProps = state => ({
-  score: state.score,
+  score: state.score
 });
 
 const mapDispatchToProps = dispatch => ({
   loseGame: () => dispatch(loseGame()),
-  winGame: () => dispatch(winGame()),
+  winGame: () => dispatch(winGame())
 });
 
 module.exports = connect(
