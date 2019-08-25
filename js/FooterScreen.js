@@ -12,12 +12,6 @@ class FooterScreen extends Component {
     super(props);
   }
 
-  check = () => {
-    if (this.props.score === 10) {
-      this.props.winGame();
-    }
-  };
-
   render() {
     return (
       <Provider store={store}>
