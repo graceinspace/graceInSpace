@@ -11,16 +11,15 @@ import { Provider } from "react-redux";
 
 import WelcomeScreen from "./js/WelcomeScreen";
 import { secretKey } from "./secrets";
-import console = require("console");
 
-var sharedProps = {
+const sharedProps = {
   apiKey: secretKey
 };
 
-var UNSET = "UNSET";
-var instructions = "instructions";
+const UNSET = "UNSET";
+const instructions = "instructions";
 
-var defaultNavigator = UNSET;
+const defaultNavigator = UNSET;
 
 export default class GraceInSpace extends Component {
   constructor() {
@@ -44,7 +43,6 @@ export default class GraceInSpace extends Component {
   };
 
   render() {
-    console.log('this.state')
     if (this.state.nextPage == UNSET) {
       return this._showPage();
     } else if (this.state.nextPage == instructions) {
@@ -124,7 +122,7 @@ export default class GraceInSpace extends Component {
   }
 }
 
-var localStyles = StyleSheet.create({
+const localStyles = StyleSheet.create({
   viroContainer: {
     flex: 1,
     backgroundColor: "black"
@@ -176,18 +174,6 @@ var localStyles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: "#4AC7CB",
     borderRadius: 10
-  },
-  exitButton: {
-    height: 50,
-    width: 100,
-    paddingTop: 10,
-    paddingBottom: 10,
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor: "#68a0cf",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#fff"
   }
 });
 
