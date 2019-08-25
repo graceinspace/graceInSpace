@@ -11,7 +11,6 @@ import { Provider } from "react-redux";
 
 import WelcomeScreen from "./js/WelcomeScreen";
 import { secretKey } from "./secrets";
-import console = require("console");
 
 var sharedProps = {
   apiKey: secretKey
