@@ -1,12 +1,3 @@
-/**
- * Copyright (c) 2017-present, Viro, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
 import React, { Component } from "react";
 import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
 import { ViroVRSceneNavigator } from "react-viro";
@@ -14,26 +5,15 @@ import store from "./store/index";
 import { Provider, connect } from "react-redux";
 import { changeToSpace, changeToUnset } from "./store/gameActions";
 import { secretKey } from "../secrets";
-/*
- TODO: Insert your API key below
- */
-var sharedProps = {
+
+const sharedProps = {
   apiKey: secretKey
 };
 
-// Sets the default scene you want for AR and VR
-// var InitialVRScene = require('./js/HomeScreen');
-var InitialVRScene = require("./HelloWorldScene");
-var FooterScreen = require("./FooterScreen");
-var GameLostScreen = require("./GameLostScreen");
-var GameWonScreen = require("./GameWonScreen");
-
-var VR_NAVIGATOR_TYPE = "VR";
-var UNSET = "UNSET";
-
-// This determines which type of experience to launch in, or UNSET, if the user should
-// be presented with a choice of AR or VR. By default, we offer the user a choice.
-var defaultNavigatorType = UNSET;
+const InitialVRScene = require("./HelloWorldScene");
+const FooterScreen = require("./FooterScreen");
+const GameLostScreen = require("./GameLostScreen");
+const GameWonScreen = require("./GameWonScreen");
 
 export default class WelcomeScreen extends Component {
   constructor() {
@@ -44,13 +24,8 @@ export default class WelcomeScreen extends Component {
       showSceneItems: false
     };
     this._getVRNavigator = this._getVRNavigator.bind(this);
-    this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(
-      this
-    );
   }
 
-  // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
-  // if you are building a specific type of experience.
   render() {
     if (
       this.props.navigation == "space" &&
@@ -117,7 +92,6 @@ export default class WelcomeScreen extends Component {
     }
   }
 
-  // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator = () => {
     return (
       <View>
@@ -130,28 +104,9 @@ export default class WelcomeScreen extends Component {
       </View>
     );
   };
-
-  //   _onBackgroundPhotoLoadEnd= ()=>{
-  //     this.setState({
-  //         showSceneItems:true
-  //     });
-  // }
-
-  //  gameLostState() {
-  //    this.setState({ gameLost: true });
-  //  }
-
-  _getExperienceButtonOnPress(navigatorType) {
-    // console.log('made it here')
-    return () => {
-      this.setState({
-        navigatorType: navigatorType
-      });
-    };
-  }
 }
 
-var localStyles = StyleSheet.create({
+const localStyles = StyleSheet.create({
   viroContainer: {
     flex: 1,
     backgroundColor: "black"
@@ -203,18 +158,6 @@ var localStyles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: "#4AC7CB",
     borderRadius: 10
-  },
-  exitButton: {
-    height: 50,
-    width: 100,
-    paddingTop: 10,
-    paddingBottom: 10,
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor: "#68a0cf",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#fff"
   }
 });
 
