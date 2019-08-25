@@ -11,7 +11,6 @@ import { Provider } from "react-redux";
 
 import WelcomeScreen from "./js/WelcomeScreen";
 import { secretKey } from "./secrets";
-import console = require("console");
 
 var sharedProps = {
   apiKey: secretKey
@@ -44,7 +43,7 @@ export default class GraceInSpace extends Component {
   };
 
   render() {
-    console.log('this.state')
+    console.log("this.state");
     if (this.state.nextPage == UNSET) {
       return this._showPage();
     } else if (this.state.nextPage == instructions) {

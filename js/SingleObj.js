@@ -10,7 +10,6 @@ class SingleObj extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      objectArray: [],
       contains: true
     };
   }
@@ -44,15 +43,6 @@ class SingleObj extends Component {
     );
   }
 }
-var styles = StyleSheet.create({
-  counterTextStyle: {
-    fontFamily: "Arial",
-    fontSize: 30,
-    color: "#ffffff",
-    textAlignVertical: "center",
-    textAlign: "center"
-  }
-});
 
 const mapStateToProps = state => ({
   score: state.score,
