@@ -53,6 +53,16 @@ export default class GameWonScreen extends Component {
         >
           <Text style={localStyles.buttonText}>Play Again!</Text>
         </TouchableHighlight>
+
+        <TouchableHighlight
+          style={localStyles.buttons}
+          onPress={() => this.props.changeToSignUp()}
+          underlayColor={"#68a0ff"}
+        >
+          <Text style={localStyles.buttonText}>
+            If you'd like to Sign Up CLICK HERE
+          </Text>
+        </TouchableHighlight>
       </View>
     );
   }

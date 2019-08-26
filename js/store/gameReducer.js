@@ -6,7 +6,8 @@ import {
   SPACE,
   GET_OBJECTS,
   SHOW_ITEMS,
-  SECONDS
+  SECONDS,
+  SIGNUP
 } from "./gameActions";
 import allObjects from "../objects";
 
@@ -52,6 +53,16 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         navigation: "space",
+        gameWon: false,
+        gameLost: false,
+        score: 0,
+        showItems: false,
+        seconds: 0
+      };
+    case SIGNUP:
+      return {
+        ...state,
+        navigation: "signup",
         gameWon: false,
         gameLost: false,
         score: 0,

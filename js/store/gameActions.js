@@ -7,6 +7,7 @@ export const SPACE = "SPACE";
 export const GET_OBJECTS = "GET_OBJECTS";
 export const SHOW_ITEMS = "SHOW_ITEMS";
 export const SECONDS = "SECONDS";
+export const SIGNUP = "SIGNUP";
 //action creator
 
 export const updateScore = () => {
@@ -55,6 +56,12 @@ export const showItems = () => {
 export const getSeconds = () => {
   return {
     type: SECONDS
+  };
+};
+
+export const setToSignUp = () => {
+  return {
+    type: SIGNUP
   };
 };
 
@@ -132,6 +139,15 @@ export function gotSeconds() {
   return async dispatch => {
     try {
       dispatch(getSeconds());
+    } catch (error) {
+      next(error);
+    }
+  };
+}
+export function changeToSignUp() {
+  return async dispatch => {
+    try {
+      dispatch(setToSignUp());
     } catch (error) {
       next(error);
     }
