@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   TextInput,
   View,
   StyleSheet,
   Text,
-  TouchableHighlight,
-} from 'react-native';
-import * as firebase from 'firebase';
-import { FirebaseWrapper } from '../firebase/firebase';
-import WelcomeScreen from './WelcomeScreen';
-import store from './store/index';
-import { Provider } from 'react-redux';
-const defaultNavigator = 'defaultNavigator';
-const start = 'start';
+  TouchableHighlight
+} from "react-native";
+import * as firebase from "firebase";
+import { FirebaseWrapper } from "../firebase/firebase";
+import WelcomeScreen from "./WelcomeScreen";
+import store from "./store/index";
+import { Provider } from "react-redux";
+const defaultNavigator = "defaultNavigator";
+const start = "start";
 
-export default class SignUp extends React.Component {
+export default class LogIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      nextPage: defaultNavigator,
+      email: "",
+      password: "",
+      nextPage: defaultNavigator
     };
   }
 
@@ -28,7 +28,7 @@ export default class SignUp extends React.Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .catch(err => console.log('not signed in', err));
+      .catch(err => console.log("not signed in", err));
   };
 
   render() {
@@ -40,23 +40,23 @@ export default class SignUp extends React.Component {
   }
   _showPage() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'black' }}>
-        <View style={{ marginTop: 165, alignItems: 'center' }}>
+      <View style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}>
+        <View style={{ marginTop: 165, alignItems: "center" }}>
           <Text
             style={{
-              fontFamily: 'Futura-CondensedExtraBold',
-              color: 'white',
-              textAlign: 'center',
-              fontSize: 50,
+              fontFamily: "Futura-CondensedExtraBold",
+              color: "white",
+              textAlign: "center",
+              fontSize: 50
             }}
           >
             Log In
           </Text>
           <Text
             style={{
-              color: 'white',
-              textAlign: 'center',
-              marginTop: 25,
+              color: "white",
+              textAlign: "center",
+              marginTop: 25
             }}
           >
             Email
@@ -72,8 +72,8 @@ export default class SignUp extends React.Component {
           />
           <Text
             style={{
-              color: 'white',
-              textAlign: 'center',
+              color: "white",
+              textAlign: "center"
             }}
           >
             Password
@@ -111,7 +111,7 @@ export default class SignUp extends React.Component {
   _changeNavigationDirection(nextPage) {
     return () => {
       this.setState({
-        nextPage: nextPage,
+        nextPage: nextPage
       });
     };
   }
@@ -121,14 +121,14 @@ const styles = StyleSheet.create({
   close: {
     width: 40,
     height: 40,
-    alignSelf: 'flex-end',
+    alignSelf: "flex-end",
     marginRight: 10,
-    marginBottom: 10,
+    marginBottom: 10
   },
   buttonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 20,
+    color: "white",
+    textAlign: "center",
+    fontSize: 20
   },
   buttons: {
     height: 40,
@@ -137,8 +137,8 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     marginTop: 5,
     marginBottom: 15,
-    backgroundColor: '#4AC7CB',
-    borderRadius: 10,
+    backgroundColor: "#4AC7CB",
+    borderRadius: 10
   },
   input: {
     margin: 15,
@@ -146,8 +146,8 @@ const styles = StyleSheet.create({
     marginRight: 30,
     height: 40,
     width: 150,
-    borderColor: 'white',
+    borderColor: "white",
     borderWidth: 1,
-    color: 'white',
-  },
+    color: "white"
+  }
 });

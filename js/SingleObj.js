@@ -54,8 +54,8 @@ class SingleObj extends Component {
 }
 
 ViroAnimations.registerAnimations({
-  moveRight: { properties: { positionX: "+=5" }, duration: 3000 },
-  moveLeft: { properties: { positionX: "-=5" }, duration: 3000 }
+  moveRight: { properties: { positionX: "+=15" }, duration: 3000 },
+  moveLeft: { properties: { positionX: "-=15" }, duration: 3000 }
 });
 
 const mapStateToProps = state => ({

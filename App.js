@@ -12,8 +12,6 @@ import { FirebaseWrapper } from "./firebase/firebase";
 import { firebaseConfig } from "./firebaseConfig";
 import WelcomeScreen from "./js/WelcomeScreen";
 import { secretKey } from "./secrets";
-import SignUp from "./js/SignUp";
-import LogIn from "./js/LogIn"
 
 const sharedProps = {
   apiKey: secretKey
@@ -22,7 +20,7 @@ const sharedProps = {
 const UNSET = "UNSET";
 const instructions = "instructions";
 const signup = "signup";
-const signin = "signin"
+const signin = "signin";
 
 const defaultNavigator = UNSET;
 
@@ -52,10 +50,6 @@ export default class GraceInSpace extends Component {
       return this._showPage();
     } else if (this.state.nextPage == instructions) {
       return this._navigateToNext();
-    } else if (this.state.nextPage == signup) {
-      return this._navigateToSignUp();
-    } else if (this.state.nextPage == signin) {
-      return this._navigateToLogin();
     }
   }
 
@@ -91,25 +85,10 @@ export default class GraceInSpace extends Component {
                 >
                   <TouchableHighlight
                     style={localStyles.buttons}
-                    onPress={this._changeNavigationDirection(signin)}
-                    underlayColor={"#68a0ff"}
-                  >
-                    <Text style={localStyles.buttonText}>Login</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight
-                    style={localStyles.buttons}
-                    onPress={this._changeNavigationDirection(signup)}
-                    underlayColor={"#68a0ff"}
-                  >
-                    <Text style={localStyles.buttonText}>Sign Up</Text>
-                  </TouchableHighlight>
-
-                  <TouchableHighlight
-                    style={localStyles.buttons}
                     onPress={this._changeNavigationDirection(instructions)}
                     underlayColor={"#68a0ff"}
                   >
-                    <Text style={localStyles.buttonText}>NEXT</Text>
+                    <Text style={localStyles.buttonText}>PLAY NOW</Text>
                   </TouchableHighlight>
                 </View>
               </View>
@@ -145,26 +124,7 @@ export default class GraceInSpace extends Component {
       });
     };
   }
-
-  _navigateToLogin() {
-    return (
-      <Provider store={store}>
-        <LogIn />
-      </Provider>
-    );
-  }
-
-
-  _navigateToSignUp() {
-    return (
-      <Provider store={store}>
-        <SignUp />
-      </Provider>
-    );
-  }
 }
-
-
 
 const localStyles = StyleSheet.create({
   viroContainer: {

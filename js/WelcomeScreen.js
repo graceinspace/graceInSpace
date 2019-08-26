@@ -14,8 +14,7 @@ const InitialVRScene = require("./HelloWorldScene");
 const FooterScreen = require("./FooterScreen");
 const GameLostScreen = require("./GameLostScreen");
 const GameWonScreen = require("./GameWonScreen");
-const FooterLoading = require("./FooterLoading")
-
+const FooterLoading = require("./FooterLoading");
 
 export default class WelcomeScreen extends Component {
   constructor() {
@@ -86,6 +85,13 @@ export default class WelcomeScreen extends Component {
                 underlayColor={"#68a0ff"}
               >
                 <Text style={localStyles.buttonText}>START</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={localStyles.buttons}
+                onPress={() => this.props.changeToSignUp()}
+                underlayColor={"#68a0ff"}
+              >
+                <Text style={localStyles.buttonText}> SignUp </Text>
               </TouchableHighlight>
             </View>
           </View>
