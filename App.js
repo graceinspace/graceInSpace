@@ -88,7 +88,7 @@ export default class GraceInSpace extends Component {
                     onPress={this._changeNavigationDirection(instructions)}
                     underlayColor={"#68a0ff"}
                   >
-                    <Text style={localStyles.buttonText}>NEXT</Text>
+                    <Text style={localStyles.buttonText}>PLAY NOW</Text>
                   </TouchableHighlight>
                 </View>
               </View>
