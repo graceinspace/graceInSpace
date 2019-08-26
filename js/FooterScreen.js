@@ -19,7 +19,7 @@ class FooterScreen extends Component {
           <Footer style={localStyles.bottomView}>
             <FooterTab style={localStyles.bottomView}>
               <Text style={localStyles.titleText}>
-                Score: {this.props.score}
+                Score: {this.props.score}/10
               </Text>
             </FooterTab>
             <FooterTab style={localStyles.bottomView}>
