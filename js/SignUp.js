@@ -29,6 +29,12 @@ export default class SignUp extends React.Component {
       .createUserWithEmailAndPassword(email, password)
       .catch(err => console.log("not created", err));
   };
+  logInUser = (email, password) => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(err => console.log("not signed in", err));
+  };
 
   render() {
     if (this.state.nextPage == defaultNavigator) {
@@ -60,6 +66,7 @@ export default class SignUp extends React.Component {
           <TouchableHighlight
             onPress={
               (this.createUser(this.state.email, this.state.password),
+              this.logInUser(this.state.email, this.state.password),
               this._changeNavigationDirection(start))
             }
             underlayColor={"#68a0ff"}
