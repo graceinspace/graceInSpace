@@ -8,16 +8,18 @@ import {
 } from "react-native";
 import store from "./js/store/index";
 import { Provider } from "react-redux";
-
+import { FirebaseWrapper } from "./firebase/firebase";
+import { firebaseConfig } from "./firebaseConfig";
 import WelcomeScreen from "./js/WelcomeScreen";
 import { secretKey } from "./secrets";
-
+import SignUp from "./js/SignUp";
 const sharedProps = {
   apiKey: secretKey
 };
 
 const UNSET = "UNSET";
 const instructions = "instructions";
+const signup = "signup";
 
 const defaultNavigator = UNSET;
 
@@ -47,10 +49,13 @@ export default class GraceInSpace extends Component {
       return this._showPage();
     } else if (this.state.nextPage == instructions) {
       return this._navigateToNext();
+    } else if (this.state.nextPage == signup) {
+      return this._navigateToLogin();
     }
   }
 
   _showPage() {
+    FirebaseWrapper.GetInstance().Initialize(firebaseConfig);
     return (
       <Provider store={store}>
         <View style={localStyles.outer}>
@@ -79,6 +84,21 @@ export default class GraceInSpace extends Component {
                     alignItems: "center"
                   }}
                 >
+                  {/* <TouchableHighlight
+                    style={localStyles.buttons}
+                    onPress={this._changeNavigationDirection(instructions)}
+                    underlayColor={"#68a0ff"}
+                  >
+                    <Text style={localStyles.buttonText}>Login</Text>
+                  </TouchableHighlight> */}
+                  <TouchableHighlight
+                    style={localStyles.buttons}
+                    onPress={this._changeNavigationDirection(signup)}
+                    underlayColor={"#68a0ff"}
+                  >
+                    <Text style={localStyles.buttonText}>Sign Up</Text>
+                  </TouchableHighlight>
+
                   <TouchableHighlight
                     style={localStyles.buttons}
                     onPress={this._changeNavigationDirection(instructions)}
@@ -119,6 +139,13 @@ export default class GraceInSpace extends Component {
         nextPage: nextPage
       });
     };
+  }
+  _navigateToLogin() {
+    return (
+      <Provider store={store}>
+        <SignUp />
+      </Provider>
+    );
   }
 }
 
