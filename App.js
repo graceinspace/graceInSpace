@@ -13,6 +13,8 @@ import { firebaseConfig } from "./firebaseConfig";
 import WelcomeScreen from "./js/WelcomeScreen";
 import { secretKey } from "./secrets";
 import SignUp from "./js/SignUp";
+import LogIn from "./js/LogIn"
+
 const sharedProps = {
   apiKey: secretKey
 };
@@ -20,6 +22,7 @@ const sharedProps = {
 const UNSET = "UNSET";
 const instructions = "instructions";
 const signup = "signup";
+const signin = "signin"
 
 const defaultNavigator = UNSET;
 
@@ -50,6 +53,8 @@ export default class GraceInSpace extends Component {
     } else if (this.state.nextPage == instructions) {
       return this._navigateToNext();
     } else if (this.state.nextPage == signup) {
+      return this._navigateToSignUp();
+    } else if (this.state.nextPage == signin) {
       return this._navigateToLogin();
     }
   }
@@ -84,13 +89,13 @@ export default class GraceInSpace extends Component {
                     alignItems: "center"
                   }}
                 >
-                  {/* <TouchableHighlight
+                  <TouchableHighlight
                     style={localStyles.buttons}
-                    onPress={this._changeNavigationDirection(instructions)}
+                    onPress={this._changeNavigationDirection(signin)}
                     underlayColor={"#68a0ff"}
                   >
                     <Text style={localStyles.buttonText}>Login</Text>
-                  </TouchableHighlight> */}
+                  </TouchableHighlight>
                   <TouchableHighlight
                     style={localStyles.buttons}
                     onPress={this._changeNavigationDirection(signup)}
@@ -140,7 +145,17 @@ export default class GraceInSpace extends Component {
       });
     };
   }
+
   _navigateToLogin() {
+    return (
+      <Provider store={store}>
+        <LogIn />
+      </Provider>
+    );
+  }
+
+
+  _navigateToSignUp() {
     return (
       <Provider store={store}>
         <SignUp />
@@ -148,6 +163,8 @@ export default class GraceInSpace extends Component {
     );
   }
 }
+
+
 
 const localStyles = StyleSheet.create({
   viroContainer: {

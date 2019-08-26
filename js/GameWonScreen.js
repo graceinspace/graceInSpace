@@ -40,8 +40,8 @@ export default class GameWonScreen extends Component {
               fontSize: 20
             }}
           >
-            You helped Grace collect all of her items before time ran out! Now
-            she can go on vacation!
+            You helped Grace collect all of her items in {this.props.seconds}{" "}
+            seconds! Now she can go on vacation!
           </Text>
         </View>
         <TouchableHighlight
@@ -82,12 +82,16 @@ var localStyles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => ({
+  seconds: state.seconds
+});
+
 const mapDispatchToProps = dispatch => ({
   changeToUnset: () => dispatch(changeToUnset()),
   changeToSpace: () => dispatch(changeToSpace())
 });
 
 module.exports = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(GameWonScreen);
