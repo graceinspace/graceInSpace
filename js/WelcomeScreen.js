@@ -3,8 +3,13 @@ import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
 import { ViroVRSceneNavigator } from "react-viro";
 import store from "./store/index";
 import { Provider, connect } from "react-redux";
-import { changeToSpace, changeToUnset } from "./store/gameActions";
+import {
+  changeToSpace,
+  changeToUnset,
+  changeToSignUp
+} from "./store/gameActions";
 import { secretKey } from "../secrets";
+import SignUp from "./SignUp";
 
 const sharedProps = {
   apiKey: secretKey
@@ -40,6 +45,9 @@ export default class WelcomeScreen extends Component {
     }
     if (this.props.gameLost === true) {
       return <GameLostScreen />;
+    }
+    if (this.props.navigation === "signup") {
+      return <SignUp />;
     }
     if (
       this.props.navigation == "unset" &&
@@ -181,7 +189,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   changeToSpace: () => dispatch(changeToSpace()),
-  changeToUnset: () => dispatch(changeToUnset())
+  changeToUnset: () => dispatch(changeToUnset()),
+  changeToSignUp: () => dispatch(changeToSignUp())
 });
 
 module.exports = connect(
