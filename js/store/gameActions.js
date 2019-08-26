@@ -1,11 +1,12 @@
-import allObjects from "../objects" //arr of objects
+import allObjects from "../objects"; //arr of objects
 export const SCORE = "SCORE";
 export const GAME_LOST = "GAME_LOST";
 export const GAME_WON = "GAME_WON";
-export const UNSET = "UNSET"
-export const SPACE = "SPACE"
-export const GET_OBJECTS = "GET_OBJECTS"
-export const SHOW_ITEMS = "SHOW_ITEMS"
+export const UNSET = "UNSET";
+export const SPACE = "SPACE";
+export const GET_OBJECTS = "GET_OBJECTS";
+export const SHOW_ITEMS = "SHOW_ITEMS";
+export const SECONDS = "SECONDS";
 //action creator
 
 export const updateScore = () => {
@@ -29,27 +30,33 @@ export const gameWon = () => {
 export const setToUnset = () => {
   return {
     type: UNSET
-  }
-}
+  };
+};
 
 export const setToSpace = () => {
   return {
     type: SPACE
-  }
-}
+  };
+};
 
-export const getObjects = (obj) => {
+export const getObjects = obj => {
   return {
     type: GET_OBJECTS,
     obj: allObjects
-  }
-}
+  };
+};
 
 export const showItems = () => {
   return {
     type: SHOW_ITEMS
-  }
-}
+  };
+};
+
+export const getSeconds = () => {
+  return {
+    type: SECONDS
+  };
+};
 
 export function upCount() {
   return async dispatch => {
@@ -84,40 +91,49 @@ export function loseGame() {
 export function changeToUnset() {
   return async dispatch => {
     try {
-      dispatch(setToUnset())
+      dispatch(setToUnset());
     } catch (error) {
-      next(error)
+      next(error);
     }
-  }
+  };
 }
 
 export function changeToSpace() {
   return async dispatch => {
     try {
-      dispatch(setToSpace())
+      dispatch(setToSpace());
     } catch (error) {
-      next(error)
+      next(error);
     }
-  }
+  };
 }
 
 export function getAllObjects() {
   return async dispatch => {
     try {
-      dispatch(getObjects(allObjects))
+      dispatch(getObjects(allObjects));
     } catch (error) {
-      next(error)
+      next(error);
     }
-  }
+  };
 }
-
 
 export function displayAll() {
   return async dispatch => {
     try {
-      dispatch(showItems())
+      dispatch(showItems());
     } catch (error) {
-      next(error)
+      next(error);
     }
-  }
+  };
+}
+
+export function gotSeconds() {
+  return async dispatch => {
+    try {
+      dispatch(getSeconds());
+    } catch (error) {
+      next(error);
+    }
+  };
 }
