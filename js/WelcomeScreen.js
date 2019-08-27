@@ -126,7 +126,7 @@ export default class WelcomeScreen extends Component {
                   >
                     <Text style={localStyles.buttonText}> SignIn </Text>
                   </TouchableHighlight>
-                  <Text style={{ color: "white" }}>or</Text>
+                  <Text style={{ color: "white", textAlign: "center" }}>or</Text>
                   <TouchableHighlight
                     style={localStyles.buttons}
                     onPress={() => this.props.changeToSignUp()}
@@ -194,8 +194,11 @@ const localStyles = StyleSheet.create({
     fontSize: 20
   },
   buttons: {
-    height: 40,
-    width: 90,
+    height: 60,
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 120,
     paddingTop: 10,
     paddingBottom: 10,
     marginTop: 5,
