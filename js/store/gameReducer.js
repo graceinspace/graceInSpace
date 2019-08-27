@@ -9,7 +9,9 @@ import {
   SECONDS,
   SIGNUP,
   SIGNIN,
-  PROFILE
+  PROFILE,
+  LOGIN,
+  LOGOUT
 } from "./gameActions";
 import allObjects from "../objects";
 
@@ -90,6 +92,16 @@ export default function reducer(state = initialState, action) {
         score: 0,
         showItems: false,
         seconds: 0
+      };
+      case LOGIN:
+      return {
+        ...state,
+        logInStatus: true
+      };
+      case LOGOUT:
+      return {
+        ...state,
+        logInStatus: false
       };
     case GET_OBJECTS:
       return { ...state, objects: action.obj };
