@@ -7,20 +7,16 @@ import {
   TouchableHighlight
 } from "react-native";
 import * as firebase from "firebase";
-import { FirebaseWrapper } from "../firebase/firebase";
-import WelcomeScreen from "./WelcomeScreen";
 import store from "./store/index";
-import { Provider } from "react-redux";
-const defaultNavigator = "defaultNavigator";
-const start = "start";
+import { Provider, connect } from "react-redux";
+import { changeToUnset, changeToProfile } from "./store/gameActions"
 
-export default class LogIn extends React.Component {
+export default class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
       password: "",
-      nextPage: defaultNavigator
     };
   }
 
@@ -32,14 +28,8 @@ export default class LogIn extends React.Component {
   };
 
   render() {
-    if (this.state.nextPage == defaultNavigator) {
-      return this._showPage();
-    } else if (this.state.nextPage == start) {
-      return this._navigateToStart();
-    }
-  }
-  _showPage() {
     return (
+      <Provider store={store}>
       <View style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}>
         <View style={{ marginTop: 165, alignItems: "center" }}>
           <Text
@@ -50,7 +40,7 @@ export default class LogIn extends React.Component {
               fontSize: 50
             }}
           >
-            Log In
+            Sign In
           </Text>
           <Text
             style={{
@@ -89,42 +79,31 @@ export default class LogIn extends React.Component {
           />
           <TouchableHighlight
             style={styles.buttons}
-            onPress={
-              (this.logInUser(this.state.email, this.state.password),
-              this._changeNavigationDirection(start))
-            }
+            onPress={()=> (
+              this.logInUser(this.state.email, this.state.password),
+              this.props.changeToProfile()
+            )}
           >
-            <Text style={styles.buttonText}>Log In</Text>
+            <Text style={styles.buttonText}>Sign In</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight
+            style={styles.buttons}
+            onPress={()=> (
+              this.logInUser(this.state.email, this.state.password),
+              this.props.changeToUnset()
+            )}
+          >
+            <Text style={styles.buttonText}>back</Text>
           </TouchableHighlight>
         </View>
       </View>
-    );
-  }
-  _navigateToStart() {
-    return (
-      <Provider store={store}>
-        <WelcomeScreen />
       </Provider>
-    );
-  }
-
-  _changeNavigationDirection(nextPage) {
-    return () => {
-      this.setState({
-        nextPage: nextPage
-      });
-    };
+    )
   }
 }
 
 const styles = StyleSheet.create({
-  close: {
-    width: 40,
-    height: 40,
-    alignSelf: "flex-end",
-    marginRight: 10,
-    marginBottom: 10
-  },
   buttonText: {
     color: "white",
     textAlign: "center",
@@ -151,3 +130,15 @@ const styles = StyleSheet.create({
     color: "white"
   }
 });
+
+
+
+const mapDispatchToProps = dispatch => ({
+  changeToUnset: () => dispatch(changeToUnset()),
+  changeToProfile: () => dispatch(changeToProfile())
+});
+
+module.exports = connect(
+  null,
+  mapDispatchToProps
+)(SignIn);
