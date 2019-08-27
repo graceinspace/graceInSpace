@@ -3,11 +3,22 @@ import { Provider, connect } from "react-redux";
 import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
 import * as firebase from "firebase";
 import store from "./store/index";
-import { changeToUnset, changeToSpace } from "./store/gameActions";
+import { changeToUnset, changeToSpace, getScores } from "./store/gameActions";
 
 export default class Profile extends Component {
   constructor() {
     super();
+  }
+  async componentDidMount() {
+    let user = firebase.auth().currentUser;
+    let userId = user.uid;
+    await FirebaseWrapper.GetInstance.SetUpCollectionListener(
+      "scores",
+      userId,
+      scores => {
+        dispatch(getScores(scores));
+      }
+    );
   }
 
   signOutUser = () => {
@@ -26,11 +37,13 @@ export default class Profile extends Component {
         >
           <View style={{ marginTop: 165, alignItems: "center" }}>
             <Text style={styles.text}>Welcome to your page</Text>
-            <Text style={styles.text}>Your best times: __</Text>
+            <Text style={styles.text}>Your best times: </Text>
+            {this.props.userTimes.map((time, i) => {
+              return <Text key={i}>{time}</Text>;
+            })}
             <TouchableHighlight
               style={styles.buttons}
-              onPress={() => (
-                this.signOutUser(), this.props.changeToUnset())}
+              onPress={() => (this.signOutUser(), this.props.changeToUnset())}
               underlayColor={"#68a0ff"}
             >
               <Text style={styles.buttonText}>Log out</Text>
@@ -78,12 +91,19 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => {
+  return {
+    userTimes: state.userTimes
+  };
+};
+
 const mapDispatchToProps = dispatch => ({
   changeToUnset: () => dispatch(changeToUnset()),
-  changeToSpace: () => dispatch(changeToSpace())
+  changeToSpace: () => dispatch(changeToSpace()),
+  getScores: scores => dispatch(getScores(scores))
 });
 
 module.exports = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Profile);

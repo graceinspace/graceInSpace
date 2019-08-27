@@ -8,8 +8,9 @@ export const GET_OBJECTS = "GET_OBJECTS";
 export const SHOW_ITEMS = "SHOW_ITEMS";
 export const SECONDS = "SECONDS";
 export const SIGNUP = "SIGNUP";
-export const SIGNIN = "SIGNIN"
-export const PROFILE = "PROFILE"
+export const SIGNIN = "SIGNIN";
+export const PROFILE = "PROFILE";
+export const USERS_SCORES = "USERS_SCORES";
 //action creator
 
 export const updateScore = () => {
@@ -70,14 +71,21 @@ export const setToSignUp = () => {
 export const setToSignIn = () => {
   return {
     type: SIGNIN
-  }
-}
+  };
+};
 
 export const setToProfile = () => {
   return {
     type: PROFILE
-  }
-}
+  };
+};
+
+export const usersScores = scores => {
+  return {
+    type: USERS_SCORES,
+    scores
+  };
+};
 
 export function upCount() {
   return async dispatch => {
@@ -159,7 +167,6 @@ export function gotSeconds() {
   };
 }
 
-
 export function changeToSignUp() {
   return async dispatch => {
     try {
@@ -169,7 +176,6 @@ export function changeToSignUp() {
     }
   };
 }
-
 
 export function changeToSignIn() {
   return async dispatch => {
@@ -191,3 +197,12 @@ export function changeToProfile() {
   };
 }
 
+export function getScores(scores) {
+  return async dispatch => {
+    try {
+      dispatch(usersScores(scores));
+    } catch (error) {
+      next(error);
+    }
+  };
+}
