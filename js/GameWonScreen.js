@@ -86,7 +86,10 @@ var localStyles = StyleSheet.create({
     fontSize: 20
   },
   buttons: {
-    height: 50,
+    height: 60,
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
     width: 120,
     paddingTop: 10,
     paddingBottom: 10,
