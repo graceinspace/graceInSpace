@@ -25,8 +25,20 @@ export default class Profile extends Component {
           style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}
         >
           <View style={{ marginTop: 165, alignItems: "center" }}>
-            <Text style={styles.text}>Welcome to your page</Text>
-            <Text style={styles.text}>Your best times: __</Text>
+            <Text style={{
+              fontFamily: "Futura-CondensedExtraBold",
+              color: "white",
+              textAlign: "center",
+              fontSize: 50
+            }}>Your
+            Profile</Text>
+            <Text style={{
+                color: "white",
+                textAlign: "center",
+                marginTop: 25,
+                fontSize: 20,
+                marginBottom: 25
+              }}>Your best times: __</Text>
             <TouchableHighlight
               style={styles.buttons}
               onPress={() => (
@@ -55,11 +67,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#4AC7CB",
     justifyContent: "center",
     alignItems: "center"
-  },
-  text: {
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "white"
   },
   buttons: {
     height: 40,
