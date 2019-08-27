@@ -6,10 +6,13 @@ import { Provider, connect } from "react-redux";
 import {
   changeToSpace,
   changeToUnset,
-  changeToSignUp
+  changeToSignUp,
+  changeToSignIn
 } from "./store/gameActions";
 import { secretKey } from "../secrets";
 import SignUp from "./SignUp";
+import SignIn from "./SignIn"
+import Profile from "./Profile";
 
 const sharedProps = {
   apiKey: secretKey
@@ -49,6 +52,12 @@ export default class WelcomeScreen extends Component {
     if (this.props.navigation === "signup") {
       return <SignUp />;
     }
+    if (this.props.navigation === "signin") {
+      return <SignIn />;
+    }
+    if (this.props.navigation === "profile") {
+      return <Profile />;
+    }
     if (
       this.props.navigation == "unset" &&
       this.props.gameWon === false &&
@@ -81,7 +90,8 @@ export default class WelcomeScreen extends Component {
                     color: "orange",
                     paddingLeft: 10,
                     paddingRight: 10,
-                    paddingBottom: 20
+                    paddingBottom: 20,
+                    textAlign: "center"
                   }}
                 >
                   Don't forget to look up, down, left, right, and behind you!
@@ -92,8 +102,16 @@ export default class WelcomeScreen extends Component {
                 onPress={() => this.props.changeToSpace()}
                 underlayColor={"#68a0ff"}
               >
-                <Text style={localStyles.buttonText}>START</Text>
+                <Text style={localStyles.buttonText}>PLAY</Text>
               </TouchableHighlight>
+              <TouchableHighlight
+                style={localStyles.buttons}
+                onPress={() => this.props.changeToSignIn()}
+                underlayColor={"#68a0ff"}
+              >
+                <Text style={localStyles.buttonText}> SignIn </Text>
+              </TouchableHighlight>
+              <Text style={{color: "white"}}>or</Text>
               <TouchableHighlight
                 style={localStyles.buttons}
                 onPress={() => this.props.changeToSignUp()}
@@ -101,6 +119,7 @@ export default class WelcomeScreen extends Component {
               >
                 <Text style={localStyles.buttonText}> SignUp </Text>
               </TouchableHighlight>
+
             </View>
           </View>
         </Provider>
@@ -153,13 +172,6 @@ const localStyles = StyleSheet.create({
     paddingRight: 10,
     textAlign: "justify"
   },
-  loadingText: {
-    paddingTop: 20,
-    paddingBottom: 20,
-    color: "#fff",
-    textAlign: "center",
-    fontSize: 25
-  },
   buttonText: {
     color: "white",
     textAlign: "center",
@@ -190,7 +202,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   changeToSpace: () => dispatch(changeToSpace()),
   changeToUnset: () => dispatch(changeToUnset()),
-  changeToSignUp: () => dispatch(changeToSignUp())
+  changeToSignUp: () => dispatch(changeToSignUp()),
+  changeToSignIn: () => dispatch(changeToSignIn())
 });
 
 module.exports = connect(

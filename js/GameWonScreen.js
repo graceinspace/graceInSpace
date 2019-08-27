@@ -6,7 +6,7 @@ import {
   TouchableHighlight,
   Image
 } from "react-native";
-import { changeToUnset, changeToSpace } from "./store/gameActions";
+import { changeToUnset, changeToSpace, changeToSignUp } from "./store/gameActions";
 import { connect } from "react-redux";
 
 export default class GameWonScreen extends Component {
@@ -46,22 +46,12 @@ export default class GameWonScreen extends Component {
         </View>
         <TouchableHighlight
           style={localStyles.buttons}
-          onPress={() => {
-            this.props.changeToUnset();
-          }}
+          onPress={() =>
+            this.props.changeToUnset()
+          }
           underlayColor={"#68a0ff"}
         >
           <Text style={localStyles.buttonText}>Play Again!</Text>
-        </TouchableHighlight>
-
-        <TouchableHighlight
-          style={localStyles.buttons}
-          onPress={() => this.props.changeToSignUp()}
-          underlayColor={"#68a0ff"}
-        >
-          <Text style={localStyles.buttonText}>
-            If you'd like to Sign Up CLICK HERE
-          </Text>
         </TouchableHighlight>
       </View>
     );
@@ -98,7 +88,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   changeToUnset: () => dispatch(changeToUnset()),
-  changeToSpace: () => dispatch(changeToSpace())
+  changeToSpace: () => dispatch(changeToSpace()),
+  changeToSignUp: () => dispatch(changeToUnset())
 });
 
 module.exports = connect(

@@ -8,6 +8,8 @@ export const GET_OBJECTS = "GET_OBJECTS";
 export const SHOW_ITEMS = "SHOW_ITEMS";
 export const SECONDS = "SECONDS";
 export const SIGNUP = "SIGNUP";
+export const SIGNIN = "SIGNIN"
+export const PROFILE = "PROFILE"
 //action creator
 
 export const updateScore = () => {
@@ -64,6 +66,18 @@ export const setToSignUp = () => {
     type: SIGNUP
   };
 };
+
+export const setToSignIn = () => {
+  return {
+    type: SIGNIN
+  }
+}
+
+export const setToProfile = () => {
+  return {
+    type: PROFILE
+  }
+}
 
 export function upCount() {
   return async dispatch => {
@@ -144,6 +158,8 @@ export function gotSeconds() {
     }
   };
 }
+
+
 export function changeToSignUp() {
   return async dispatch => {
     try {
@@ -153,3 +169,25 @@ export function changeToSignUp() {
     }
   };
 }
+
+
+export function changeToSignIn() {
+  return async dispatch => {
+    try {
+      dispatch(setToSignIn());
+    } catch (error) {
+      next(error);
+    }
+  };
+}
+
+export function changeToProfile() {
+  return async dispatch => {
+    try {
+      dispatch(setToProfile());
+    } catch (error) {
+      next(error);
+    }
+  };
+}
+
