@@ -1,24 +1,24 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Text,
   View,
   StyleSheet,
   TouchableHighlight,
-  Image
-} from "react-native";
-import store from "./js/store/index";
-import { Provider } from "react-redux";
-import { FirebaseWrapper } from "./firebase/firebase";
-import { firebaseConfig } from "./firebaseConfig";
-import WelcomeScreen from "./js/WelcomeScreen";
-import { secretKey } from "./secrets";
+  Image,
+} from 'react-native';
+import store from './js/store/index';
+import { Provider } from 'react-redux';
+import { FirebaseWrapper } from './firebase/firebase';
+import { firebaseConfig } from './firebaseConfig';
+import WelcomeScreen from './js/WelcomeScreen';
+import { secretKey } from './secrets';
 
 const sharedProps = {
-  apiKey: secretKey
+  apiKey: secretKey,
 };
 console.disableYellowBox = true;
-const UNSET = "UNSET";
-const instructions = "instructions";
+const UNSET = 'UNSET';
+const instructions = 'instructions';
 
 const defaultNavigator = UNSET;
 
@@ -29,7 +29,7 @@ export default class GraceInSpace extends Component {
     this.state = {
       nextPage: defaultNavigator,
       sharedProps: sharedProps,
-      loaded: false
+      loaded: false,
     };
     this._showPage = this._showPage.bind(this);
     this._navigateToNext = this._navigateToNext.bind(this);
@@ -61,10 +61,10 @@ export default class GraceInSpace extends Component {
               <View>
                 <Text
                   style={{
-                    fontFamily: "Futura-CondensedExtraBold",
-                    color: "white",
-                    textAlign: "center",
-                    fontSize: 50
+                    fontFamily: 'Futura-CondensedExtraBold',
+                    color: 'white',
+                    textAlign: 'center',
+                    fontSize: 50,
                   }}
                 >
                   Grace In Space
@@ -78,29 +78,29 @@ export default class GraceInSpace extends Component {
                 </View>
                 <View
                   style={{
-                    alignItems: "center"
+                    alignItems: 'center',
                   }}
-                >
-                  <TouchableHighlight
-                    style={localStyles.buttons}
-                    onPress={this._changeNavigationDirection(instructions)}
-                    underlayColor={"#68a0ff"}
-                  >
-                    <Text style={localStyles.buttonText}>START</Text>
-                  </TouchableHighlight>
-                </View>
+                />
               </View>
             ) : (
               <View>
                 <Text style={localStyles.loadingText}>Loading...</Text>
               </View>
             )}
-
             <Image
               style={{ width: 300, height: 333 }}
-              source={require("./js/res/grace2.gif")}
+              source={require('./js/res/grace2.gif')}
               onLoadEnd={this.imageLoaded}
             />
+            {this.state.loaded ? (
+              <TouchableHighlight
+                style={localStyles.buttons}
+                onPress={this._changeNavigationDirection(instructions)}
+                underlayColor={'#68a0ff'}
+              >
+                <Text style={localStyles.buttonText}>START</Text>
+              </TouchableHighlight>
+            ) : null}
           </View>
         </View>
       </Provider>
@@ -118,7 +118,7 @@ export default class GraceInSpace extends Component {
   _changeNavigationDirection(nextPage) {
     return () => {
       this.setState({
-        nextPage: nextPage
+        nextPage: nextPage,
       });
     };
   }
@@ -127,56 +127,59 @@ export default class GraceInSpace extends Component {
 const localStyles = StyleSheet.create({
   viroContainer: {
     flex: 1,
-    backgroundColor: "black"
+    backgroundColor: 'black',
   },
   outer: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "black",
-    textAlign: "center"
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'black',
+    textAlign: 'center',
   },
   inner: {
     flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "black",
-    textAlign: "center"
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: 'black',
+    textAlign: 'center',
   },
   image: {
-    marginTop: 50
+    marginTop: 50,
   },
   titleText: {
     paddingTop: 20,
     paddingBottom: 20,
-    color: "#fff",
+    color: '#fff',
     fontSize: 15,
     paddingLeft: 10,
     paddingRight: 10,
-    textAlign: "justify"
+    textAlign: 'justify',
   },
   loadingText: {
     paddingTop: 20,
     paddingBottom: 20,
-    color: "#fff",
-    textAlign: "center",
-    fontSize: 25
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 25,
   },
   buttonText: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 20
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 20,
   },
   buttons: {
-    height: 40,
-    width: 90,
+    height: 60,
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 120,
     paddingTop: 10,
     paddingBottom: 10,
     marginTop: 5,
     marginBottom: 15,
-    backgroundColor: "#4AC7CB",
-    borderRadius: 10
-  }
+    backgroundColor: '#4AC7CB',
+    borderRadius: 10,
+  },
 });
 
 module.exports = GraceInSpace;
