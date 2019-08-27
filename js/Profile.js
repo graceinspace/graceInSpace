@@ -29,7 +29,8 @@ export default class Profile extends Component {
             <Text style={styles.text}>Your best times: __</Text>
             <TouchableHighlight
               style={styles.buttons}
-              onPress={() => (this.signOutUser(), this.props.changeToUnset())}
+              onPress={() => (
+                this.signOutUser(), this.props.changeToUnset())}
               underlayColor={"#68a0ff"}
             >
               <Text style={styles.buttonText}>Log out</Text>

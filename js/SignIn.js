@@ -4,7 +4,8 @@ import {
   View,
   StyleSheet,
   Text,
-  TouchableHighlight
+  TouchableHighlight,
+  KeyboardAvoidingView
 } from "react-native";
 import * as firebase from "firebase";
 import store from "./store/index";
@@ -30,7 +31,8 @@ export default class SignIn extends Component {
   render() {
     return (
       <Provider store={store}>
-      <View style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}>
+      <KeyboardAvoidingView style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}>
+      <View >
         <View style={{ marginTop: 165, alignItems: "center" }}>
           <Text
             style={{
@@ -56,7 +58,10 @@ export default class SignIn extends Component {
             multiline={false}
             numberOfLines={1}
             onChangeText={email => this.setState({ email })}
-            placeholder="Your email"
+            placeholder="email"
+            keyboardType="email-address"
+            returnKeyType="next"
+            autoCapitalize="none"
             value={this.state.email}
             style={styles.input}
           />
@@ -73,7 +78,10 @@ export default class SignIn extends Component {
             multiline={false}
             numberOfLines={1}
             onChangeText={password => this.setState({ password })}
-            placeholder="Your password"
+            placeholder="password"
+            returnKeyType="go"
+            autoCapitalize="none"
+            secureTextEntry={true}
             value={this.state.password}
             style={styles.input}
           />
@@ -98,6 +106,7 @@ export default class SignIn extends Component {
           </TouchableHighlight>
         </View>
       </View>
+      </KeyboardAvoidingView>
       </Provider>
     )
   }
@@ -105,31 +114,31 @@ export default class SignIn extends Component {
 
 const styles = StyleSheet.create({
   buttonText: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 20
-  },
-  buttons: {
-    height: 40,
-    width: 90,
-    paddingTop: 10,
-    paddingBottom: 10,
-    marginTop: 5,
-    marginBottom: 15,
-    backgroundColor: "#4AC7CB",
-    borderRadius: 10
-  },
-  input: {
-    margin: 15,
-    marginLeft: 30,
-    marginRight: 30,
-    height: 40,
-    width: 150,
-    borderColor: "white",
-    borderWidth: 1,
-    color: "white"
-  }
-});
+     color: "white",
+     textAlign: "center",
+     fontSize: 20
+   },
+   buttons: {
+     height: 40,
+     width: 90,
+     paddingTop: 10,
+     paddingBottom: 10,
+     marginTop: 5,
+     marginBottom: 15,
+     backgroundColor: "#4AC7CB",
+     borderRadius: 10
+   },
+   input: {
+     margin: 15,
+     marginLeft: 30,
+     marginRight: 30,
+     height: 40,
+     width: 150,
+     borderColor: "white",
+     borderWidth: 1,
+     color: "white"
+   }
+ });
 
 
 
