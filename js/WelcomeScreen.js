@@ -64,9 +64,9 @@ export default class WelcomeScreen extends Component {
     if (
       this.props.navigation == "unset" &&
       this.props.gameWon === false &&
-      this.props.gameLost === false &&
-      this.props
+      this.props.gameLost === false
     ) {
+      console.log("this is our user", user);
       return (
         <Provider store={store}>
           <View style={localStyles.outer}>

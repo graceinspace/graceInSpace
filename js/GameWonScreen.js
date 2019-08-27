@@ -6,12 +6,27 @@ import {
   TouchableHighlight,
   Image
 } from "react-native";
-import { changeToUnset, changeToSpace, changeToSignUp } from "./store/gameActions";
+import {
+  changeToUnset,
+  changeToSpace,
+  changeToSignUp
+} from "./store/gameActions";
 import { connect } from "react-redux";
-
+import { FirebaseWrapper } from "../firebase/firebase";
 export default class GameWonScreen extends Component {
   constructor() {
     super();
+  }
+  async postScore(seconds) {
+    try {
+      console.log("posting");
+      // make call to Firebase
+      await FirebaseWrapper.GetInstance().CreateNewDocument("scores", {
+        seconds: seconds
+      });
+    } catch (err) {
+      console.log("something wrong component post", err);
+    }
   }
 
   render() {
@@ -40,15 +55,15 @@ export default class GameWonScreen extends Component {
               fontSize: 20
             }}
           >
-            You helped Grace collect all of her items in {this.props.seconds}{" "}
+            You helped Grace collect all of her items in {this.props.seconds}
             seconds! Now she can go on vacation!
           </Text>
         </View>
         <TouchableHighlight
           style={localStyles.buttons}
-          onPress={() =>
-            this.props.changeToUnset()
-          }
+          onPress={() => (
+            this.postScore(this.props.seconds), this.props.changeToUnset()
+          )}
           underlayColor={"#68a0ff"}
         >
           <Text style={localStyles.buttonText}>Play Again!</Text>
