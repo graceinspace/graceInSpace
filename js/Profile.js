@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import { Provider, connect } from "react-redux";
 import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
@@ -25,15 +26,15 @@ export default class Profile extends Component {
     firebase
       .auth()
       .signOut()
-      .then(() => console.log("signed out!"))
-      .catch(err => console.log("you did not sign out >>", err));
+      .then(() => console.log('signed out!'))
+      .catch(err => console.log('you did not sign out >>', err));
   };
 
   render() {
     return (
       <Provider store={store}>
         <View
-          style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}
+          style={{ flex: 1, alignItems: 'center', backgroundColor: 'black' }}
         >
           <View style={{ marginTop: 165, alignItems: "center" }}>
             <Text style={styles.text}>Welcome to your page</Text>
@@ -51,7 +52,7 @@ export default class Profile extends Component {
             <TouchableHighlight
               style={styles.buttons}
               onPress={() => this.props.changeToSpace()}
-              underlayColor={"#68a0ff"}
+              underlayColor={'#68a0ff'}
             >
               <Text style={styles.buttonText}>Play</Text>
             </TouchableHighlight>
@@ -65,30 +66,28 @@ export default class Profile extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#4AC7CB",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  text: {
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "white"
+    backgroundColor: '#4AC7CB',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttons: {
-    height: 40,
-    width: 90,
+    height: 60,
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 120,
     paddingTop: 10,
     paddingBottom: 10,
     marginTop: 5,
     marginBottom: 15,
-    backgroundColor: "#4AC7CB",
-    borderRadius: 10
+    backgroundColor: '#4AC7CB',
+    borderRadius: 10,
   },
   buttonText: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 20
-  }
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 20,
+  },
 });
 
 const mapStateToProps = state => {
@@ -101,6 +100,7 @@ const mapDispatchToProps = dispatch => ({
   changeToUnset: () => dispatch(changeToUnset()),
   changeToSpace: () => dispatch(changeToSpace()),
   getScores: scores => dispatch(getScores(scores))
+
 });
 
 module.exports = connect(
