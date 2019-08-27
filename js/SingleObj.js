@@ -41,12 +41,12 @@ class SingleObj extends Component {
             this.setState({ contains: false });
             this.props.scoreUp();
           }}
-          animation={{
-            name: this.getAnimation(),
-            run: true,
-            loop: true,
-            easing: "EaseIn"
-          }}
+          // animation={{
+          //   name: this.getAnimation(),
+          //   run: true,
+          //   loop: true,
+          //   easing: "EaseIn"
+          // }}
         />
       </Provider>
     );

@@ -41,12 +41,12 @@ export class FirebaseWrapper {
     }
   }
 
-  async SetupCollectionListener(collectionPath, callback) {
+  async SetupCollectionListener(collectionPath, userId, callback) {
     try {
       console.log("calling setup did work");
       await this._firestore
         .collection(collectionPath)
-        .orderBy("createdAt", "desc")
+        .where("userId", "===", userId)
         .onSnapshot(querySnapshot => {
           let container = [];
           querySnapshot.forEach(doc => {

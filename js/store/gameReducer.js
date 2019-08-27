@@ -10,6 +10,7 @@ import {
   SIGNUP,
   SIGNIN,
   PROFILE,
+  USERS_SCORES,
   LOGIN,
   LOGOUT
 } from "./gameActions";
@@ -22,7 +23,8 @@ let initialState = {
   navigation: "unset",
   objects: allObjects,
   showItems: false,
-  seconds: 0
+  seconds: 0,
+  userTimes: []
 };
 
 export default function reducer(state = initialState, action) {
@@ -73,7 +75,7 @@ export default function reducer(state = initialState, action) {
         showItems: false,
         seconds: 0
       };
-      case SIGNIN:
+    case SIGNIN:
       return {
         ...state,
         navigation: "signin",
@@ -83,7 +85,7 @@ export default function reducer(state = initialState, action) {
         showItems: false,
         seconds: 0
       };
-      case PROFILE:
+    case PROFILE:
       return {
         ...state,
         navigation: "profile",
@@ -109,6 +111,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, showItems: true };
     case SECONDS:
       return { ...state, seconds: state.seconds + 1 };
+    case USERS_SCORES:
+      return { ...state, userTimes: action.scores };
     default:
       return state;
   }
