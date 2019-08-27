@@ -16,11 +16,9 @@ import { secretKey } from "./secrets";
 const sharedProps = {
   apiKey: secretKey
 };
-
+console.disableYellowBox = true;
 const UNSET = "UNSET";
 const instructions = "instructions";
-const signup = "signup";
-const signin = "signin";
 
 const defaultNavigator = UNSET;
 
