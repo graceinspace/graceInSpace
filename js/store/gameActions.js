@@ -10,6 +10,8 @@ export const SECONDS = "SECONDS";
 export const SIGNUP = "SIGNUP";
 export const SIGNIN = "SIGNIN"
 export const PROFILE = "PROFILE"
+export const LOGIN = "LOGIN"
+export const LOGOUT = "LOGOUT"
 //action creator
 
 export const updateScore = () => {
@@ -76,6 +78,20 @@ export const setToSignIn = () => {
 export const setToProfile = () => {
   return {
     type: PROFILE
+  }
+}
+
+
+export const login = () => {
+  return {
+    type: LOGIN
+  }
+}
+
+
+export const logout = () => {
+  return {
+    type: LOGOUT
   }
 }
 
@@ -189,5 +205,26 @@ export function changeToProfile() {
       next(error);
     }
   };
+}
+
+
+export function loggedInTrue() {
+  return async dispatch => {
+    try {
+      dispatch(login())
+    } catch (error) {
+      next(error)
+    }
+  }
+}
+
+export function loggedInFalse() {
+  return async dispatch => {
+    try {
+      dispatch(logout())
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 
