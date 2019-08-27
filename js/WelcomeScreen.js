@@ -126,7 +126,7 @@ export default class WelcomeScreen extends Component {
                   >
                     <Text style={localStyles.buttonText}> SignIn </Text>
                   </TouchableHighlight>
-                  <Text style={{ color: "white" }}>or</Text>
+                  <Text style={{ color: "white", textAlign: "center" }}>or</Text>
                   <TouchableHighlight
                     style={localStyles.buttons}
                     onPress={() => this.props.changeToSignUp()}
