@@ -1,58 +1,52 @@
-import React, { Component } from 'react';
-import { Provider, connect } from "react-redux"
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableHighlight
-} from 'react-native'
-import * as firebase from 'firebase'
+import React, { Component } from "react";
+import { Provider, connect } from "react-redux";
+import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
+import * as firebase from "firebase";
 import store from "./store/index";
-import { changeToUnset, changeToSpace } from "./store/gameActions"
+import { changeToUnset, changeToSpace } from "./store/gameActions";
 
 export default class Profile extends Component {
   constructor() {
-    super()
-
+    super();
   }
 
-  singOutUser = (id) => {
+  signOutUser = () => {
     firebase
-    .auth()
-    .signOut()//i think i need user id??
-    .then(()=> console.log('signed out!'))
-    .catch((err)=> console.log("you did not sign out >>", err))
-  }
-
+      .auth()
+      .signOut()
+      .then(() => console.log("signed out!"))
+      .catch(err => console.log("you did not sign out >>", err));
+  };
 
   render() {
-  return(
-    <Provider store={store}>
-    <View style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}>
-      <View style={{ marginTop: 165, alignItems: "center" }}>
-      <Text style={styles.text}>Welcome to your page</Text>
-      <Text style={styles.text}>Your best score: __</Text>
-      <TouchableHighlight
-            style={styles.buttons}
-            onPress={()=> (
-              this.signOutUser(),
-              this.props.setToUnset()
-              )}
-            underlayColor={"#68a0ff"}>
-            <Text style={styles.buttonText}>Log out</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.buttons}
-            onPress={()=> this.props.changeToSpace()}
-            underlayColor={"#68a0ff"}>
-            <Text style={styles.buttonText}>Play</Text>
-          </TouchableHighlight>
-    </View>
-    </View>
-    </Provider>)
+    return (
+      <Provider store={store}>
+        <View
+          style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}
+        >
+          <View style={{ marginTop: 165, alignItems: "center" }}>
+            <Text style={styles.text}>Welcome to your page</Text>
+            <Text style={styles.text}>Your best times: __</Text>
+            <TouchableHighlight
+              style={styles.buttons}
+              onPress={() => (this.signOutUser(), this.props.changeToUnset())}
+              underlayColor={"#68a0ff"}
+            >
+              <Text style={styles.buttonText}>Log out</Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              style={styles.buttons}
+              onPress={() => this.props.changeToSpace()}
+              underlayColor={"#68a0ff"}
+            >
+              <Text style={styles.buttonText}>Play</Text>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </Provider>
+    );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -81,8 +75,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20
   }
-})
-
+});
 
 const mapDispatchToProps = dispatch => ({
   changeToUnset: () => dispatch(changeToUnset()),
@@ -93,4 +86,3 @@ module.exports = connect(
   null,
   mapDispatchToProps
 )(Profile);
-

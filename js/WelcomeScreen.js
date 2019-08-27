@@ -7,12 +7,14 @@ import {
   changeToSpace,
   changeToUnset,
   changeToSignUp,
-  changeToSignIn
+  changeToSignIn,
+  changeToProfile
 } from "./store/gameActions";
 import { secretKey } from "../secrets";
 import SignUp from "./SignUp";
-import SignIn from "./SignIn"
+import SignIn from "./SignIn";
 import Profile from "./Profile";
+import * as firebase from "firebase";
 
 const sharedProps = {
   apiKey: secretKey
@@ -36,6 +38,7 @@ export default class WelcomeScreen extends Component {
   }
 
   render() {
+    const user = firebase.auth().currentUser;
     if (
       this.props.navigation == "space" &&
       this.props.gameWon === false &&
@@ -104,22 +107,35 @@ export default class WelcomeScreen extends Component {
               >
                 <Text style={localStyles.buttonText}>PLAY</Text>
               </TouchableHighlight>
-              <TouchableHighlight
-                style={localStyles.buttons}
-                onPress={() => this.props.changeToSignIn()}
-                underlayColor={"#68a0ff"}
-              >
-                <Text style={localStyles.buttonText}> SignIn </Text>
-              </TouchableHighlight>
-              <Text style={{color: "white"}}>or</Text>
-              <TouchableHighlight
-                style={localStyles.buttons}
-                onPress={() => this.props.changeToSignUp()}
-                underlayColor={"#68a0ff"}
-              >
-                <Text style={localStyles.buttonText}> SignUp </Text>
-              </TouchableHighlight>
-
+              {user ? (
+                <View>
+                  <TouchableHighlight
+                    style={localStyles.buttons}
+                    onPress={() => this.props.changeToProfile()}
+                    underlayColor={"#68a0ff"}
+                  >
+                    <Text style={localStyles.buttonText}> Your Profile </Text>
+                  </TouchableHighlight>
+                </View>
+              ) : (
+                <View>
+                  <TouchableHighlight
+                    style={localStyles.buttons}
+                    onPress={() => this.props.changeToSignIn()}
+                    underlayColor={"#68a0ff"}
+                  >
+                    <Text style={localStyles.buttonText}> SignIn </Text>
+                  </TouchableHighlight>
+                  <Text style={{ color: "white" }}>or</Text>
+                  <TouchableHighlight
+                    style={localStyles.buttons}
+                    onPress={() => this.props.changeToSignUp()}
+                    underlayColor={"#68a0ff"}
+                  >
+                    <Text style={localStyles.buttonText}> SignUp </Text>
+                  </TouchableHighlight>
+                </View>
+              )}
             </View>
           </View>
         </Provider>
@@ -203,7 +219,8 @@ const mapDispatchToProps = dispatch => ({
   changeToSpace: () => dispatch(changeToSpace()),
   changeToUnset: () => dispatch(changeToUnset()),
   changeToSignUp: () => dispatch(changeToSignUp()),
-  changeToSignIn: () => dispatch(changeToSignIn())
+  changeToSignIn: () => dispatch(changeToSignIn()),
+  changeToProfile: () => dispatch(changeToProfile())
 });
 
 module.exports = connect(
