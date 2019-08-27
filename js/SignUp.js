@@ -37,7 +37,8 @@ export default class SignUp extends Component {
   render() {
       return (
         <Provider store={store}>
-        <View style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}>
+        <KeyboardAvoidingView style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}>
+      <View >
           <View style={{ marginTop: 165, alignItems: "center" }}>
             <Text
               style={{
@@ -63,7 +64,10 @@ export default class SignUp extends Component {
               multiline={false}
               numberOfLines={1}
               onChangeText={email => this.setState({ email })}
-              placeholder="Your email"
+              placeholder="email"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              returnKeyType="next"
               value={this.state.email}
               style={styles.input}
             />
@@ -80,7 +84,10 @@ export default class SignUp extends Component {
               multiline={false}
               numberOfLines={1}
               onChangeText={password => this.setState({ password })}
-              placeholder="Your password"
+              placeholder="password"
+              autoCapitalize="none"
+              returnKeyType="go"
+              secureTextEntry={true}
               value={this.state.password}
               style={styles.input}
             />
@@ -105,6 +112,7 @@ export default class SignUp extends Component {
             </TouchableHighlight>
             </View>
         </View>
+        </KeyboardAvoidingView>
       </Provider>
     );
    }

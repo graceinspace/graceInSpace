@@ -38,7 +38,7 @@ export default class WelcomeScreen extends Component {
   }
 
   render() {
-    const user = firebase.auth().currentUser;
+    let user = firebase.auth().currentUser;
     if (
       this.props.navigation == "space" &&
       this.props.gameWon === false &&
