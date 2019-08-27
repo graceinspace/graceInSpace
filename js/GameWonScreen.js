@@ -13,16 +13,18 @@ import {
 } from "./store/gameActions";
 import { connect } from "react-redux";
 import { FirebaseWrapper } from "../firebase/firebase";
+import * as firebase from "firebase";
 export default class GameWonScreen extends Component {
   constructor() {
     super();
   }
-  async postScore(seconds) {
+  async postScore(seconds, userId) {
     try {
       console.log("posting");
       // make call to Firebase
       await FirebaseWrapper.GetInstance().CreateNewDocument("scores", {
-        seconds: seconds
+        seconds: seconds,
+        userId: userId
       });
     } catch (err) {
       console.log("something wrong component post", err);
@@ -30,6 +32,7 @@ export default class GameWonScreen extends Component {
   }
 
   render() {
+    let user = firebase.auth().currentUser;
     return (
       <View style={localStyles.container}>
         <Text
@@ -62,7 +65,8 @@ export default class GameWonScreen extends Component {
         <TouchableHighlight
           style={localStyles.buttons}
           onPress={() => (
-            this.postScore(this.props.seconds), this.props.changeToUnset()
+            this.postScore(this.props.seconds, user.uid),
+            this.props.changeToUnset()
           )}
           underlayColor={"#68a0ff"}
         >
