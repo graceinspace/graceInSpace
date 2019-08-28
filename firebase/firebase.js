@@ -65,6 +65,7 @@ export class FirebaseWrapper {
         .collection('times')
         .doc(userId)
         .get();
+      console.log(res.data().times)
       return res.data().times;
     } catch (err) {
       console.log('OH no something did not work', err);
