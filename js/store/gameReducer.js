@@ -20,6 +20,7 @@ let initialState = {
   score: 0,
   gameLost: false,
   gameWon: false,
+  logInStatus: false,
   navigation: "unset",
   objects: allObjects,
   showItems: false,

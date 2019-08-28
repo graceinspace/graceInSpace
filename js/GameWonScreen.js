@@ -9,11 +9,12 @@ import {
 import {
   changeToUnset,
   changeToSpace,
-  changeToSignUp
 } from "./store/gameActions";
 import { connect } from "react-redux";
 import { FirebaseWrapper } from "../firebase/firebase";
 import * as firebase from "firebase";
+
+
 export default class GameWonScreen extends Component {
   constructor() {
     super();
@@ -32,6 +33,7 @@ export default class GameWonScreen extends Component {
 
   render() {
     let user = firebase.auth().currentUser;
+    console.log("user from won screen", user)
     return (
       <View style={localStyles.container}>
         <Text

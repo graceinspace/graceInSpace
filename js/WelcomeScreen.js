@@ -107,7 +107,7 @@ export default class WelcomeScreen extends Component {
               >
                 <Text style={localStyles.buttonText}>PLAY</Text>
               </TouchableHighlight>
-              {user ? (
+              {this.props.logInStatus ? (
                 <View>
                   <TouchableHighlight
                     style={localStyles.buttons}
@@ -214,7 +214,8 @@ const mapStateToProps = state => {
     gameLost: state.gameLost,
     gameWon: state.gameWon,
     navigation: state.navigation,
-    showItems: state.showItems
+    showItems: state.showItems,
+    logInStatus: state.logInStatus
   };
 };
 
