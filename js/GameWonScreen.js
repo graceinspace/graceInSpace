@@ -60,7 +60,7 @@ export default class GameWonScreen extends Component {
             }}
           >
             You helped Grace collect all of her items in {this.props.seconds}{" "}
-            seconds! Now she can go on vacation!
+            seconds in {this.props.level} mode! Now she can go on vacation!
           </Text>
         </View>
         {user ? (
@@ -116,7 +116,8 @@ var localStyles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  seconds: state.seconds
+  seconds: state.seconds,
+  level: state.level
 });
 
 const mapDispatchToProps = dispatch => ({
