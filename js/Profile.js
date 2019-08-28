@@ -10,7 +10,9 @@ export default class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      times: [],
+      times: [
+        {seconds : 0}
+      ],
     };
   }
   async componentDidMount() {
