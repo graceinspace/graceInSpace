@@ -70,7 +70,7 @@ export default class Profile extends Component {
                 marginBottom: 25
               }}
             >
-              Scroll to see your best times:
+              Scroll to see your recent times:
             </Text>
             <ScrollView>
               {this.state.times ? (
