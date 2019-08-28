@@ -50,7 +50,7 @@ export default class Profile extends Component {
         <View
           style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}
         >
-          <View style={{ marginTop: 165, alignItems: "center" }}>
+          <View style={{ marginTop: 70,  marginBottom: 40, alignItems: "center" }}>
             <Text
               style={{
                 fontFamily: "Futura-CondensedExtraBold",
