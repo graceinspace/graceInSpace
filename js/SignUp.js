@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
+  KeyboardAvoidingView
 } from 'react-native';
 import * as firebase from 'firebase';
 
@@ -50,7 +51,7 @@ export default class SignUp extends Component {
                   fontSize: 50,
                 }}
               >
-                Sing Up
+                Sign Up
               </Text>
               <Text
                 style={{

@@ -1,25 +1,30 @@
-
-import React, { Component } from "react";
-import { Provider, connect } from "react-redux";
-import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
-import * as firebase from "firebase";
-import store from "./store/index";
-import { changeToUnset, changeToSpace, getScores } from "./store/gameActions";
+import React, { Component } from 'react';
+import { Provider, connect } from 'react-redux';
+import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
+import * as firebase from 'firebase';
+import store from './store/index';
+import { changeToUnset, changeToSpace, getScores } from './store/gameActions';
+import { FirebaseWrapper } from '../firebase/firebase';
 
 export default class Profile extends Component {
   constructor() {
     super();
+    this.state = {
+      times: [
+        {seconds : 0}
+      ],
+    };
   }
   async componentDidMount() {
     let user = firebase.auth().currentUser;
     let userId = user.uid;
-    await FirebaseWrapper.GetInstance.SetUpCollectionListener(
-      "scores",
-      userId,
-      scores => {
-        dispatch(getScores(scores));
-      }
+    let seconds = await FirebaseWrapper.GetInstance().SetUpCollectionListener(
+      userId
     );
+    console.log(seconds);
+    this.setState({
+      times: seconds,
+    });
   }
 
   signOutUser = () => {
@@ -36,16 +41,61 @@ export default class Profile extends Component {
         <View
           style={{ flex: 1, alignItems: 'center', backgroundColor: 'black' }}
         >
-          <View style={{ marginTop: 165, alignItems: "center" }}>
-            <Text style={styles.text}>Welcome to your page</Text>
-            <Text style={styles.text}>Your best times: </Text>
-            {this.props.userTimes.map((time, i) => {
-              return <Text key={i}>{time}</Text>;
-            })}
+          <View style={{ marginTop: 165, alignItems: 'center' }}>
+            <Text
+              style={{
+                fontFamily: 'Futura-CondensedExtraBold',
+                color: 'white',
+                textAlign: 'center',
+                fontSize: 50,
+              }}
+            >
+              Your Profile
+            </Text>
+            <Text
+              style={{
+                color: 'white',
+                textAlign: 'center',
+                marginTop: 25,
+                fontSize: 20,
+                marginBottom: 25,
+              }}
+            >
+              Your best times:{' '}
+            </Text>
+            {this.state.times? (<View>{this.state.times.map((time, i) => {
+              return (
+                <Text
+                  style={{
+                    color: 'white',
+                    textAlign: 'center',
+                    marginTop: 25,
+                    fontSize: 20,
+                    marginBottom: 25,
+                  }}
+                  key={i}
+                >
+                  {time.seconds} seconds
+                </Text>
+              );
+            })}</View>): (
+              <Text
+                  style={{
+                    color: 'white',
+                    textAlign: 'center',
+                    marginTop: 25,
+                    fontSize: 20,
+                    marginBottom: 25,
+                  }}
+                >
+                  No scores yet
+                </Text>
+            )}
+
             <TouchableHighlight
               style={styles.buttons}
               onPress={() => (this.signOutUser(), this.props.changeToUnset())}
-              underlayColor={"#68a0ff"}
+              underlayColor={'#68a0ff'}
             >
               <Text style={styles.buttonText}>Log out</Text>
             </TouchableHighlight>
@@ -92,15 +142,14 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    userTimes: state.userTimes
+    userTimes: state.userTimes,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   changeToUnset: () => dispatch(changeToUnset()),
   changeToSpace: () => dispatch(changeToSpace()),
-  getScores: scores => dispatch(getScores(scores))
-
+  getScores: scores => dispatch(getScores(scores)),
 });
 
 module.exports = connect(
