@@ -41,7 +41,7 @@ export default class GameWonScreen extends Component {
             fontFamily: "Futura-CondensedExtraBold",
             color: "white",
             textAlign: "center",
-            fontSize: 50
+            fontSize: 40
           }}
         >
           Congratulations!
