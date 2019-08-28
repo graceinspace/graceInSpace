@@ -63,7 +63,7 @@ export default class Profile extends Component {
             >
               Your best times:{' '}
             </Text>
-            {this.state.times.map((time, i) => {
+            {this.state.times? (<View>{this.state.times.map((time, i) => {
               return (
                 <Text
                   style={{
@@ -78,7 +78,20 @@ export default class Profile extends Component {
                   {time.seconds}
                 </Text>
               );
-            })}
+            })}</View>): (
+              <Text
+                  style={{
+                    color: 'white',
+                    textAlign: 'center',
+                    marginTop: 25,
+                    fontSize: 20,
+                    marginBottom: 25,
+                  }}
+                >
+                  0
+                </Text>
+            )}
+
             <TouchableHighlight
               style={styles.buttons}
               onPress={() => (this.signOutUser(), this.props.changeToUnset())}
