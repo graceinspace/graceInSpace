@@ -156,7 +156,7 @@ export default class WelcomeScreen extends Component {
                   </TouchableHighlight>
                 </View>
               ) : (
-                <View>
+                <View style={localStyles.levels}>
                   <TouchableHighlight
                     style={localStyles.buttons}
                     onPress={() => this.props.changeToSignIn()}
@@ -164,9 +164,6 @@ export default class WelcomeScreen extends Component {
                   >
                     <Text style={localStyles.buttonText}> SignIn </Text>
                   </TouchableHighlight>
-                  <Text style={{ color: "white", textAlign: "center" }}>
-                    or
-                  </Text>
                   <TouchableHighlight
                     style={localStyles.buttons}
                     onPress={() => this.props.changeToSignUp()}
@@ -248,7 +245,9 @@ const localStyles = StyleSheet.create({
   },
   levels: {
     flexDirection: "row",
-    alignContent: "space-around"
+    alignContent: "space-around",
+    marginRight: 10,
+    marginLeft: 10
   },
   levelButton: {
     height: 40,

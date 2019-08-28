@@ -70,7 +70,7 @@ export default class Profile extends Component {
                 marginBottom: 25
               }}
             >
-              Your best times:{" "}
+              Scroll to see your best times:{" "}
             </Text>
             <ScrollView>
               {this.state.times ? (

@@ -14,7 +14,6 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const USERS_SCORES = "USERS_SCORES";
 export const CHANGE_LEVEL = "CHANGE_LEVEL";
-//action creator
 
 export const updateScore = () => {
   return {

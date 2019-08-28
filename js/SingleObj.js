@@ -97,7 +97,7 @@ ViroAnimations.registerAnimations({
   moveLeftRightmedium: [["moveLeftmedium", "moveRightmedium"]],
   moveRighthard: {
     properties: {
-      positionX: "+=20",
+      positionX: "+=30",
       rotateZ: "+=150",
       rotateX: "+=150",
       rotateY: "+=150"
@@ -106,7 +106,7 @@ ViroAnimations.registerAnimations({
   },
   moveLefthard: {
     properties: {
-      positionX: "-=20",
+      positionX: "-=30",
       rotateZ: "-=150",
       rotateX: "-=150",
       rotateY: "-=150"
