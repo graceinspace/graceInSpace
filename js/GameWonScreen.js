@@ -63,16 +63,26 @@ export default class GameWonScreen extends Component {
             seconds! Now she can go on vacation!
           </Text>
         </View>
-        <TouchableHighlight
-          style={localStyles.buttons}
-          onPress={() => (
-            this.postScore(this.props.seconds, user.uid),
-            this.props.changeToUnset()
-          )}
-          underlayColor={"#68a0ff"}
-        >
-          <Text style={localStyles.buttonText}>Play Again!</Text>
-        </TouchableHighlight>
+        {user ? (
+          <TouchableHighlight
+            style={localStyles.buttons}
+            onPress={() => (
+              this.postScore(this.props.seconds, user.uid),
+              this.props.changeToUnset()
+            )}
+            underlayColor={"#68a0ff"}
+          >
+            <Text style={localStyles.buttonText}>Play Again!</Text>
+          </TouchableHighlight>
+        ) : (
+          <TouchableHighlight
+            style={localStyles.buttons}
+            onPress={() => this.props.changeToUnset()}
+            underlayColor={"#68a0ff"}
+          >
+            <Text style={localStyles.buttonText}>Play Again!</Text>
+          </TouchableHighlight>
+        )}
       </View>
     );
   }
