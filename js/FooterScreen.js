@@ -39,7 +39,7 @@ class FooterScreen extends Component {
                 />
               ) : (
                 <CountDown
-                  until={30}
+                  until={25}
                   onFinish={() => this.props.loseGame()}
                   onChange={() => this.props.gotSeconds()}
                   size={15}
