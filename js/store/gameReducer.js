@@ -12,7 +12,8 @@ import {
   PROFILE,
   USERS_SCORES,
   LOGIN,
-  LOGOUT
+  LOGOUT,
+  CHANGE_LEVEL
 } from "./gameActions";
 import allObjects from "../objects";
 
@@ -25,7 +26,8 @@ let initialState = {
   objects: allObjects,
   showItems: false,
   seconds: 0,
-  userTimes: []
+  userTimes: [],
+  level: "medium"
 };
 
 export default function reducer(state = initialState, action) {
@@ -96,12 +98,12 @@ export default function reducer(state = initialState, action) {
         showItems: false,
         seconds: 0
       };
-      case LOGIN:
+    case LOGIN:
       return {
         ...state,
         logInStatus: true
       };
-      case LOGOUT:
+    case LOGOUT:
       return {
         ...state,
         logInStatus: false
@@ -114,6 +116,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, seconds: state.seconds + 1 };
     case USERS_SCORES:
       return { ...state, userTimes: action.scores };
+    case CHANGE_LEVEL:
+      return { ...state, level: action.level };
     default:
       return state;
   }

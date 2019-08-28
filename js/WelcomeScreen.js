@@ -8,7 +8,8 @@ import {
   changeToUnset,
   changeToSignUp,
   changeToSignIn,
-  changeToProfile
+  changeToProfile,
+  changeLevel
 } from "./store/gameActions";
 import { secretKey } from "../secrets";
 import SignUp from "./SignUp";
@@ -32,7 +33,8 @@ export default class WelcomeScreen extends Component {
 
     this.state = {
       sharedProps: sharedProps,
-      showSceneItems: false
+      showSceneItems: false,
+      clicked: false
     };
     this._getVRNavigator = this._getVRNavigator.bind(this);
   }
@@ -100,6 +102,42 @@ export default class WelcomeScreen extends Component {
                   Don't forget to look up, down, left, right, and behind you!
                 </Text>
               </View>
+              <Text>Choose Level:</Text>
+              <View style={localStyles.levels}>
+                <TouchableHighlight
+                  style={
+                    this.state.clicked
+                      ? localStyles.clickedLevelButton
+                      : localStyles.levelButton
+                  }
+                  onPress={() => this.props.changeLevel("easy")}
+                  underlayColor={"#68a0ff"}
+                >
+                  <Text style={localStyles.buttonText}>Easy</Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                  style={
+                    this.state.clicked
+                      ? localStyles.clickedLevelButton
+                      : localStyles.levelButton
+                  }
+                  onPress={() => this.props.changeLevel("medium")}
+                  underlayColor={"#68a0ff"}
+                >
+                  <Text style={localStyles.buttonText}>Medium</Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                  style={
+                    this.state.clicked
+                      ? localStyles.clickedLevelButton
+                      : localStyles.levelButton
+                  }
+                  onPress={() => this.props.changeLevel("hard")}
+                  underlayColor={"#68a0ff"}
+                >
+                  <Text style={localStyles.buttonText}>Hard</Text>
+                </TouchableHighlight>
+              </View>
               <TouchableHighlight
                 style={localStyles.buttons}
                 onPress={() => this.props.changeToSpace()}
@@ -126,7 +164,9 @@ export default class WelcomeScreen extends Component {
                   >
                     <Text style={localStyles.buttonText}> SignIn </Text>
                   </TouchableHighlight>
-                  <Text style={{ color: "white", textAlign: "center" }}>or</Text>
+                  <Text style={{ color: "white", textAlign: "center" }}>
+                    or
+                  </Text>
                   <TouchableHighlight
                     style={localStyles.buttons}
                     onPress={() => this.props.changeToSignUp()}
@@ -205,6 +245,19 @@ const localStyles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: "#4AC7CB",
     borderRadius: 10
+  },
+  levels: {
+    flexDirection: "row",
+    alignContent: "space-around"
+  },
+  levelButton: {
+    height: 40,
+    width: 100
+  },
+  clickedLevelButton: {
+    height: 40,
+    width: 100,
+    color: "#4AC7CB"
   }
 });
 
@@ -224,7 +277,8 @@ const mapDispatchToProps = dispatch => ({
   changeToUnset: () => dispatch(changeToUnset()),
   changeToSignUp: () => dispatch(changeToSignUp()),
   changeToSignIn: () => dispatch(changeToSignIn()),
-  changeToProfile: () => dispatch(changeToProfile())
+  changeToProfile: () => dispatch(changeToProfile()),
+  changeLevel: level => dispatch(changeLevel(level))
 });
 
 module.exports = connect(

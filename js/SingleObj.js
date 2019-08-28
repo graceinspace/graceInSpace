@@ -22,7 +22,9 @@ class SingleObj extends Component {
 
   getAnimation() {
     let num = this.rando();
-    return num % 2 === 0 ? "moveRight" : "moveLeft";
+    return num % 2 === 0
+      ? "moveRightLeft" + this.props.level
+      : "moveLeftRight" + this.props.level;
   }
 
   render() {
@@ -41,12 +43,11 @@ class SingleObj extends Component {
             this.setState({ contains: false });
             this.props.scoreUp();
           }}
-          // animation={{
-          //   name: this.getAnimation(),
-          //   run: true,
-          //   loop: true,
-          //   easing: "EaseIn"
-          // }}
+          animation={{
+            name: this.getAnimation(),
+            run: true,
+            loop: true
+          }}
         />
       </Provider>
     );
@@ -54,13 +55,72 @@ class SingleObj extends Component {
 }
 
 ViroAnimations.registerAnimations({
-  moveRight: { properties: { positionX: "+=15" }, duration: 3000 },
-  moveLeft: { properties: { positionX: "-=15" }, duration: 3000 }
+  moveRighteasy: {
+    properties: {
+      positionX: "+=1",
+      rotateZ: "+=150",
+      rotateX: "+=150",
+      rotateY: "+=150"
+    },
+    duration: 5000
+  },
+  moveLefteasy: {
+    properties: {
+      positionX: "-=1",
+      rotateZ: "-=150",
+      rotateX: "-=150",
+      rotateY: "-=150"
+    },
+    duration: 5000
+  },
+  moveRightLefteasy: [["moveRighteasy", "moveLefteasy"]],
+  moveLeftRighteasy: [["moveLefteasy", "moveRighteasy"]],
+  moveRightmedium: {
+    properties: {
+      positionX: "+=10",
+      rotateZ: "+=150",
+      rotateX: "+=150",
+      rotateY: "+=150"
+    },
+    duration: 5000
+  },
+  moveLeftmedium: {
+    properties: {
+      positionX: "-=10",
+      rotateZ: "-=150",
+      rotateX: "-=150",
+      rotateY: "-=150"
+    },
+    duration: 5000
+  },
+  moveRightLeftmedium: [["moveRightmedium", "moveLeftmedium"]],
+  moveLeftRightmedium: [["moveLeftmedium", "moveRightmedium"]],
+  moveRighthard: {
+    properties: {
+      positionX: "+=20",
+      rotateZ: "+=150",
+      rotateX: "+=150",
+      rotateY: "+=150"
+    },
+    duration: 5000
+  },
+  moveLefthard: {
+    properties: {
+      positionX: "-=20",
+      rotateZ: "-=150",
+      rotateX: "-=150",
+      rotateY: "-=150"
+    },
+    duration: 5000
+  },
+  moveRightLefthard: [["moveRighthard", "moveLefthard"]],
+  moveLeftRighthard: [["moveLefthard", "moveRighthard"]]
 });
 
 const mapStateToProps = state => ({
   score: state.score,
-  showItems: state.showItems
+  showItems: state.showItems,
+  level: state.level
 });
 
 const mapDispatch = dispatch => {
