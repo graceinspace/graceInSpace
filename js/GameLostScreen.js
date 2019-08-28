@@ -48,7 +48,7 @@ class GameLostScreen extends Component {
           }}
           underlayColor={'#68a0ff'}
         >
-          <Text style={localStyles.buttonText}>Play Again!</Text>
+          <Text style={localStyles.buttonText}>Back</Text>
         </TouchableHighlight>
       </View>
     );

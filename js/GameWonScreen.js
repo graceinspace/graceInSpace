@@ -80,7 +80,7 @@ export default class GameWonScreen extends Component {
             onPress={() => this.props.changeToUnset()}
             underlayColor={"#68a0ff"}
           >
-            <Text style={localStyles.buttonText}>Play Again!</Text>
+            <Text style={localStyles.buttonText}>Back</Text>
           </TouchableHighlight>
         )}
       </View>
