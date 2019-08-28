@@ -10,7 +10,7 @@ import {
 import * as firebase from 'firebase';
 import store from './store/index';
 import { Provider, connect } from 'react-redux';
-import { changeToUnset, changeToProfile } from './store/gameActions';
+import { changeToUnset, changeToProfile, loggedInTrue } from './store/gameActions';
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -25,6 +25,7 @@ export default class SignIn extends Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
+      .then(() => console.log('user signed in!'))
       .catch(err => console.log('not signed in', err));
   };
 
@@ -91,6 +92,7 @@ export default class SignIn extends Component {
                 style={styles.buttons}
                 onPress={() => (
                   this.logInUser(this.state.email, this.state.password),
+                  this.props.loggedInTrue(),
                   this.props.changeToProfile()
                 )}
               >
@@ -100,7 +102,7 @@ export default class SignIn extends Component {
               <TouchableHighlight
                 style={styles.buttons}
                 onPress={() => (
-                  this.logInUser(this.state.email, this.state.password),
+                  // this.logInUser(this.state.email, this.state.password),
                   this.props.changeToUnset()
                 )}
               >
@@ -148,6 +150,7 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = dispatch => ({
   changeToUnset: () => dispatch(changeToUnset()),
   changeToProfile: () => dispatch(changeToProfile()),
+  loggedInTrue: () => dispatch(loggedInTrue())
 });
 
 module.exports = connect(

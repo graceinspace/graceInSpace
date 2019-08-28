@@ -10,7 +10,7 @@ import * as firebase from 'firebase';
 
 import store from './store/index';
 import { Provider, connect } from 'react-redux';
-import { changeToUnset, changeToProfile } from './store/gameActions';
+import { changeToUnset, changeToProfile, loggedInTrue } from './store/gameActions';
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -98,6 +98,7 @@ export default class SignUp extends Component {
                 onPress={() => (
                   this.createUser(this.state.email, this.state.password),
                   this.logInUser(this.state.email, this.state.password),
+                  this.props.loggedInTrue(),
                   this.props.changeToProfile()
                 )}
               >
@@ -152,6 +153,7 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = dispatch => ({
   changeToUnset: () => dispatch(changeToUnset()),
   changeToProfile: () => dispatch(changeToProfile()),
+  loggedInTrue: () => dispatch(loggedInTrue())
 });
 
 module.exports = connect(

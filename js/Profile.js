@@ -4,7 +4,7 @@ import { Provider, connect } from "react-redux";
 import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
 import * as firebase from "firebase";
 import store from "./store/index";
-import { changeToUnset, changeToSpace, getScores } from "./store/gameActions";
+import { changeToUnset, changeToSpace, getScores, loggedInFalse } from "./store/gameActions";
 
 export default class Profile extends Component {
   constructor() {
@@ -44,7 +44,11 @@ export default class Profile extends Component {
             })}
             <TouchableHighlight
               style={styles.buttons}
-              onPress={() => (this.signOutUser(), this.props.changeToUnset())}
+              onPress={() => (
+                this.signOutUser(),
+                this.props.loggedInFalse(),
+                this.props.changeToUnset()
+                )}
               underlayColor={"#68a0ff"}
             >
               <Text style={styles.buttonText}>Log out</Text>
@@ -55,6 +59,13 @@ export default class Profile extends Component {
               underlayColor={'#68a0ff'}
             >
               <Text style={styles.buttonText}>Play</Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              style={styles.buttons}
+              onPress={() => this.props.changeToUnset()}
+              underlayColor={'#68a0ff'}
+            >
+              <Text style={styles.buttonText}>Back</Text>
             </TouchableHighlight>
           </View>
         </View>
@@ -99,8 +110,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   changeToUnset: () => dispatch(changeToUnset()),
   changeToSpace: () => dispatch(changeToSpace()),
-  getScores: scores => dispatch(getScores(scores))
-
+  loggedInFalse: () => dispatch(loggedInFalse()),
+  getScores: scores => dispatch(getScores(scores)),
 });
 
 module.exports = connect(
