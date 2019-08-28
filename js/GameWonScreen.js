@@ -22,10 +22,9 @@ export default class GameWonScreen extends Component {
     try {
       console.log("posting");
       // make call to Firebase
-      await FirebaseWrapper.GetInstance().CreateNewDocument("scores", {
+      await FirebaseWrapper.GetInstance().CreateNewDocument("times", {
         seconds: seconds,
-        userId: userId
-      });
+      }, userId);
     } catch (err) {
       console.log("something wrong component post", err);
     }

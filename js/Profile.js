@@ -4,21 +4,25 @@ import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
 import * as firebase from 'firebase';
 import store from './store/index';
 import { changeToUnset, changeToSpace, getScores } from './store/gameActions';
+import { FirebaseWrapper } from '../firebase/firebase';
 
 export default class Profile extends Component {
   constructor() {
     super();
+    this.state = {
+      times: [],
+    };
   }
   async componentDidMount() {
     let user = firebase.auth().currentUser;
     let userId = user.uid;
-    await FirebaseWrapper.GetInstance.SetUpCollectionListener(
-      'scores',
-      userId,
-      scores => {
-        dispatch(getScores(scores));
-      }
+    let seconds = await FirebaseWrapper.GetInstance().SetUpCollectionListener(
+      userId
     );
+    console.log(seconds);
+    this.setState({
+      times: seconds,
+    });
   }
 
   signOutUser = () => {
@@ -57,7 +61,7 @@ export default class Profile extends Component {
             >
               Your best times:{' '}
             </Text>
-            {this.props.userTimes.map((time, i) => {
+            {this.state.times.map((time, i) => {
               return (
                 <Text
                   style={{
@@ -69,7 +73,7 @@ export default class Profile extends Component {
                   }}
                   key={i}
                 >
-                  {time}
+                  {time.seconds}
                 </Text>
               );
             })}
