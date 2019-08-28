@@ -102,7 +102,16 @@ export default class WelcomeScreen extends Component {
                   Don't forget to look up, down, left, right, and behind you!
                 </Text>
               </View>
-              <Text>Choose Level:</Text>
+              <Text
+                style={{
+                  fontSize: 15,
+                  color: "white",
+                  paddingLeft: 10,
+                  paddingRight: 10,
+                  paddingBottom: 20,
+                  textAlign: "center"
+                }}
+              >Choose Level Then Press PLAY</Text>
               <View style={localStyles.levels}>
                 <TouchableHighlight
                   style={
@@ -113,7 +122,7 @@ export default class WelcomeScreen extends Component {
                   onPress={() => this.props.changeLevel("easy")}
                   underlayColor={"#68a0ff"}
                 >
-                  <Text style={localStyles.buttonText}>Easy</Text>
+                  <Text style={localStyles.levelText}>Easy</Text>
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={
@@ -124,7 +133,7 @@ export default class WelcomeScreen extends Component {
                   onPress={() => this.props.changeLevel("medium")}
                   underlayColor={"#68a0ff"}
                 >
-                  <Text style={localStyles.buttonText}>Medium</Text>
+                  <Text style={localStyles.levelText}>Medium</Text>
                 </TouchableHighlight>
                 <TouchableHighlight
                   style={
@@ -135,11 +144,11 @@ export default class WelcomeScreen extends Component {
                   onPress={() => this.props.changeLevel("hard")}
                   underlayColor={"#68a0ff"}
                 >
-                  <Text style={localStyles.buttonText}>Hard</Text>
+                  <Text style={localStyles.levelText}>Hard</Text>
                 </TouchableHighlight>
               </View>
               <TouchableHighlight
-                style={localStyles.buttons}
+                style={localStyles.buttonGreen}
                 onPress={() => this.props.changeToSpace()}
                 underlayColor={"#68a0ff"}
               >
@@ -230,6 +239,11 @@ const localStyles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20
   },
+  levelText: {
+    color: "green",
+    textAlign: "center",
+    fontSize: 20
+  },
   buttons: {
     height: 60,
     alignContent: "center",
@@ -240,7 +254,22 @@ const localStyles = StyleSheet.create({
     paddingBottom: 10,
     marginTop: 5,
     marginBottom: 15,
+    marginRight: 20,
+    marginLeft: 20,
     backgroundColor: "#4AC7CB",
+    borderRadius: 10
+  },
+  buttonGreen: {
+    height: 60,
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 120,
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginTop: 5,
+    marginBottom: 15,
+    backgroundColor: "green",
     borderRadius: 10
   },
   levels: {
