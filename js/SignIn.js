@@ -51,6 +51,7 @@ export default class SignIn extends Component {
         <KeyboardAvoidingView
           style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}
         >
+        {!user ? (
           <View>
             <View style={{ marginTop: 165, alignItems: "center" }}>
               <Text
@@ -113,17 +114,18 @@ export default class SignIn extends Component {
               >
                 <Text style={styles.buttonText}>Sign in</Text>
               </TouchableHighlight>
-
-              {user ? (
+              </View>
+              </View>
+        ):(
+           <View>
+            <View style={{ marginTop: 165, alignItems: "center" }}>
                 <TouchableHighlight
                   style={styles.buttons}
                   onPress={() => this.props.changeToProfile()}
                 >
                   <Text style={styles.buttonText}>Your Profile</Text>
                 </TouchableHighlight>
-              ) : (
-                <Text style={styles.buttonText}>Please Sign Up</Text>
-              )}
+
 
               <TouchableHighlight
                 style={styles.buttonGreen}
@@ -132,7 +134,8 @@ export default class SignIn extends Component {
                 <Text style={styles.buttonText}>back</Text>
               </TouchableHighlight>
             </View>
-          </View>
+          </View>)
+          }
         </KeyboardAvoidingView>
       </Provider>
     );
