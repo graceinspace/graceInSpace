@@ -23,10 +23,9 @@ export default class GameWonScreen extends Component {
     try {
       console.log("posting");
       // make call to Firebase
-      await FirebaseWrapper.GetInstance().CreateNewDocument("scores", {
+      await FirebaseWrapper.GetInstance().CreateNewDocument("times", {
         seconds: seconds,
-        userId: userId
-      });
+      }, userId);
     } catch (err) {
       console.log("something wrong component post", err);
     }
@@ -61,7 +60,7 @@ export default class GameWonScreen extends Component {
             }}
           >
             You helped Grace collect all of her items in {this.props.seconds}
-            seconds! Now she can go on vacation!
+             seconds! Now she can go on vacation!
           </Text>
         </View>
         <TouchableHighlight
