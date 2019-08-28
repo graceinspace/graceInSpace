@@ -58,7 +58,7 @@ export default class GameWonScreen extends Component {
             }}
           >
             You helped Grace collect all of her items in {this.props.seconds}
-            seconds! Now she can go on vacation!
+             seconds! Now she can go on vacation!
           </Text>
         </View>
         <TouchableHighlight

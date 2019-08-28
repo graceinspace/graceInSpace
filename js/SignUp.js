@@ -51,7 +51,7 @@ export default class SignUp extends Component {
                   fontSize: 50,
                 }}
               >
-                Sing Up
+                Sign Up
               </Text>
               <Text
                 style={{

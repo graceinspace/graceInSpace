@@ -75,7 +75,7 @@ export default class Profile extends Component {
                   }}
                   key={i}
                 >
-                  {time.seconds}
+                  {time.seconds} seconds
                 </Text>
               );
             })}</View>): (
@@ -88,7 +88,7 @@ export default class Profile extends Component {
                     marginBottom: 25,
                   }}
                 >
-                  0
+                  No scores yet
                 </Text>
             )}
 
