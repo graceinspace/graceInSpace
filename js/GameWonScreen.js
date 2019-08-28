@@ -6,14 +6,10 @@ import {
   TouchableHighlight,
   Image
 } from "react-native";
-import {
-  changeToUnset,
-  changeToSpace,
-} from "./store/gameActions";
+import { changeToUnset, changeToSpace } from "./store/gameActions";
 import { connect } from "react-redux";
 import { FirebaseWrapper } from "../firebase/firebase";
 import * as firebase from "firebase";
-
 
 export default class GameWonScreen extends Component {
   constructor() {
@@ -23,9 +19,13 @@ export default class GameWonScreen extends Component {
     try {
       console.log("posting");
       // make call to Firebase
-      await FirebaseWrapper.GetInstance().CreateNewDocument("times", {
-        seconds: seconds,
-      }, userId);
+      await FirebaseWrapper.GetInstance().CreateNewDocument(
+        "times",
+        {
+          seconds: seconds
+        },
+        userId
+      );
     } catch (err) {
       console.log("something wrong component post", err);
     }
@@ -33,7 +33,7 @@ export default class GameWonScreen extends Component {
 
   render() {
     let user = firebase.auth().currentUser;
-    console.log("user from won screen", user)
+    console.log("user from won screen", user);
     return (
       <View style={localStyles.container}>
         <Text
@@ -41,7 +41,7 @@ export default class GameWonScreen extends Component {
             fontFamily: "Futura-CondensedExtraBold",
             color: "white",
             textAlign: "center",
-            fontSize: 50
+            fontSize: 40
           }}
         >
           Congratulations!
@@ -60,7 +60,7 @@ export default class GameWonScreen extends Component {
             }}
           >
             You helped Grace collect all of her items in {this.props.seconds}
-             seconds! Now she can go on vacation!
+            seconds! Now she can go on vacation!
           </Text>
         </View>
         <TouchableHighlight
