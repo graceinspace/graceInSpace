@@ -8,11 +8,12 @@ export const GET_OBJECTS = "GET_OBJECTS";
 export const SHOW_ITEMS = "SHOW_ITEMS";
 export const SECONDS = "SECONDS";
 export const SIGNUP = "SIGNUP";
-export const SIGNIN = "SIGNIN"
-export const PROFILE = "PROFILE"
-export const LOGIN = "LOGIN"
-export const LOGOUT = "LOGOUT"
+export const SIGNIN = "SIGNIN";
+export const PROFILE = "PROFILE";
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
 export const USERS_SCORES = "USERS_SCORES";
+export const CHANGE_LEVEL = "CHANGE_LEVEL";
 //action creator
 
 export const updateScore = () => {
@@ -89,19 +90,24 @@ export const usersScores = scores => {
   };
 };
 
-
 export const login = () => {
   return {
     type: LOGIN
-  }
-}
-
+  };
+};
 
 export const logout = () => {
   return {
     type: LOGOUT
-  }
-}
+  };
+};
+
+export const newLevel = level => {
+  return {
+    type: CHANGE_LEVEL,
+    level
+  };
+};
 
 export function upCount() {
   return async dispatch => {
@@ -213,7 +219,6 @@ export function changeToProfile() {
   };
 }
 
-
 export function getScores(scores) {
   return async dispatch => {
     try {
@@ -227,20 +232,29 @@ export function getScores(scores) {
 export function loggedInTrue() {
   return async dispatch => {
     try {
-      dispatch(login())
+      dispatch(login());
     } catch (error) {
-      next(error)
+      next(error);
     }
-  }
+  };
 }
 
 export function loggedInFalse() {
   return async dispatch => {
     try {
-      dispatch(logout())
+      dispatch(logout());
     } catch (error) {
-      next(error)
+      next(error);
     }
-  }
+  };
 }
 
+export function changeLevel(level) {
+  return async dispatch => {
+    try {
+      dispatch(newLevel(level));
+    } catch (error) {
+      next(error);
+    }
+  };
+}

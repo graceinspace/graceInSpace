@@ -1,21 +1,27 @@
 import React, { Component } from "react";
 import { Provider, connect } from "react-redux";
-import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableHighlight,
+  ScrollView
+} from "react-native";
 import * as firebase from "firebase";
 import store from "./store/index";
-import { changeToUnset, changeToSpace, getScores, loggedInFalse } from "./store/gameActions";
-import { FirebaseWrapper } from '../firebase/firebase';
-
-
-
+import {
+  changeToUnset,
+  changeToSpace,
+  getScores,
+  loggedInFalse
+} from "./store/gameActions";
+import { FirebaseWrapper } from "../firebase/firebase";
 
 export default class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      times: [
-        {seconds : 0}
-      ],
+      times: [{ seconds: 0 }]
     };
   }
   async componentDidMount() {
@@ -26,7 +32,7 @@ export default class Profile extends Component {
     );
     console.log(seconds);
     this.setState({
-      times: seconds,
+      times: seconds
     });
   }
 
@@ -34,66 +40,72 @@ export default class Profile extends Component {
     firebase
       .auth()
       .signOut()
-      .then(() => console.log('signed out!'))
-      .catch(err => console.log('you did not sign out >>', err));
+      .then(() => console.log("signed out!"))
+      .catch(err => console.log("you did not sign out >>", err));
   };
 
   render() {
     return (
       <Provider store={store}>
         <View
-          style={{ flex: 1, alignItems: 'center', backgroundColor: 'black' }}
+          style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}
         >
-          <View style={{ marginTop: 165, alignItems: 'center' }}>
+          <View style={{ marginTop: 165, alignItems: "center" }}>
             <Text
               style={{
-                fontFamily: 'Futura-CondensedExtraBold',
-                color: 'white',
-                textAlign: 'center',
-                fontSize: 50,
+                fontFamily: "Futura-CondensedExtraBold",
+                color: "white",
+                textAlign: "center",
+                fontSize: 50
               }}
             >
               Your Profile
             </Text>
             <Text
               style={{
-                color: 'white',
-                textAlign: 'center',
+                color: "white",
+                textAlign: "center",
                 marginTop: 25,
                 fontSize: 20,
-                marginBottom: 25,
+                marginBottom: 25
               }}
             >
-              Your best times:{' '}
+              Your best times:{" "}
             </Text>
-            {this.state.times? (<View>{this.state.times.map((time, i) => {
-              return (
+            <ScrollView>
+              {this.state.times ? (
+                <View>
+                  {this.state.times.map((time, i) => {
+                    return (
+                      <Text
+                        style={{
+                          color: "white",
+                          textAlign: "center",
+                          marginTop: 25,
+                          fontSize: 20,
+                          marginBottom: 25
+                        }}
+                        key={i}
+                      >
+                        {time.seconds} seconds
+                      </Text>
+                    );
+                  })}
+                </View>
+              ) : (
                 <Text
                   style={{
-                    color: 'white',
-                    textAlign: 'center',
+                    color: "white",
+                    textAlign: "center",
                     marginTop: 25,
                     fontSize: 20,
-                    marginBottom: 25,
-                  }}
-                  key={i}
-                >
-                  {time.seconds} seconds
-                </Text>
-              );
-            })}</View>): (
-              <Text
-                  style={{
-                    color: 'white',
-                    textAlign: 'center',
-                    marginTop: 25,
-                    fontSize: 20,
-                    marginBottom: 25,
+                    marginBottom: 25
                   }}
                 >
                   No scores yet
                 </Text>
-            )}
+              )}
+            </ScrollView>
 
             <TouchableHighlight
               style={styles.buttons}
@@ -101,7 +113,7 @@ export default class Profile extends Component {
                 this.signOutUser(),
                 this.props.loggedInFalse(),
                 this.props.changeToUnset()
-                )}
+              )}
               underlayColor={"#68a0ff"}
             >
               <Text style={styles.buttonText}>Log out</Text>
@@ -109,14 +121,14 @@ export default class Profile extends Component {
             <TouchableHighlight
               style={styles.buttons}
               onPress={() => this.props.changeToSpace()}
-              underlayColor={'#68a0ff'}
+              underlayColor={"#68a0ff"}
             >
               <Text style={styles.buttonText}>Play</Text>
             </TouchableHighlight>
             <TouchableHighlight
               style={styles.buttons}
               onPress={() => this.props.changeToUnset()}
-              underlayColor={'#68a0ff'}
+              underlayColor={"#68a0ff"}
             >
               <Text style={styles.buttonText}>Back</Text>
             </TouchableHighlight>
@@ -130,33 +142,33 @@ export default class Profile extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#4AC7CB',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#4AC7CB",
+    justifyContent: "center",
+    alignItems: "center"
   },
   buttons: {
     height: 60,
-    alignContent: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
     width: 120,
     paddingTop: 10,
     paddingBottom: 10,
     marginTop: 5,
     marginBottom: 15,
-    backgroundColor: '#4AC7CB',
-    borderRadius: 10,
+    backgroundColor: "#4AC7CB",
+    borderRadius: 10
   },
   buttonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 20,
-  },
+    color: "white",
+    textAlign: "center",
+    fontSize: 20
+  }
 });
 
 const mapStateToProps = state => {
   return {
-    userTimes: state.userTimes,
+    userTimes: state.userTimes
   };
 };
 
@@ -164,7 +176,7 @@ const mapDispatchToProps = dispatch => ({
   changeToUnset: () => dispatch(changeToUnset()),
   changeToSpace: () => dispatch(changeToSpace()),
   getScores: scores => dispatch(getScores(scores)),
-  loggedInFalse: () => dispatch(loggedInFalse()),
+  loggedInFalse: () => dispatch(loggedInFalse())
 });
 
 module.exports = connect(
