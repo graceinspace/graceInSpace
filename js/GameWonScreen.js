@@ -72,7 +72,7 @@ export default class GameWonScreen extends Component {
             )}
             underlayColor={"#68a0ff"}
           >
-            <Text style={localStyles.buttonText}>Play Again!</Text>
+            <Text style={localStyles.buttonText}>Back</Text>
           </TouchableHighlight>
         ) : (
           <TouchableHighlight
