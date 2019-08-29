@@ -32,10 +32,10 @@ class SingleObj extends Component {
       <Provider store={store}>
         <Viro3DObject
           visible={this.state.contains && this.props.showItems}
-          source={this.props.obj.source} //obj.source
-          position={[this.a, this.b, this.c]} //random function
+          source={this.props.obj.source}
+          position={[this.a, this.b, this.c]}
           scale={[0.02, 0.02, 0.02]}
-          resources={this.props.obj.resources} //obj.resource
+          resources={this.props.obj.resources}
           type="OBJ"
           lightReceivingBitMask={3}
           shadowCastingBitMask={2}

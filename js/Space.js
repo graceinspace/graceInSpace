@@ -10,18 +10,12 @@ import allObjects from "./objects";
 import { connect } from "react-redux";
 import { displayAll } from "./store/gameActions";
 
-export default class HelloWorldScene extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      arr: allObjects
-    };
+export default class Space extends Component {
+  constructor() {
+    super();
   }
 
   render() {
-    console.log("THIS IS THE OBJECT", allObjects);
-
     return (
       <ViroScene>
         <ViroSpinner visible={!this.props.showItems} position={[0, 0, -5]} />
@@ -39,7 +33,7 @@ export default class HelloWorldScene extends Component {
 }
 
 const mapStateToProps = state => ({
-  objects: state.objects, //ADD THIS TO PROPS
+  objects: state.objects,
   showItems: state.showItems
 });
 
@@ -50,4 +44,4 @@ const mapDispatchToProps = dispatch => ({
 module.exports = connect(
   mapStateToProps,
   mapDispatchToProps
-)(HelloWorldScene);
+)(Space);

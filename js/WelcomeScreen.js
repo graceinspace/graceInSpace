@@ -21,7 +21,7 @@ const sharedProps = {
   apiKey: secretKey
 };
 
-const InitialVRScene = require("./HelloWorldScene");
+const InitialVRScene = require("./Space");
 const FooterScreen = require("./FooterScreen");
 const GameLostScreen = require("./GameLostScreen");
 const GameWonScreen = require("./GameWonScreen");
@@ -111,7 +111,9 @@ export default class WelcomeScreen extends Component {
                   paddingBottom: 20,
                   textAlign: "center"
                 }}
-              >Choose Level Then Press PLAY</Text>
+              >
+                Choose Level Then Press PLAY
+              </Text>
               <View style={localStyles.levels}>
                 <TouchableHighlight
                   style={

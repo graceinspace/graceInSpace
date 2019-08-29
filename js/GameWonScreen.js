@@ -17,8 +17,6 @@ export default class GameWonScreen extends Component {
   }
   async postScore(seconds, userId) {
     try {
-      console.log("posting");
-      // make call to Firebase
       await FirebaseWrapper.GetInstance().CreateNewDocument(
         "times",
         {
