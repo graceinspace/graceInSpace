@@ -110,7 +110,7 @@ export default class SignUp extends Component {
               </TouchableHighlight>
 
               <TouchableHighlight
-                style={styles.buttons}
+                style={styles.buttonGreen}
                 onPress={() => this.props.changeToUnset()}
               >
                 <Text style={styles.buttonText}>back</Text>
@@ -151,6 +151,19 @@ const styles = StyleSheet.create({
     borderColor: "white",
     borderWidth: 1,
     color: "white"
+  },
+  buttonGreen: {
+    height: 60,
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 120,
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginTop: 5,
+    marginBottom: 15,
+    backgroundColor: "green",
+    borderRadius: 10
   }
 });
 

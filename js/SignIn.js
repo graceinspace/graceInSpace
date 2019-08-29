@@ -113,6 +113,12 @@ export default class SignIn extends Component {
                 >
                   <Text style={styles.buttonText}>Sign in</Text>
                 </TouchableHighlight>
+                <TouchableHighlight
+                  style={styles.buttonGreen}
+                  onPress={() => this.props.changeToUnset()}
+                >
+                  <Text style={styles.buttonText}>back</Text>
+                </TouchableHighlight>
               </View>
             </View>
           ) : (
