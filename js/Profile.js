@@ -14,7 +14,7 @@ import {
   changeToSpace,
   getScores,
   loggedInFalse
-} from "./store/gameActions";
+} from "./store/thunks";
 import { FirebaseWrapper } from "../firebase/firebase";
 
 export default class Profile extends Component {

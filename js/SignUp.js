@@ -15,7 +15,7 @@ import {
   changeToUnset,
   changeToProfile,
   loggedInTrue
-} from "./store/gameActions";
+} from "./store/thunks";
 
 export default class SignUp extends Component {
   constructor(props) {

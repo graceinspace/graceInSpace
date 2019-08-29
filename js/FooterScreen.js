@@ -5,7 +5,7 @@ import { Footer, FooterTab } from "native-base";
 import { connect } from "react-redux";
 import store from "./store/index";
 import { Provider } from "react-redux";
-import { loseGame, winGame, gotSeconds } from "./store/gameActions";
+import { loseGame, winGame, gotSeconds } from "./store/thunks";
 
 class FooterScreen extends Component {
   constructor(props) {

@@ -6,7 +6,7 @@ import {
   TouchableHighlight,
   Image
 } from "react-native";
-import { changeToUnset, changeToSpace } from "./store/gameActions";
+import { changeToUnset, changeToSpace } from "./store/thunks";
 import { connect } from "react-redux";
 import { FirebaseWrapper } from "../firebase/firebase";
 import * as firebase from "firebase";

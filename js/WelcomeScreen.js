@@ -10,7 +10,7 @@ import {
   changeToSignIn,
   changeToProfile,
   changeLevel
-} from "./store/gameActions";
+} from "./store/thunks";
 import { secretKey } from "../secrets";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
