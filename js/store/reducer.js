@@ -14,7 +14,7 @@ import {
   LOGIN,
   LOGOUT,
   CHANGE_LEVEL
-} from "./gameActions";
+} from "./actions";
 import allObjects from "../objects";
 
 let initialState = {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Viro3DObject, ViroAnimations } from "react-viro";
 import { connect } from "react-redux";
-import { upCount } from "./store/gameActions";
+import { upCount } from "./store/thunks";
 import store from "./store/index";
 import { Provider } from "react-redux";
 
