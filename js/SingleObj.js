@@ -6,8 +6,8 @@ import store from "./store/index";
 import { Provider } from "react-redux";
 
 class SingleObj extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       contains: true
     };

@@ -30,13 +30,12 @@ const FooterLoading = require("./FooterLoading");
 export default class WelcomeScreen extends Component {
   constructor() {
     super();
-
     this.state = {
       sharedProps: sharedProps,
       showSceneItems: false,
       clicked: false
     };
-    this._getVRNavigator = this._getVRNavigator.bind(this);
+    this.getVRNavigator = this.getVRNavigator.bind(this);
   }
 
   render() {
@@ -46,7 +45,7 @@ export default class WelcomeScreen extends Component {
       this.props.gameWon === false &&
       this.props.gameLost === false
     ) {
-      return this._getVRNavigator();
+      return this.getVRNavigator();
     }
     if (this.props.gameWon === true) {
       return <GameWonScreen />;
@@ -68,7 +67,6 @@ export default class WelcomeScreen extends Component {
       this.props.gameWon === false &&
       this.props.gameLost === false
     ) {
-      console.log("this is our user", user);
       return (
         <Provider store={store}>
           <View style={localStyles.outer}>
@@ -191,7 +189,7 @@ export default class WelcomeScreen extends Component {
     }
   }
 
-  _getVRNavigator = () => {
+  getVRNavigator = () => {
     return (
       <View>
         <ViroVRSceneNavigator
@@ -206,10 +204,6 @@ export default class WelcomeScreen extends Component {
 }
 
 const localStyles = StyleSheet.create({
-  viroContainer: {
-    flex: 1,
-    backgroundColor: "black"
-  },
   outer: {
     flex: 1,
     flexDirection: "row",

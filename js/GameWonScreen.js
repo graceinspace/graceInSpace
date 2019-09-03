@@ -86,7 +86,7 @@ export default class GameWonScreen extends Component {
   }
 }
 
-var localStyles = StyleSheet.create({
+const localStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
