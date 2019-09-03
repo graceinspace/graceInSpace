@@ -6,7 +6,6 @@ import {
   ViroSpinner
 } from "react-viro";
 import SingleObj from "./SingleObj";
-import allObjects from "./objects";
 import { connect } from "react-redux";
 import { displayAll } from "./store/gameActions";
 

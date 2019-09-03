@@ -8,8 +8,8 @@ import { Provider } from "react-redux";
 import { loseGame, winGame, gotSeconds } from "./store/gameActions";
 
 class FooterScreen extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
   }
 
   render() {
@@ -61,10 +61,6 @@ class FooterScreen extends Component {
 }
 
 const localStyles = StyleSheet.create({
-  viroContainer: {
-    flex: 1,
-    backgroundColor: "black"
-  },
   outer: {
     flex: 1,
     flexDirection: "row",
