@@ -24,7 +24,7 @@ class FooterScreen extends Component {
             </FooterTab>
             <FooterTab style={localStyles.bottomView}>
               <Text style={localStyles.titleText}>Time:</Text>
-              {this.props.score === 10 ? (
+              {this.props.score >= 10 ? (
                 <CountDown
                   until={0}
                   onFinish={() => this.props.winGame()}
