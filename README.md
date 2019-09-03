@@ -1,8 +1,6 @@
-# graceInSpace
+# Grace In Space
 
-https://i.imgur.com/mXhucRC.png
-
-[homePage]: https://i.imgur.com/mXhucRC.png "Our Home Page"
+<img src="https://i.imgur.com/mXhucRC.png" data-canonical-src="https://i.imgur.com/mXhucRC.png" width="400" />
 
 ## Grace in Space
 
